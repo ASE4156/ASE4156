@@ -4,7 +4,15 @@ project(ASE)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(CMAKE_OSX_ARCHITECTURES arm64)
+### set os architecture variable ###
+if(EXISTS "${CMAKE_SOURCE_DIR}/LocalConfig.cmake")
+    include(${CMAKE_SOURCE_DIR}/LocalConfig.cmake)
+else()
+    # set a default value if LocalConfig.cmake doesn't exist
+    set(MY_MACOS_ARCH "arm64")
+endif()
+set(CMAKE_OSX_ARCHITECTURES ${MY_MACOS_ARCH})
+
 
 set(OPENSSL_ROOT_DIR /opt/homebrew/opt/openssl)
 set(OPENSSL_LIBRARIES /opt/homebrew/opt/openssl/lib)

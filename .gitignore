@@ -6,6 +6,9 @@
 # ignore grpc directory
 grpc
 
+# for local config
+LocalConfig.cmake
+
 ### C++ ###
 # Prerequisites
 *.d
