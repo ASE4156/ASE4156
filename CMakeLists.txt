@@ -1,17 +1,21 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(HelloWorldGRPC)
+project(ASE)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
-find_package(gRPC REQUIRED)
+set(CMAKE_OSX_ARCHITECTURES arm64)
 
-# Create the server executable
-add_executable(server src/server.cpp hello.pb.cc hello.grpc.pb.cc)
-target_include_directories(server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(server gRPC::grpc++ gRPC::grpc++_reflection)
+set(OPENSSL_ROOT_DIR /opt/homebrew/opt/openssl)
+set(OPENSSL_LIBRARIES /opt/homebrew/opt/openssl/lib)
+
+find_package(OpenSSL 1.1 REQUIRED)
+find_package(cpprestsdk REQUIRED)
+
+add_executable(server main/server.cpp)
+target_link_libraries(server PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
+
+add_executable(client main/client.cpp)
+target_link_libraries(client PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 
 
-add_executable(client src/client.cpp hello.pb.cc hello.grpc.pb.cc)
-target_include_directories(client PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(client gRPC::grpc++ gRPC::grpc++_reflection)
