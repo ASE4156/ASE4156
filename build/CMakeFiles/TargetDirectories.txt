@@ -1,4 +1,0 @@
-/Users/jackieryu/Desktop/ASE/ASE4156/build/CMakeFiles/server.dir
-/Users/jackieryu/Desktop/ASE/ASE4156/build/CMakeFiles/client.dir
-/Users/jackieryu/Desktop/ASE/ASE4156/build/CMakeFiles/edit_cache.dir
-/Users/jackieryu/Desktop/ASE/ASE4156/build/CMakeFiles/rebuild_cache.dir
