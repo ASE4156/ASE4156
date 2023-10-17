@@ -1,5 +1,9 @@
 # ASE4156
 
+# Package Installation  
+brew install cpprestsdk
+brew install openssl
+
 # Compiling  
 
 Navigate to repo's root directory, then  
