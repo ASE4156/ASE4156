@@ -1,0 +1,104 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+unit_test is a Catch v2.13.10 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+Endpoint1 : API Status Code and Response Data Tes
+  Check status code
+-------------------------------------------------------------------------------
+/home/wei/github/ASE4156/testing/unit_test.cpp:88
+...............................................................................
+
+/home/wei/github/ASE4156/testing/unit_test.cpp:90: PASSED:
+  REQUIRE( url_post_response_status_code("hi",url1) == status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+Endpoint1 : API Status Code and Response Data Tes
+  Check return data is json object
+-------------------------------------------------------------------------------
+/home/wei/github/ASE4156/testing/unit_test.cpp:93
+...............................................................................
+
+/home/wei/github/ASE4156/testing/unit_test.cpp:96: PASSED:
+  REQUIRE( jsonObj.is_object() )
+with expansion:
+  true
+
+-------------------------------------------------------------------------------
+Endpoint1 : API Status Code and Response Data Tes
+  Check json contain response field
+-------------------------------------------------------------------------------
+/home/wei/github/ASE4156/testing/unit_test.cpp:99
+...............................................................................
+
+/home/wei/github/ASE4156/testing/unit_test.cpp:102: PASSED:
+  REQUIRE( jsonObj.has_field("response") )
+with expansion:
+  true
+
+-------------------------------------------------------------------------------
+Endpoint1 : API Status Code and Response Data Tes
+  Check json contain response field is string
+-------------------------------------------------------------------------------
+/home/wei/github/ASE4156/testing/unit_test.cpp:105
+...............................................................................
+
+/home/wei/github/ASE4156/testing/unit_test.cpp:108: PASSED:
+  REQUIRE( jsonObj["response"].is_string() )
+with expansion:
+  true
+
+-------------------------------------------------------------------------------
+Endpoint2 : API Status Code and Response Data Tes
+  Check status code
+-------------------------------------------------------------------------------
+/home/wei/github/ASE4156/testing/unit_test.cpp:117
+...............................................................................
+
+/home/wei/github/ASE4156/testing/unit_test.cpp:119: PASSED:
+  REQUIRE( url_post_response_status_code("hi",url2) == status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+Endpoint2 : API Status Code and Response Data Tes
+  Check return data is json object
+-------------------------------------------------------------------------------
+/home/wei/github/ASE4156/testing/unit_test.cpp:122
+...............................................................................
+
+/home/wei/github/ASE4156/testing/unit_test.cpp:125: PASSED:
+  REQUIRE( jsonObj.is_object() )
+with expansion:
+  true
+
+-------------------------------------------------------------------------------
+Endpoint2 : API Status Code and Response Data Tes
+  Check json contain response field
+-------------------------------------------------------------------------------
+/home/wei/github/ASE4156/testing/unit_test.cpp:128
+...............................................................................
+
+/home/wei/github/ASE4156/testing/unit_test.cpp:131: PASSED:
+  REQUIRE( jsonObj.has_field("response") )
+with expansion:
+  true
+
+-------------------------------------------------------------------------------
+Endpoint2 : API Status Code and Response Data Tes
+  Check json contain response field is string
+-------------------------------------------------------------------------------
+/home/wei/github/ASE4156/testing/unit_test.cpp:134
+...............................................................................
+
+/home/wei/github/ASE4156/testing/unit_test.cpp:137: PASSED:
+  REQUIRE( jsonObj["response"].is_string() )
+with expansion:
+  true
+
+===============================================================================
+All tests passed (8 assertions in 2 test cases)
+
