@@ -88,15 +88,18 @@ int main() {
             .then([&listener]() { std::wcout << U("Listening...") << std::endl; })
             .wait();
 
-	listener2
-	    .open()
-	    .then([&listener]() { std::wcout << U("Listening...") << std::endl; })
-            .wait();
+        listener2
+            .open()
+            .then([&listener]() { std::wcout << U("Listening...") << std::endl; })
+                .wait();
 
-        while (true);
+            while (true);
     }
     catch (std::exception const & e) {
-        std::wcout << e.what() << std::endl;
+        std::wcerr<< e.what() << std::endl;
+    }
+    catch (const http_exception& e) {
+        std::wcerr << e.what() << std::endl;
     }
 }
 
