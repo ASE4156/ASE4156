@@ -5,7 +5,7 @@ using namespace web::http;
 using namespace web::http::client;
 
 int main() {
-    http_client client(U("http://localhost:8080/"));
+    http_client client(U("http://localhost:8080/llm/text/conversation"));
 
     client.request(methods::GET).then([](http_response response) {
         std::wcout << U("Received response status code: ") << response.status_code() << std::endl;
