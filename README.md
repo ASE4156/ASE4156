@@ -16,6 +16,41 @@ During development, make sure to clear make with
 ```rm -rf CMakeFiles cmake_install.cmake CMakeCache.txt Makefile```
 before running cmake again
 
+# Endpoints
+
+- `GET /llm/text/conversation`
+  - Description:
+    - Returns a greeting message.
+  - Request Body:
+    - None.
+  - Response Codes:
+    - 200: Success
+  
+- POST /llm/text/conversation
+  - Description:
+    - Mimics LLM behavior by generating a response to user input.
+  - Request Body:
+    - text: string (User's input text)
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid 'text' field in JSON request
+   
+- GET /revise/user/input
+  - Description:
+    - Returns a greeting message.
+  - Request Body:
+    - None.
+  - Response Codes:
+    - 200: Success
+- POST /revise/user/input
+  - Description:
+    - Mimics LLM behavior by revising user input to match a tone of voice.
+  - Request Body:
+    - text: string (User's input text)
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid 'text' field in JSON request
+
 # Testing
 
 ## unit-test
