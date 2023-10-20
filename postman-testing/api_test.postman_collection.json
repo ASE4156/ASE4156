@@ -1,1 +1,124 @@
-
+{
+	"info": {
+		"_postman_id": "0fb9b7aa-472e-42e3-b4d6-3fd37185edd7",
+		"name": "ASE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "api/revise/user/input",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"hello\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/revise/user/input",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"revise",
+						"user",
+						"input"
+					]
+				},
+				"description": "asdf"
+			},
+			"response": []
+		},
+		{
+			"name": "api/llm/text/conversation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"hello\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/llm/text/conversation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"llm",
+						"text",
+						"conversation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/revise/user/input",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/revise/user/input",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"revise",
+						"user",
+						"input"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/llm/text/conversation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/llm/text/conversation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"llm",
+						"text",
+						"conversation"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
