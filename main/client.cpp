@@ -1,4 +1,5 @@
 #include <cpprest/http_client.h>
+#include "openai.hpp"
 
 using namespace web;
 using namespace web::http;
