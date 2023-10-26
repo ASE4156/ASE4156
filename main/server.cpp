@@ -91,6 +91,39 @@ int main() {
         request.reply(status_codes::OK, response_data);
     });
 
+    // adds listener to localhost port	
+    http_listener listener3(U("http://localhost:8080/login/user"));
+    
+    listener3.support(methods::GET, handle_request);
+    
+    // POST respond_to_text_conversation endpoint implementation
+    listener3.support(methods::POST, [](http_request request) {
+        // Parse JSON request
+        auto json_value = request.extract_json().get();
+
+        // Ensure the JSON value contains a "email" field.
+        if (!json_value.has_field(U("email")) || !json_value[U("email")].is_string()) {
+            request.reply(status_codes::BadRequest, U("Missing or invalid 'email' field in JSON request."));
+            return;
+        }
+        // Ensure the JSON value contains a "password" field.
+        if (!json_value.has_field(U("password")) || !json_value[U("password")].is_string()) {
+            request.reply(status_codes::BadRequest, U("Missing or invalid 'password' field in JSON request."));
+            return;
+        }
+
+        auto user_email = json_value[U("email")].as_string();
+        auto user_password = json_value[U("password")].as_string();
+        auto processed_output = revise_text_conversation(utility::conversions::to_utf8string(user_email));
+
+        // Create response JSON
+        json::value response_data;
+        response_data[U("response")] = json::value::string(utility::conversions::to_string_t(processed_output));
+
+        // Send reply
+        request.reply(status_codes::OK, response_data);
+    });
+
     try {
         listener
             .open()
@@ -98,6 +131,11 @@ int main() {
             .wait();
 
         listener2
+            .open()
+            .then([&listener]() { std::wcout << U("Listening...") << std::endl; })
+                .wait();
+
+        listener3
             .open()
             .then([&listener]() { std::wcout << U("Listening...") << std::endl; })
                 .wait();
