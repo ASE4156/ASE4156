@@ -5,6 +5,10 @@
 
 `brew install openssl`
 
+`sudo apt-get install libpq-dev`
+
+`sudo apt-get install libpqxx-dev`
+
 # Compiling  
 
 Navigate to repo's root directory, then  
@@ -50,6 +54,23 @@ before running cmake again
   - Response Codes:
     - 200: Success
     - 400: Missing or invalid 'text' field in JSON request
+
+- GET /login/user
+  - Description:
+    - Returns a greeting message.
+  - Request Body:
+    - None.
+  - Response Codes:
+    - 200: Success
+- POST /revise/user/input
+  - Description:
+    - Checking if the given email and password matches in the database
+  - Request Body:
+    - email: string
+    - password: string
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid 'email' or 'password'field in JSON request
 
 # Testing
 

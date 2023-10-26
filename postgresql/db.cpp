@@ -1,7 +1,8 @@
 #include <iostream>
 #include <pqxx/pqxx>
+#include "db.hpp"
 
-int sql_return(const std::string& query) {
+std::string sql_return(const std::string& query) {
     try {
         // Define your connection parameters
         std::string host = "ase4156.clyigb9dssrd.us-east-1.rds.amazonaws.com";
@@ -34,18 +35,22 @@ int sql_return(const std::string& query) {
 
             txn.commit();
             conn.disconnect();
+
+            return result.begin()[0].c_str();
         } else {
             std::cerr << "Failed to open database" << std::endl;
         }
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
-        return 1;
+        return "1";
     }
 
-    return 0;
+    return "0";
 }
 
 int main(){
 
-    return sql_return("SELECT password FROM users WHERE email='js4777@example.com'");
+    std::string output = sql_return("SELECT password FROM users WHERE email='js4777@example.com'");
+    std::cout << output << std::endl;
+    return 0;
 }
