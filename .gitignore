@@ -8,6 +8,7 @@ grpc
 
 # for local config
 LocalConfig.cmake
+.env
 
 ### C++ ###
 # Prerequisites
@@ -576,3 +577,4 @@ FodyWeavers.xsd
 **/Makefile
 **/client
 **/server
+**/unit_test

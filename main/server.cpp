@@ -1,6 +1,8 @@
 // headers for http and json
 #include <cpprest/http_listener.h>
 #include <cpprest/json.h>
+#include "http_client_util.hpp"
+#include <iostream>
 
 using namespace web;
 using namespace web::http;
@@ -15,9 +17,16 @@ void handle_request(http_request request) {
 
 // Todo: Placeholder function to mimic LLM behavior - generating response to user input.
 std::string respond_to_text_conversation(const std::string& user_input) {
+    // Make the request
+    auto response_json = call_chatgpt_api_completion(user_input);
+
+    // Response format reference: 
+    // https://platform.openai.com/docs/api-reference/chat/create
+    return response_json[U("choices")][0][U("message")][U("content")].as_string();
+
     // For now, we'll use a mock response.
     // For future iterations, this function will call LLM and generate a response.
-    return "Thanks for talking to me. I was feeling a bit lonely.";
+    // return "Thanks for talking to me. I was feeling a bit lonely.";
 }
 
 // Todo: Placeholder function to mimic LLM behavior - revising user input to match a tone of voice.

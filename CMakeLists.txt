@@ -20,7 +20,9 @@ set(OPENSSL_LIBRARIES /opt/homebrew/opt/openssl/lib)
 find_package(OpenSSL 1.1 REQUIRED)
 find_package(cpprestsdk REQUIRED)
 
-add_executable(server main/server.cpp)
+set (SOURCES main/server.cpp main/http_client_util.cpp main/env_util.cpp)
+
+add_executable(server ${SOURCES})
 target_link_libraries(server PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 
 add_executable(client main/client.cpp)
