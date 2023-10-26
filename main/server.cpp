@@ -31,9 +31,13 @@ std::string respond_to_text_conversation(const std::string& user_input) {
 
 // Todo: Placeholder function to mimic LLM behavior - revising user input to match a tone of voice.
 std::string revise_text_conversation(const std::string& user_input) {
-    // For now, we'll use a mock response.
-    // For future iterations, this function will call LLM and generate a response.
-    return "Howdy mate?";
+
+    // Make request to revise conversation
+    auto response_json = call_chatgpt_revise_conversation(user_input);
+
+    // Response format reference: 
+    // https://platform.openai.com/docs/api-reference/chat/create
+    return response_json[U("choices")][0][U("message")][U("content")].as_string();
 }
 
 int main() {
