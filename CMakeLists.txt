@@ -20,18 +20,35 @@ set(OPENSSL_LIBRARIES /opt/homebrew/opt/openssl/lib)
 find_package(OpenSSL 1.1 REQUIRED)
 find_package(cpprestsdk REQUIRED)
 
-set (SOURCES main/server.cpp main/http_client_util.cpp main/env_util.cpp)
+# Include directories
+include_directories(
+    ${PROJECT_SOURCE_DIR}/src
+    ${PROJECT_SOURCE_DIR}/src/api-endpoints
+    ${PROJECT_SOURCE_DIR}/src/config
+    ${PROJECT_SOURCE_DIR}/src/service
+    ${PROJECT_SOURCE_DIR}/src/utils
+)
+
+# Define source files
+set (SOURCES 
+    src/main.cpp
+    src/api-endpoints/Conversation.cpp
+    src/service/ChatGPTService.cpp
+    src/config/AppConfig.cpp
+)
 
 add_executable(server ${SOURCES})
 target_link_libraries(server PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 
-add_executable(client main/client.cpp)
+add_executable(client src/client/client.cpp)
 target_link_libraries(client PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 
 add_executable(unit_test testing/unit_test.cpp)
 target_link_libraries(unit_test PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 
 add_executable(db postgresql/db.cpp)
+target_include_directories(db PRIVATE ${/usr/local/opt/libpqxx})
 target_link_libraries(db pqxx pq)
+
 
 
