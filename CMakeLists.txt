@@ -50,8 +50,8 @@ target_link_libraries(server PRIVATE ${PQXX_LINK_LIBRARIES} cpprestsdk::cpprest 
 #add_executable(client src/client/client.cpp)
 #target_link_libraries(client PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 
-add_executable(unit_test testing/unit_test.cpp)
-target_link_libraries(unit_test PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
+add_executable(unit_test testing/unit_test.cpp src/service/Authenticator.cpp postgresql/db.cpp)
+target_link_libraries(unit_test PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES} ${PQXX_LINK_LIBRARIES})
 
 
 

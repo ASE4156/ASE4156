@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_MAIN // This tells Catch to provide a main() - only do this
                           // in one cpp file
 #include "catch.hpp"
+#include "service/Authenticator.h"
 
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
@@ -106,6 +107,20 @@ TEST_CASE("Endpoint2 : API Status Code and Response Data Tes", "[Endpoint2]") {
     // Test valid input and verify the status code.
     json::value jsonObj = url_post_response_json("hi", url2);
     REQUIRE(jsonObj[U("response")].is_string());
+  }
+}
+
+TEST_CASE("Authentication : Authentication Functions Test", "[Authentication]") {
+
+  SECTION("Validate Token") {
+    // Test valid input and verify the status code.
+    Authenticator authenticator;
+    REQUIRE(authenticator.validateToken("1234asdf"));
+  }
+
+  SECTION("Generate Token") {
+    Authenticator authenticator;
+    REQUIRE(authenticator.generateToken().length() > 0);
   }
 }
 
