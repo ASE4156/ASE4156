@@ -13,17 +13,20 @@ else()
 endif()
 set(CMAKE_OSX_ARCHITECTURES ${MY_MACOS_ARCH})
 
-
 set(OPENSSL_ROOT_DIR /opt/homebrew/opt/openssl)
 set(OPENSSL_LIBRARIES /opt/homebrew/opt/openssl/lib)
 
 find_package(OpenSSL 1.1 REQUIRED)
 find_package(cpprestsdk REQUIRED)
+find_package(PkgConfig REQUIRED)
+
+pkg_check_modules(PQXX REQUIRED libpqxx)
+
 
 set (SOURCES main/server.cpp main/http_client_util.cpp main/env_util.cpp)
 
 add_executable(server ${SOURCES})
-target_link_libraries(server PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
+target_link_libraries(server PRIVATE ${PQXX_LINK_LIBRARIES} cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 
 add_executable(client main/client.cpp)
 target_link_libraries(client PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
@@ -31,7 +34,5 @@ target_link_libraries(client PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 add_executable(unit_test testing/unit_test.cpp)
 target_link_libraries(unit_test PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 
-add_executable(db postgresql/db.cpp)
-target_link_libraries(db pqxx pq)
 
 

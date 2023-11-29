@@ -76,7 +76,7 @@ pqxx::result sql_return(const std::string& query) {
             // }
 
             txn.commit();
-            conn.disconnect();
+            conn.close();
 
             return result;
         } else {
@@ -174,26 +174,26 @@ int main() {
         auto user_email = json_value[U("email")].as_string();
         auto user_password = json_value[U("password")].as_string();
         std::string email = user_email;
-        std::string query = "SELECT * FROM users WHERE email='"+email+"'";
+        std::string query = "SELECT * FROM client ";
         // pqxx::result ret = sql_return("SELECT * FROM users WHERE email='js4777@example.com'");
         pqxx::result ret = sql_return(query);
         // Create response JSON
         json::value response_data;
         json::value userinfo;
 
-        userinfo[U("id")] = json::value::string(utility::conversions::to_string_t(ret.begin()[0].c_str()));
-        userinfo[U("first_name")] = json::value::string(utility::conversions::to_string_t(ret.begin()[1].c_str()));
-        userinfo[U("last_name")] = json::value::string(utility::conversions::to_string_t(ret.begin()[2].c_str()));
-        userinfo[U("email")] = json::value::string(utility::conversions::to_string_t(ret.begin()[3].c_str()));
-        userinfo[U("password")] = json::value::string(utility::conversions::to_string_t(ret.begin()[4].c_str()));
+    //     // userinfo[U("id")] = json::value::string(utility::conversions::to_string_t(ret.begin()[0].c_str()));
+    //     // userinfo[U("first_name")] = json::value::string(utility::conversions::to_string_t(ret.begin()[1].c_str()));
+    //     // userinfo[U("last_name")] = json::value::string(utility::conversions::to_string_t(ret.begin()[2].c_str()));
+    //     // userinfo[U("email")] = json::value::string(utility::conversions::to_string_t(ret.begin()[3].c_str()));
+    //     // userinfo[U("password")] = json::value::string(utility::conversions::to_string_t(ret.begin()[4].c_str()));
 
-        std::string psw = user_password;
-        if(ret.begin()[4].c_str() == psw){
-            response_data[U("response")] = json::value::string(utility::conversions::to_string_t("Login Sucess!"));
-            response_data[U("userinfo")] = userinfo;
-        } else {
-            response_data[U("response")] = json::value::string(utility::conversions::to_string_t("Wrong email or password"));
-        }
+    //     // std::string psw = user_password;
+    //     // if(ret.begin()[4].c_str() == psw){
+    //     //     response_data[U("response")] = json::value::string(utility::conversions::to_string_t("Login Sucess!"));
+    //     //     response_data[U("userinfo")] = userinfo;
+    //     // } else {
+    //     //     response_data[U("response")] = json::value::string(utility::conversions::to_string_t("Wrong email or password"));
+    //     // }
 
 
         // Send reply
