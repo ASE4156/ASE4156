@@ -19,6 +19,7 @@ set(OPENSSL_LIBRARIES /opt/homebrew/opt/openssl/lib)
 find_package(OpenSSL 1.1 REQUIRED)
 find_package(cpprestsdk REQUIRED)
 find_package(PkgConfig REQUIRED)
+find_package(Boost REQUIRED)
 
 pkg_check_modules(PQXX REQUIRED libpqxx)
 
@@ -30,6 +31,7 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/src/service
     ${PROJECT_SOURCE_DIR}/src/utils
     ${PROJECT_SOURCE_DIR}/postgresql
+    ${Boost_INCLUDE_DIRS}
 )
 
 # Define source files

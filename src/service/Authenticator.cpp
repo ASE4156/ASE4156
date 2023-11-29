@@ -1,6 +1,10 @@
-#include <iostream>
 #include "Authenticator.h"
 #include "db.hpp"
+
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include <iostream>
 
 Authenticator::Authenticator() {}
 
@@ -13,4 +17,10 @@ bool Authenticator::validateToken(const std::string& token) {
     } else {
         return 1;
     }
+}
+
+std::string Authenticator::generateToken() {
+    boost::uuids::random_generator generator;
+    boost::uuids::uuid uuid = generator();
+    return to_string(uuid);
 }
