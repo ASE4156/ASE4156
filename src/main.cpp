@@ -6,6 +6,7 @@
 #include "config/AppConfig.h"
 #include "service/ChatGPTService.h"
 #include "api-endpoints/Conversation.h"
+#include "service/Authenticator.h"
 
 
 using namespace web;
@@ -20,58 +21,12 @@ void handle_request(http_request request) {
     request.reply(status_codes::OK, resp);
 }	
 
-pqxx::result sql_return(const std::string& query) {
-    try {
-        // Define your connection parameters
-        std::string host = "ase4156.clyigb9dssrd.us-east-1.rds.amazonaws.com";
-        std::string dbname = "postgres";
-        std::string user = "dbuser";
-        std::string password = "dbuserdbuser";
-        const int sqlport = 5432;  // PostgreSQL default port
-
-        // Construct the connection string
-        std::string connection_string = "host=" + host +
-                                      " dbname=" + dbname +
-                                      " user=" + user +
-                                      " password=" + password +
-                                      " port=" + std::to_string(sqlport);
-
-        pqxx::connection conn(connection_string);
-
-        if (conn.is_open()) {
-            std::cout << "Opened database successfully: " << conn.dbname() << std::endl;
-
-            pqxx::work txn(conn);
-
-            // Execute a query
-            pqxx::result result = txn.exec(query);
-
-            // // Process the result
-            // for (pqxx::result::const_iterator row = result.begin(); row != result.end(); ++row) {
-            //     std::cout << row[0].c_str() << std::endl;  // Assuming the first column is of type text
-            // }
-
-            txn.commit();
-            conn.close();
-
-            return result;
-        } else {
-            std::cerr << "Failed to open database" << std::endl;
-            pqxx::result emptyresult;
-            return emptyresult;
-        }
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << std::endl;
-        pqxx::result emptyresult;
-        return emptyresult;
-    }
-
-    pqxx::result emptyresult;
-    return emptyresult;
-}
-
-
 int main() {
+    //Authenticator authenticator;
+    //bool result = authenticator.validateToken("1234asdfasdf");
+    //std::cout << result << std::endl;
+    //std::cout << authenticator.generateToken() << std::endl;
+
     // Initialize services
     ChatGPTService chatGptService(get_openai_api_key());
 
@@ -111,7 +66,7 @@ int main() {
         std::string email = user_email;
         std::string query = "SELECT * FROM client ";
         // pqxx::result ret = sql_return("SELECT * FROM users WHERE email='js4777@example.com'");
-        pqxx::result ret = sql_return(query);
+        // pqxx::result ret = sql_return(query);
         // Create response JSON
         json::value response_data;
         json::value userinfo;
