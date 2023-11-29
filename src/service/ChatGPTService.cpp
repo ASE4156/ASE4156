@@ -1,28 +1,26 @@
-#include "http_client_util.hpp"
-#include "env_util.hpp"
+#include "ChatGPTService.h"
+#include <cpprest/http_client.h>
 #include <cpprest/json.h>
 #include <string>
 #include <iostream>
+#include <fstream>
 
-using namespace web;
-using namespace web::http;
-using namespace web::http::client;
+ChatGPTService::ChatGPTService(const std::string& key) : apiKey(key) {}
 
-// namespace httpclient {
 std::string MODEL = "gpt-3.5-turbo";
 
-http_client setup_openai_client() {
+http_client ChatGPTService::setup_openai_client() {
     return http_client(U("https://api.openai.com"));
 }
 
-web::json::value call_chatgpt_api_completion(const std::string& user_input) {
+web::json::value ChatGPTService::call_chatgpt_api_completion(const std::string& user_input) {
     
     //std::cout << "call_chatgpt_api_completion has been called from http_client_utill.cpp." << std::endl;
     http_client client = setup_openai_client();
     http_request request(methods::POST);
 
     request.headers().set_content_type(U("application/json"));
-    request.headers().add(U("Authorization"), U("Bearer " + get_openai_api_key()));
+    request.headers().add(U("Authorization"), U("Bearer " + apiKey));
 
     web::json::value payload = web::json::value::object();
     // corresponds to the required 'messages' payload parameter
@@ -61,14 +59,14 @@ web::json::value call_chatgpt_api_completion(const std::string& user_input) {
     return response_json;
 }
 
-web::json::value call_chatgpt_revise_conversation(const std::string& user_input) {
+web::json::value ChatGPTService::call_chatgpt_revise_conversation(const std::string& user_input) {
     
     //std::cout << "call_chatgpt_revise_conversation has been called from http_client_utill.cpp." << std::endl;
     http_client client = setup_openai_client();
     http_request request(methods::POST);
 
     request.headers().set_content_type(U("application/json"));
-    request.headers().add(U("Authorization"), U("Bearer " + get_openai_api_key()));
+    request.headers().add(U("Authorization"), U("Bearer " + apiKey));
 
     web::json::value payload = web::json::value::object();
     // corresponds to the required 'messages' payload parameter
@@ -106,4 +104,3 @@ web::json::value call_chatgpt_revise_conversation(const std::string& user_input)
     }).wait();
     return response_json;
 }
-// } 

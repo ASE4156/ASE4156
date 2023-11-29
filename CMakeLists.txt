@@ -9,7 +9,7 @@ if(EXISTS "${CMAKE_SOURCE_DIR}/LocalConfig.cmake")
     include(${CMAKE_SOURCE_DIR}/LocalConfig.cmake)
 else()
     # set a default value if LocalConfig.cmake doesn't exist
-    set(MY_MACOS_ARCH "x86_64")
+    set(MY_MACOS_ARCH "arm64")
 endif()
 set(CMAKE_OSX_ARCHITECTURES ${MY_MACOS_ARCH})
 
@@ -22,13 +22,27 @@ find_package(PkgConfig REQUIRED)
 
 pkg_check_modules(PQXX REQUIRED libpqxx)
 
+# Include directories
+include_directories(
+    ${PROJECT_SOURCE_DIR}/src
+    ${PROJECT_SOURCE_DIR}/src/api-endpoints
+    ${PROJECT_SOURCE_DIR}/src/config
+    ${PROJECT_SOURCE_DIR}/src/service
+    ${PROJECT_SOURCE_DIR}/src/utils
+)
 
-set (SOURCES main/server.cpp main/http_client_util.cpp main/env_util.cpp)
+# Define source files
+set (SOURCES 
+    src/main.cpp
+    src/api-endpoints/Conversation.cpp
+    src/service/ChatGPTService.cpp
+    src/config/AppConfig.cpp
+)
 
 add_executable(server ${SOURCES})
 target_link_libraries(server PRIVATE ${PQXX_LINK_LIBRARIES} cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 
-add_executable(client main/client.cpp)
+add_executable(client src/client/client.cpp)
 target_link_libraries(client PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 
 add_executable(unit_test testing/unit_test.cpp)
