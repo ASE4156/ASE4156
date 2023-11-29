@@ -5,6 +5,10 @@
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
 
+using namespace web;
+using namespace web::http;
+using namespace web::http::client;
+
 class ChatGPTService {
 public:
     ChatGPTService(const std::string& apiKey);

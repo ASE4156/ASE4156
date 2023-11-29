@@ -9,7 +9,7 @@ if(EXISTS "${CMAKE_SOURCE_DIR}/LocalConfig.cmake")
     include(${CMAKE_SOURCE_DIR}/LocalConfig.cmake)
 else()
     # set a default value if LocalConfig.cmake doesn't exist
-    set(MY_MACOS_ARCH "x86_64")
+    set(MY_MACOS_ARCH "arm64")
 endif()
 set(CMAKE_OSX_ARCHITECTURES ${MY_MACOS_ARCH})
 
@@ -19,6 +19,9 @@ set(OPENSSL_LIBRARIES /opt/homebrew/opt/openssl/lib)
 
 find_package(OpenSSL 1.1 REQUIRED)
 find_package(cpprestsdk REQUIRED)
+find_package(PkgConfig REQUIRED)
+
+pkg_check_modules(PQXX REQUIRED libpqxx)
 
 # Include directories
 include_directories(
@@ -38,7 +41,7 @@ set (SOURCES
 )
 
 add_executable(server ${SOURCES})
-target_link_libraries(server PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
+target_link_libraries(server PRIVATE ${PQXX_LINK_LIBRARIES} cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 
 add_executable(client src/client/client.cpp)
 target_link_libraries(client PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
@@ -46,9 +49,9 @@ target_link_libraries(client PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 add_executable(unit_test testing/unit_test.cpp)
 target_link_libraries(unit_test PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 
-add_executable(db postgresql/db.cpp)
-target_include_directories(db PRIVATE ${/usr/local/opt/libpqxx})
-target_link_libraries(db pqxx pq)
+# add_executable(db postgresql/db.cpp)
+# target_include_directories(db PRIVATE ${/usr/local/opt/libpqxx})
+# target_link_libraries(db pqxx pq)
 
 
 

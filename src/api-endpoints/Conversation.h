@@ -1,6 +1,10 @@
 #ifndef CONVERSATION_H
 #define CONVERSATION_H
 
+#include "service/ChatGPTService.h"
+
+using namespace web;
+
 class Conversation {
 
 public:

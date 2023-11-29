@@ -1,5 +1,5 @@
 #include "ChatGPTService.h"
-
+#include <cpprest/http_client.h>
 #include <cpprest/json.h>
 #include <string>
 #include <iostream>
@@ -9,11 +9,11 @@ ChatGPTService::ChatGPTService(const std::string& key) : apiKey(key) {}
 
 std::string MODEL = "gpt-3.5-turbo";
 
-http_client setup_openai_client() {
+http_client ChatGPTService::setup_openai_client() {
     return http_client(U("https://api.openai.com"));
 }
 
-web::json::value call_chatgpt_api_completion(const std::string& user_input) {
+web::json::value ChatGPTService::call_chatgpt_api_completion(const std::string& user_input) {
     
     //std::cout << "call_chatgpt_api_completion has been called from http_client_utill.cpp." << std::endl;
     http_client client = setup_openai_client();
@@ -59,7 +59,7 @@ web::json::value call_chatgpt_api_completion(const std::string& user_input) {
     return response_json;
 }
 
-web::json::value call_chatgpt_revise_conversation(const std::string& user_input) {
+web::json::value ChatGPTService::call_chatgpt_revise_conversation(const std::string& user_input) {
     
     //std::cout << "call_chatgpt_revise_conversation has been called from http_client_utill.cpp." << std::endl;
     http_client client = setup_openai_client();
