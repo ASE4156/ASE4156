@@ -45,6 +45,11 @@ int main() {
         token_endpoint.handleCreationRequest(request);
     });
 
+    http_listener token_deletion_listener(U("http://localhost:8080/token/delete"));
+    token_deletion_listener.support(methods::POST, [&token_endpoint](http_request request) {
+        token_endpoint.handleDeletionRequest(request);
+    });
+
     // adds listener to localhost port	
     http_listener listener3(U("http://localhost:8080/login/user"));
     
@@ -84,6 +89,7 @@ int main() {
     try {
         conversation_listener.open().wait();
         token_creation_listener.open().wait();
+        token_deletion_listener.open().wait();
 
         listener3
             .open()
