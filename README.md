@@ -102,6 +102,16 @@ Required package:
 
 run ```clang-format xxxx.cpp```
 
+# Static-Analysis (Bug Finder)
+
+## cppcheck
+
+Required package:
+```brew install cppcheck```
+
+run for one file ```cppcheck xxxx.cpp```
+run for all file ```cppcheck --enable=all --std=c++17 . --output-file=static_analysis/sa_output.txt```
+
 
 
 
