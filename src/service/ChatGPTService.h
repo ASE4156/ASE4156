@@ -14,7 +14,7 @@ public:
     ChatGPTService(const std::string& apiKey);
     
     web::http::client::http_client setup_openai_client();
-    web::json::value call_chatgpt_api_completion(const std::string& user_input);
+    web::json::value call_chatgpt_api_completion(const std::string& user_input, const std::string& prompt);
     web::json::value call_chatgpt_revise_conversation(const std::string& user_input);
 
 private:

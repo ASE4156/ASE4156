@@ -1,6 +1,7 @@
-#include "Conversation.h"
 #include <cpprest/http_listener.h>
 #include <cpprest/json.h>
+#include "db.hpp"
+#include "Conversation.h"
 
 using namespace web::http;
 
@@ -14,10 +15,19 @@ void Conversation::handleCompletionRequest(http_request request) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'text' field in JSON request."));
     	return;
     }
+    
+    std::string prompt;
+    auto userInput = json_value[U("text")].as_string();
+    if (json_value.has_field(U("prompt_id"))) {
+	int promptId = json_value[U("prompt_id")].as_integer();
+	prompt = sql_return("SELECT prompt_content FROM public.prompt WHERE prompt_id='" + prompt_id + "'");
+    } else {
+        // The field "prompt_id" does not exist, set a default prompt
+        prompt = "You are a helpful language-expert chatbot.";
+    }
 
-    auto user_input = json_value[U("text")].as_string();
     auto chatGptResponse = chatGptService.call_chatgpt_api_completion(
-	utility::conversions::to_utf8string(user_input));
+	utility::conversions::to_utf8string(user_input), prompt);
     auto processedResponse = chatGptResponse[U("choices")][0][U("message")][U("content")].as_string();
 
     // Create response JSON

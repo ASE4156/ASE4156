@@ -13,7 +13,7 @@ http_client ChatGPTService::setup_openai_client() {
     return http_client(U("https://api.openai.com"));
 }
 
-web::json::value ChatGPTService::call_chatgpt_api_completion(const std::string& user_input) {
+web::json::value ChatGPTService::call_chatgpt_api_completion(const std::string& user_input, const std::string& prompt) {
     
     //std::cout << "call_chatgpt_api_completion has been called from http_client_utill.cpp." << std::endl;
     http_client client = setup_openai_client();
@@ -29,7 +29,7 @@ web::json::value ChatGPTService::call_chatgpt_api_completion(const std::string& 
     web::json::value user_message = web::json::value::object();
 
     system_message[U("role")] = web::json::value::string(U("system"));
-    system_message[U("content")] = web::json::value::string(U("You are a helpful language-expert chatbot."));
+    system_message[U("content")] = web::json::value::string(U(prompt));
 
     user_message[U("role")] = web::json::value::string(U("user"));
     user_message[U("content")] = web::json::value::string(U(user_input));
