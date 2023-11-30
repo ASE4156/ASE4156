@@ -9,7 +9,7 @@ if(EXISTS "${CMAKE_SOURCE_DIR}/LocalConfig.cmake")
     include(${CMAKE_SOURCE_DIR}/LocalConfig.cmake)
 else()
     # set a default value if LocalConfig.cmake doesn't exist
-    set(MY_MACOS_ARCH "arm64")
+    set(MY_MACOS_ARCH "x86_64")
 endif()
 set(CMAKE_OSX_ARCHITECTURES ${MY_MACOS_ARCH})
 
