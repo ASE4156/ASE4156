@@ -57,6 +57,6 @@ jobs:
       run: |
         sshpass -p $SSH_PASSWORD ssh -o StrictHostKeyChecking=no -p 11376 sjkdan@8.tcp.ngrok.io '
           cd /Users/sjkdan/Desktop/ase2023/ASE4156 &&
-          git pull &&
+          git pull && cmake . &&
           make &&
           ./server'
