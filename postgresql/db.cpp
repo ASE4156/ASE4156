@@ -28,6 +28,8 @@ std::string sql_return(const std::string& query) {
             pqxx::result result = txn.exec(query);
 
             if (result.empty()) {
+                txn.commit();
+                conn.close();
                 return "";
             }
 
