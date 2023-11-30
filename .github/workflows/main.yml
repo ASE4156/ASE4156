@@ -1,0 +1,53 @@
+name: C++ Workflow
+run-name: ${{github.actor}} ran workflow
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install libpq-dev libpqxx-dev
+        brew install cpprestsdk
+        brew install openssl
+
+    - name: Compile the Project
+      run: |
+        cmake .
+        make
+
+    - name: Clear build files (Development)
+      run: rm -rf CMakeFiles cmake_install.cmake CMakeCache.txt Makefile
+
+    - name: Run Unit Tests
+      run: ./unit_test
+
+    - name: Style Check (cpplint)
+      run: |
+        cd styler_checker
+        chmod +x sc_command.sh
+        ./sc_command.sh
+
+    # - name: Format Check (clang-format)
+    #   run: clang-format xxxx.cpp
+
+  # deploy:
+  #   needs: build-and-test
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/main'
+
+  #   steps:
+  #   - name: SSH and Deploy
+  #     run: |
+  #       ssh username@yourserver 'cd /path/to/project && git pull && make deploy'
+
