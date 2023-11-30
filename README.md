@@ -5,9 +5,9 @@
 
 `brew install openssl`
 
-`sudo apt-get install libpq-dev`
+`brew install pkg-config, libpqxx` (if not installing pkg-config, do `export PKG_CONFIG_PATH="/opt/homebrew/opt/libpqxx/lib/pkgconfig"`)
 
-`sudo apt-get install libpqxx-dev`
+`brew install boost`
 
 # Compiling  
 
