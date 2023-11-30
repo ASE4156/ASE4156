@@ -49,6 +49,16 @@ int main() {
         token_endpoint.handleGetRequest(request);
     });
 
+    http_listener token_validate_listener(U("http://localhost:8080/token/validate"));
+    token_validate_listener.support(methods::GET, [&token_endpoint](http_request request) {
+        token_endpoint.handleValidateRequest(request);
+    });
+
+    http_listener token_get_client_listener(U("http://localhost:8080/token/getClient"));
+    token_get_client_listener.support(methods::GET, [&token_endpoint](http_request request) {
+        token_endpoint.handleGetClientRequest(request);
+    });
+
     // Listener for the conversation endpoints
     http_listener prompt_listener(U("http://localhost:8080/prompt"));
     prompt_listener.support(methods::POST, [&prompt](http_request request) {
@@ -74,6 +84,8 @@ int main() {
         token_creation_listener.open().wait();
         token_deletion_listener.open().wait();
         token_get_listener.open().wait();
+        token_validate_listener.open().wait();
+        token_get_client_listener.open().wait();
         prompt_listener.open().wait();
         prompt_id_listener.open().wait();
 
