@@ -12,7 +12,7 @@ void Token::handleCreationRequest(http_request request) {
     // Parse JSON request
     auto json_value = request.extract_json().get();
     // Ensure the JSON value contains a "text" field.
-    if (!json_value.has_field(U("clientId")) || !json_value[U("clientId")].is_string()) {
+    if (!json_value.has_field(U("clientId"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'text' field in JSON request."));
     	return;
     }
@@ -26,7 +26,7 @@ void Token::handleCreationRequest(http_request request) {
     json::value response;
     response[U("response")] = json::value::string(utility::conversions::to_string_t(uuid));
 
-    sql_return("INSERT INTO public.token(token_id, client_id) VALUES ('" + uuid + "', " + clientId + ")")
+    sql_return("INSERT INTO public.token(token_id, client_id) VALUES ('" + uuid + "', " + clientId + ")");
 
     // Send back the response
     request.reply(status_codes::OK, response);
