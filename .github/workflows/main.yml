@@ -49,7 +49,9 @@ jobs:
 
     steps:
     - name: Install sshpass
-      run: brew install hudochenkov/sshpass/sshpass
+      run: |
+        brew install hudochenkov/sshpass/sshpass
+        brew install cmake
 
     - name: SSH and Deploy
       env:
