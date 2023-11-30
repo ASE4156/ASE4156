@@ -3,6 +3,8 @@
 #include <cpprest/json.h>
 #include <pqxx/pqxx>
 #include "db.hpp"
+#include <cstring>
+#include <iostream>
 
 
 using namespace web::http;
@@ -12,11 +14,6 @@ Prompt::Prompt() {}
 
 void Prompt::handlePostRequest(http_request request) { 
     auto json_value = request.extract_json().get();
-    if (!json_value.has_field(U("prompt_id"))) {
-    	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_id' field in JSON request."));
-    	return;
-    }
-    auto prompt_id = json_value[U("prompt_id")].as_integer();
 
     if (!json_value.has_field(U("prompt_name"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_name' field in JSON request."));
@@ -43,15 +40,20 @@ void Prompt::handlePostRequest(http_request request) {
     }
     int client_id = json_value[U("client_id")].as_integer();
 
+    // find the biggest id in data base, and create id 1 bigger than that num
+    pqxx::result max_id = sql_return_result("SELECT MAX(prompt_id) FROM prompt;");
+
+    std::string str_value = max_id[0][0].as<std::string>();  
+    int prompt_id = std::stoi(str_value);
+    prompt_id+=1;  
+
     json::value response;
-    response[U("response")] = json::value::string("Insert Successful!");
 
     std::string query1 = R"(
         INSERT INTO prompt (prompt_id, prompt_name, prompt_description, prompt_content, client_id)
         VALUES 
             (%d, '%s', '%s', '%s', %d)
     )";
-
 
     char buffer[512];
     std::string finalQuery;
@@ -64,7 +66,14 @@ void Prompt::handlePostRequest(http_request request) {
         return;
     }
     std::string ret = sql_return(finalQuery);
-    request.reply(status_codes::OK, response);
+
+    // std::cout << ret.c_str() << std::endl;
+    if (ret.empty()){
+        response[U("response")] = json::value::string("Insert Successful prompt_id "+std::to_string(prompt_id)+"!");
+        request.reply(status_codes::OK, response);
+    } 
+    response[U("response")] = json::value::string(ret.c_str());
+    request.reply(status_codes::BadRequest, response);
 }
 
 
@@ -123,10 +132,32 @@ void Prompt::handlePutRequest(http_request request) {
         return;
     }
 
-    std::string ret = sql_return(finalQuery2);
+    json::value prompt_info;
+    std::vector<std::string> promptList = {
+        "prompt_id", "prompt_name", "prompt_description", "prompt_content", "client_id"
+    };
 
-    response[U("response")] = json::value::string("Update Sucessfully!");
-    request.reply(status_codes::OK, response);
+    int index = 0;
+    pqxx::result prompt = sql_return_result("SELECT * FROM prompt WHERE prompt_id = "+std::to_string(prompt_id)+";");
+    for (pqxx::result::const_iterator row = prompt.begin(); row != prompt.end(); ++row) {
+        json::value prompt_row;
+        for (size_t col = 0; col < row.size(); ++col) {
+            prompt_row[U(promptList[col])] = json::value::string(row[col].c_str());
+        }
+        prompt_info[index++] = prompt_row;
+    }
+    
+    if (!prompt_info.is_null()){
+        std::string ret = sql_return(finalQuery2);
+        response[U("response")] = json::value::string("Update Successful! prompt_id "+std::to_string(prompt_id)+"!");
+        response[U("Previous info")] = prompt_info;
+        request.reply(status_codes::OK, response);
+    } 
+    
+    response[U("response")] = json::value::string("prompt_id "+std::to_string(prompt_id)+" not exist!");
+    request.reply(status_codes::BadRequest, response);
+
+
 }
 
 
@@ -156,12 +187,32 @@ void Prompt::handleDeleteRequest(http_request request) {
         return;
     }
 
-    std::string ret = sql_return(finalQuery3);
-
     json::value response;
-    response[U("response")] = json::value::string("Delete Sucessfully!");
+    json::value prompt_info;
+    std::vector<std::string> promptList = {
+        "prompt_id", "prompt_name", "prompt_description", "prompt_content", "client_id"
+    };
 
-    request.reply(status_codes::OK, response);
+    int index = 0;
+    pqxx::result prompt = sql_return_result("SELECT * FROM prompt WHERE prompt_id = "+std::to_string(prompt_id)+";");
+    for (pqxx::result::const_iterator row = prompt.begin(); row != prompt.end(); ++row) {
+        json::value prompt_row;
+        for (size_t col = 0; col < row.size(); ++col) {
+            prompt_row[U(promptList[col])] = json::value::string(row[col].c_str());
+        }
+        prompt_info[index++] = prompt_row;
+    }
+    
+    if (!prompt_info.is_null()){
+        std::string ret = sql_return(finalQuery3);
+        response[U("response")] = json::value::string("Delete Successful! prompt_id "+std::to_string(prompt_id)+"!");
+        response[U("deleted info")] = prompt_info;
+        request.reply(status_codes::OK, response);
+    } 
+    
+    response[U("response")] = json::value::string("prompt_id "+std::to_string(prompt_id)+" not exist!");
+    request.reply(status_codes::BadRequest, response);
+
 }
 
 
@@ -189,27 +240,54 @@ void Prompt::handleGetRequest(http_request request) {
     }
 
     json::value response;
-    response[U("response")] = prompt_info;
+    if (!prompt_info.is_null()){
+        response[U("response")] = prompt_info;
+        request.reply(status_codes::OK, response);
+    }
+    response[U("response")] = json::value::string("prompt_id "+std::to_string(prompt_id)+" not exist!");
+    request.reply(status_codes::BadRequest, response);
 
-    request.reply(status_codes::OK, response);
 }
 
 void Prompt::handleGetClientRequest(http_request request) {
     auto json_value = request.extract_json().get();
+    json::value response;
+
 
     if (!json_value.has_field(U("client_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'client_id' field in JSON request."));
     	return;
     }
     auto client_id = json_value[U("client_id")].as_integer();    
-    pqxx::result prompt = sql_return_result("SELECT * FROM prompt WHERE client_id = "+std::to_string(client_id)+";");
+    pqxx::result client = sql_return_result("SELECT * FROM client WHERE client_id = "+std::to_string(client_id)+";");
 
+    json::value client_info;
+    std::vector<std::string> clientList = {
+        "client_id", "client_name","client_email", "client_password", "created_at"
+    };
+
+    int index = 0;
+    for (pqxx::result::const_iterator row = client.begin(); row != client.end(); ++row) {
+        json::value prompt_row;
+        for (size_t col = 0; col < row.size(); ++col) {
+            prompt_row[U(clientList[col])] = json::value::string(row[col].c_str());
+        }
+        client_info[index++] = prompt_row;
+    }
+
+    if (client_info.is_null()){
+
+        response[U("response")] = json::value::string("client_id "+std::to_string(client_id)+" not exist!");
+        request.reply(status_codes::BadRequest, response);
+    }
+
+    pqxx::result prompt = sql_return_result("SELECT * FROM prompt WHERE client_id = "+std::to_string(client_id)+";");
     json::value prompt_info;
     std::vector<std::string> promptList = {
         "prompt_id", "prompt_name", "prompt_description", "prompt_content", "client_id"
     };
 
-    int index = 0;
+    index = 0;
     for (pqxx::result::const_iterator row = prompt.begin(); row != prompt.end(); ++row) {
         json::value prompt_row;
         for (size_t col = 0; col < row.size(); ++col) {
@@ -218,8 +296,9 @@ void Prompt::handleGetClientRequest(http_request request) {
         prompt_info[index++] = prompt_row;
     }
 
-    json::value response;
+
     response[U("response")] = prompt_info;
+    response[U("client")] = client_info;
 
     request.reply(status_codes::OK, response);
 }
