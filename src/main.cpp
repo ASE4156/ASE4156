@@ -5,78 +5,28 @@
 #include <pqxx/pqxx>
 #include "config/AppConfig.h"
 #include "service/ChatGPTService.h"
+#include "service/Authenticator.h"
 #include "api-endpoints/Conversation.h"
-
+#include "api-endpoints/Token.h"
+#include "api-endpoints/Prompt.h"
 
 using namespace web;
 using namespace web::http;
 using namespace web::http::experimental::listener;
 
-// handles http get requests
-// Todo (Wei): remove this function once listener3 is refactored into the MVC pattern.
-void handle_request(http_request request) {
-    json::value resp;
-    resp[U("message")] = json::value::string(U("Hello, World!"));
-    request.reply(status_codes::OK, resp);
-}	
-
-pqxx::result sql_return(const std::string& query) {
-    try {
-        // Define your connection parameters
-        std::string host = "ase4156.clyigb9dssrd.us-east-1.rds.amazonaws.com";
-        std::string dbname = "postgres";
-        std::string user = "dbuser";
-        std::string password = "dbuserdbuser";
-        const int sqlport = 5432;  // PostgreSQL default port
-
-        // Construct the connection string
-        std::string connection_string = "host=" + host +
-                                      " dbname=" + dbname +
-                                      " user=" + user +
-                                      " password=" + password +
-                                      " port=" + std::to_string(sqlport);
-
-        pqxx::connection conn(connection_string);
-
-        if (conn.is_open()) {
-            std::cout << "Opened database successfully: " << conn.dbname() << std::endl;
-
-            pqxx::work txn(conn);
-
-            // Execute a query
-            pqxx::result result = txn.exec(query);
-
-            // // Process the result
-            // for (pqxx::result::const_iterator row = result.begin(); row != result.end(); ++row) {
-            //     std::cout << row[0].c_str() << std::endl;  // Assuming the first column is of type text
-            // }
-
-            txn.commit();
-            conn.close();
-
-            return result;
-        } else {
-            std::cerr << "Failed to open database" << std::endl;
-            pqxx::result emptyresult;
-            return emptyresult;
-        }
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << std::endl;
-        pqxx::result emptyresult;
-        return emptyresult;
-    }
-
-    pqxx::result emptyresult;
-    return emptyresult;
-}
-
-
 int main() {
+    //Authenticator authenticator;
+    //bool result = authenticator.validateToken("1234asdfasdf");
+    //std::cout << result << std::endl;
+    //std::cout << authenticator.generateToken() << std::endl;
+
     // Initialize services
     ChatGPTService chatGptService(get_openai_api_key());
 
     // Initialize Endpoint classes
     Conversation conversation(chatGptService);
+    Token token_endpoint;
+    Prompt prompt;
 
     // Listener for the conversation endpoints
     http_listener conversation_listener(U("http://localhost:8080/llm/text/conversation"));
@@ -84,49 +34,48 @@ int main() {
         conversation.handleCompletionRequest(request);
     });
 
-    // adds listener to localhost port	
-    http_listener listener3(U("http://localhost:8080/login/user"));
-    
-    listener3.support(methods::GET, handle_request);
-    
-    // Todo (Wei): need separation of the logic below from the main function.
-    // POST respond_to_text_conversation endpoint implementation
-    listener3.support(methods::POST, [](http_request request) {
-        // Parse JSON request
-        auto json_value = request.extract_json().get();
+    http_listener token_creation_listener(U("http://localhost:8080/token/creation"));
+    token_creation_listener.support(methods::GET, [&token_endpoint](http_request request) {
+        token_endpoint.handleCreationRequest(request);
+    });
 
-        // Ensure the JSON value contains a "email" field.
-        if (!json_value.has_field(U("email")) || !json_value[U("email")].is_string()) {
-            request.reply(status_codes::BadRequest, U("Missing or invalid 'email' field in JSON request."));
-            return;
-        }
-        // Ensure the JSON value contains a "password" field.
-        if (!json_value.has_field(U("password")) || !json_value[U("password")].is_string()) {
-            request.reply(status_codes::BadRequest, U("Missing or invalid 'password' field in JSON request."));
-            return;
-        }
+    http_listener token_deletion_listener(U("http://localhost:8080/token/delete"));
+    token_deletion_listener.support(methods::POST, [&token_endpoint](http_request request) {
+        token_endpoint.handleDeletionRequest(request);
+    });
 
-        auto user_email = json_value[U("email")].as_string();
-        auto user_password = json_value[U("password")].as_string();
-        std::string email = user_email;
-        std::string query = "SELECT * FROM client ";
-        // pqxx::result ret = sql_return("SELECT * FROM users WHERE email='js4777@example.com'");
-        pqxx::result ret = sql_return(query);
-        // Create response JSON
-        json::value response_data;
-        json::value userinfo;
+    http_listener token_get_listener(U("http://localhost:8080/token/get"));
+    token_get_listener.support(methods::GET, [&token_endpoint](http_request request) {
+        token_endpoint.handleGetRequest(request);
+    });
 
-        // Send reply
-        request.reply(status_codes::OK, response_data);
+    // Listener for the conversation endpoints
+    http_listener prompt_listener(U("http://localhost:8080/prompt"));
+    prompt_listener.support(methods::POST, [&prompt](http_request request) {
+        prompt.handlePostRequest(request);
+    });
+    prompt_listener.support(methods::PUT, [&prompt](http_request request) {
+        prompt.handlePutRequest(request);
+    });
+    prompt_listener.support(methods::DEL, [&prompt](http_request request) {
+        prompt.handleDeleteRequest(request);
+    });
+    prompt_listener.support(methods::GET, [&prompt](http_request request) {
+        prompt.handleGetRequest(request);
+    });
+
+    http_listener prompt_id_listener(U("http://localhost:8080/prompt/client_id"));
+    prompt_id_listener.support(methods::GET, [&prompt](http_request request) {
+        prompt.handleGetClientRequest(request);
     });
 
     try {
         conversation_listener.open().wait();
-
-        listener3
-            .open()
-            .then([&listener3]() { std::wcout << U("Listening...") << std::endl; })
-                .wait();
+        token_creation_listener.open().wait();
+        token_deletion_listener.open().wait();
+        token_get_listener.open().wait();
+        prompt_listener.open().wait();
+        prompt_id_listener.open().wait();
 
             while (true);
     }
