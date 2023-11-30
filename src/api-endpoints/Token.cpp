@@ -70,7 +70,7 @@ void Token::handleGetRequest(http_request request) {
     
     auto clientId = json_value[U("clientId")].as_integer();
     std::string clientIdStr = std::to_string(clientId);
-    auto token = sql_return("SELECT token_id FROM public.token WHERE client_id='" + clientIdStr + "' limit 1;");
+    auto token = sql_return("SELECT token_id FROM public.token WHERE client_id='" + clientIdStr + "'ORDER BY created_at DESC LIMIT 1;");
     
     // Create response JSON
     json::value response;
