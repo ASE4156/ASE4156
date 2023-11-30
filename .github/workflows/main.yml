@@ -17,9 +17,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-      # sudo apt-get install libpq-dev libpqxx-dev
-        brew install cpprestsdk
-        brew install openssl
+        sudo apt-get install libpq-dev libpqxx-dev
 
     - name: Compile the Project
       run: |
