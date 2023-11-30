@@ -9,7 +9,7 @@ if(EXISTS "${CMAKE_SOURCE_DIR}/LocalConfig.cmake")
     include(${CMAKE_SOURCE_DIR}/LocalConfig.cmake)
 else()
     # set a default value if LocalConfig.cmake doesn't exist
-    set(MY_MACOS_ARCH "x86_64")
+    set(MY_MACOS_ARCH "arm64")
 endif()
 set(CMAKE_OSX_ARCHITECTURES ${MY_MACOS_ARCH})
 
@@ -40,6 +40,7 @@ set (SOURCES
     src/api-endpoints/Conversation.cpp
     src/api-endpoints/Token.cpp
     src/api-endpoints/Prompt.cpp
+    src/api-endpoints/User.cpp
     src/service/ChatGPTService.cpp
     src/service/Authenticator.cpp
     src/config/AppConfig.cpp
