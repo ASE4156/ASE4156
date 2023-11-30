@@ -42,8 +42,15 @@ void Token::handleDeletionRequest(http_request request) {
     	return;
     }
 
-    auto user_input = json_value[U("token")].as_string();
-    sql_return("DELETE FROM public.token WHERE token_id='" + user_input + "'");
+    auto token = json_value[U("token")].as_string();
+
+    Authenticator authenticator;
+    if (!authenticator.validateToken(token)) {
+    	request.reply(status_codes::BadRequest, U("Invalid 'token' given."));
+    	return;
+    }
+
+    sql_return("DELETE FROM public.token WHERE token_id='" + token + "'");
     
     // Create response JSON
     json::value response;
