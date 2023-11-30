@@ -5,9 +5,9 @@
 #include <pqxx/pqxx>
 #include "config/AppConfig.h"
 #include "service/ChatGPTService.h"
-#include "api-endpoints/Conversation.h"
 #include "service/Authenticator.h"
-
+#include "api-endpoints/Conversation.h"
+#include "api-endpoints/Token.h"
 
 using namespace web;
 using namespace web::http;
@@ -32,11 +32,17 @@ int main() {
 
     // Initialize Endpoint classes
     Conversation conversation(chatGptService);
+    Token token_endpoint;
 
     // Listener for the conversation endpoints
     http_listener conversation_listener(U("http://localhost:8080/llm/text/conversation"));
     conversation_listener.support(methods::POST, [&conversation](http_request request) {
         conversation.handleCompletionRequest(request);
+    });
+
+    http_listener token_creation_listener(U("http://localhost:8080/token/creation"));
+    token_creation_listener.support(methods::GET, [&token_endpoint](http_request request) {
+        token_endpoint.handleCreationRequest(request);
     });
 
     // adds listener to localhost port	
@@ -77,6 +83,7 @@ int main() {
 
     try {
         conversation_listener.open().wait();
+        token_creation_listener.open().wait();
 
         listener3
             .open()

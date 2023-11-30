@@ -38,6 +38,7 @@ include_directories(
 set (SOURCES 
     src/main.cpp
     src/api-endpoints/Conversation.cpp
+    src/api-endpoints/Token.cpp
     src/service/ChatGPTService.cpp
     src/service/Authenticator.cpp
     src/config/AppConfig.cpp
