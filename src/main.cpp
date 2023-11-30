@@ -54,6 +54,14 @@ int main() {
     prompt_listener.support(methods::POST, [&prompt](http_request request) {
         prompt.handlePostRequest(request);
     });
+    prompt_listener.support(methods::PUT, [&prompt](http_request request) {
+        prompt.handlePutRequest(request);
+    });
+
+    // http_listener prompt_id_listener(U("http://localhost:8080/prompt/prompt_id"));
+    // prompt_id_listener.support(methods::GET, [&prompt](http_request request) {
+    //     prompt.handleGetPromptRequest(request);
+    // });
 
     try {
         conversation_listener.open().wait();
@@ -61,6 +69,7 @@ int main() {
         token_deletion_listener.open().wait();
         token_get_listener.open().wait();
         prompt_listener.open().wait();
+        // prompt_id_listener.open().wait();
 
             while (true);
     }

@@ -52,3 +52,46 @@ std::string sql_return(const std::string& query) {
 
     return "0";
 }
+
+
+pqxx::result sql_return_result(const std::string& query) {
+    pqxx::result empty;
+    try {
+        // Define your connection parameters
+        std::string host = "ase4156.clyigb9dssrd.us-east-1.rds.amazonaws.com";
+        std::string dbname = "postgres";
+        std::string user = "dbuser";
+        std::string password = "dbuserdbuser";
+        const int sqlport = 5432;  // PostgreSQL default port
+
+        // Construct the connection string
+        std::string connection_string = "host=" + host +
+                                      " dbname=" + dbname +
+                                      " user=" + user +
+                                      " password=" + password +
+                                      " port=" + std::to_string(sqlport);
+
+        pqxx::connection conn(connection_string);
+
+        if (conn.is_open()) {
+            std::cout << "Opened database successfully: " << conn.dbname() << std::endl;
+
+            pqxx::work txn(conn);
+
+            // Execute a query
+            pqxx::result result = txn.exec(query);
+
+            txn.commit();
+            conn.close();
+
+            return result;
+        } else {
+            std::cerr << "Failed to open database" << std::endl;
+        }
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << std::endl;
+        return empty;
+    }
+
+    return empty;
+}
