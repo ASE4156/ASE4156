@@ -21,20 +21,25 @@ std::string sql_return(const std::string& query) {
         pqxx::connection conn(connection_string);
 
         if (conn.is_open()) {
-            std::cout << "Opened database successfully: " << conn.dbname() << std::endl;
-
+            //std::cout << "Opened database successfully: " << conn.dbname() << std::endl;
             pqxx::work txn(conn);
 
             // Execute a query
             pqxx::result result = txn.exec(query);
 
+            if (result.empty()) {
+                txn.commit();
+                conn.close();
+                return "";
+            }
+
             // Process the result
             for (pqxx::result::const_iterator row = result.begin(); row != result.end(); ++row) {
-                std::cout << row[0].c_str() << std::endl;  // Assuming the first column is of type text
+                //std::cout << row[0].c_str() << std::endl;  // Assuming the first column is of type text
             }
 
             txn.commit();
-            conn.disconnect();
+            conn.close();
 
             return result.begin()[0].c_str();
         } else {
@@ -46,11 +51,4 @@ std::string sql_return(const std::string& query) {
     }
 
     return "0";
-}
-
-int main(){
-
-    std::string output = sql_return("SELECT password FROM users WHERE email='js4777@example.com'");
-    std::cout << output << std::endl;
-    return 0;
 }
