@@ -40,6 +40,7 @@ set (SOURCES
     src/api-endpoints/Conversation.cpp
     src/api-endpoints/Token.cpp
     src/api-endpoints/Prompt.cpp
+    src/api-endpoints/User.cpp
     src/service/ChatGPTService.cpp
     src/service/Authenticator.cpp
     src/config/AppConfig.cpp
