@@ -18,6 +18,8 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install libpq-dev libpqxx-dev
+        sudo apt-get cpprestsdk
+        sudo apt-get openssl
 
     - name: Compile the Project
       run: |
