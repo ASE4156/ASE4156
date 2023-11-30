@@ -18,6 +18,7 @@ set(OPENSSL_LIBRARIES /opt/homebrew/opt/openssl/lib)
 
 find_package(OpenSSL 1.1 REQUIRED)
 find_package(cpprestsdk REQUIRED)
+include_directories(${CPPRESTSDK_INCLUDE_DIRS})
 find_package(PkgConfig REQUIRED)
 find_package(Boost REQUIRED)
 
@@ -46,13 +47,23 @@ set (SOURCES
     postgresql/db.cpp
 )
 
+set (TEST_SOURCES
+    testing/AppConfigTest.cpp
+    testing/ChatGPTServiceTest.cpp
+    testing/MockChatGPTService.cpp
+    testing/ConversationEndpointTest.cpp
+    src/api-endpoints/Conversation.cpp
+    src/service/ChatGPTService.cpp
+    src/config/AppConfig.cpp
+)
+
 add_executable(server ${SOURCES})
 target_link_libraries(server PRIVATE ${PQXX_LINK_LIBRARIES} cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 
 #add_executable(client src/client/client.cpp)
 #target_link_libraries(client PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 
-add_executable(unit_test testing/unit_test.cpp src/service/Authenticator.cpp postgresql/db.cpp)
+add_executable(unit_test ${TEST_SOURCES} testing/unit_test.cpp src/service/Authenticator.cpp postgresql/db.cpp)
 target_link_libraries(unit_test PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES} ${PQXX_LINK_LIBRARIES})
 
 
