@@ -9,16 +9,18 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v2
 
     - name: Install dependencies
       run: |
-        sudo apt-get update
-        sudo apt-get install -y libpq-dev libpqxx-dev libcpprest-dev libssl-dev
-
+        brew install cpprestsdk
+        brew install openssl
+        brew install postgresql
+        brew install libpqxx
+        
     - name: Compile the Project
       run: |
         cmake .
