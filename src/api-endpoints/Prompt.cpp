@@ -11,9 +11,7 @@ using namespace web::http;
 Prompt::Prompt() {}
 
 void Prompt::handlePostRequest(http_request request) { 
-    // Parse JSON request
     auto json_value = request.extract_json().get();
-    // Ensure the JSON value contains a "text" field.
     if (!json_value.has_field(U("prompt_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_id' field in JSON request."));
     	return;
@@ -45,7 +43,6 @@ void Prompt::handlePostRequest(http_request request) {
     }
     int client_id = json_value[U("client_id")].as_integer();
 
-    // Create response JSON
     json::value response;
     response[U("response")] = json::value::string("Insert Successful!");
 
@@ -56,32 +53,23 @@ void Prompt::handlePostRequest(http_request request) {
     )";
 
 
-    // Construct the query using snprintf
-    char buffer[512]; // Choose an appropriate buffer size
+    char buffer[512];
     std::string finalQuery;
     int result = std::snprintf(buffer, sizeof(buffer), query1.c_str(), prompt_id, prompt_name.c_str(), prompt_description.c_str(), prompt_content.c_str(), client_id);
 
-    // Check for errors or truncation
     if (result >= 0 && result < sizeof(buffer)) {
         finalQuery = buffer;
     } else {
-        // Handle buffer overflow or other snprintf errors
-        // For example:
-        finalQuery = "Error creating the query"; // Or log an error message
+        finalQuery = "Error creating the query"; 
         return;
     }
-
-    // Use finalQuery as needed
-    // Send back the response
     std::string ret = sql_return(finalQuery);
     request.reply(status_codes::OK, response);
 }
 
 
 void Prompt::handlePutRequest(http_request request) { 
-    // Parse JSON request
     auto json_value = request.extract_json().get();
-    // Ensure the JSON value contains a "text" field.
     if (!json_value.has_field(U("prompt_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_id' field in JSON request."));
     	return;
@@ -112,7 +100,6 @@ void Prompt::handlePutRequest(http_request request) {
     }
     int client_id = json_value[U("client_id")].as_integer();
 
-    // Create response JSON
     json::value response;
 
     std::string query2 = R"(
@@ -125,21 +112,17 @@ void Prompt::handlePutRequest(http_request request) {
         WHERE prompt_id = %d;
     )";
 
-    char buffer2[512]; // Choose an appropriate buffer size
+    char buffer2[512];
     std::string finalQuery2;
     int result = std::snprintf(buffer2, sizeof(buffer2), query2.c_str(), prompt_name.c_str(), prompt_description.c_str(), prompt_content.c_str(), client_id, prompt_id);
 
-    // Check for errors or truncation
     if (result >= 0 && result < sizeof(buffer2)) {
         finalQuery2 = buffer2;
     } else {
-        // Handle buffer overflow or other snprintf errors
-        // For example:
-        finalQuery2 = "Error creating the query"; // Or log an error message
+        finalQuery2 = "Error creating the query"; 
         return;
     }
 
-    // Send back the response
     std::string ret = sql_return(finalQuery2);
 
     response[U("response")] = json::value::string("Update Sucessfully!");
@@ -148,9 +131,7 @@ void Prompt::handlePutRequest(http_request request) {
 
 
 void Prompt::handleDeleteRequest(http_request request) {
-    // Parse JSON request
     auto json_value = request.extract_json().get();
-    // Ensure the JSON value contains a "text" field.
     if (!json_value.has_field(U("prompt_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_id' field in JSON request."));
     	return;
@@ -163,35 +144,29 @@ void Prompt::handleDeleteRequest(http_request request) {
         WHERE prompt_id = %d;
     )";
 
-    char buffer3[512]; // Choose an appropriate buffer size
+    char buffer3[512];
     std::string finalQuery3;
     int result = std::snprintf(buffer3, sizeof(buffer3), query3.c_str(),prompt_id);
 
-    // Check for errors or truncation
     if (result >= 0 && result < sizeof(buffer3)) {
         finalQuery3 = buffer3;
     } else {
-        // Handle buffer overflow or other snprintf errors
-        // For example:
-        finalQuery3 = "Error creating the query"; // Or log an error message
+      
+        finalQuery3 = "Error creating the query";
         return;
     }
 
     std::string ret = sql_return(finalQuery3);
 
-    // Create response JSON
     json::value response;
     response[U("response")] = json::value::string("Delete Sucessfully!");
 
-    // Send back the response
     request.reply(status_codes::OK, response);
 }
 
 
 void Prompt::handleGetRequest(http_request request) {
-    // Parse JSON request
     auto json_value = request.extract_json().get();
-    // Ensure the JSON value contains a "text" field.
     if (!json_value.has_field(U("prompt_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_id' field in JSON request."));
     	return;
@@ -213,18 +188,15 @@ void Prompt::handleGetRequest(http_request request) {
         prompt_info[index++] = prompt_row;
     }
 
-    // Create response JSON
     json::value response;
     response[U("response")] = prompt_info;
 
-    // Send back the response
     request.reply(status_codes::OK, response);
 }
 
 void Prompt::handleGetClientRequest(http_request request) {
-    // Parse JSON request
     auto json_value = request.extract_json().get();
-    // Ensure the JSON value contains a "text" field.
+
     if (!json_value.has_field(U("client_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'client_id' field in JSON request."));
     	return;
@@ -246,10 +218,8 @@ void Prompt::handleGetClientRequest(http_request request) {
         prompt_info[index++] = prompt_row;
     }
 
-    // Create response JSON
     json::value response;
     response[U("response")] = prompt_info;
 
-    // Send back the response
     request.reply(status_codes::OK, response);
 }
