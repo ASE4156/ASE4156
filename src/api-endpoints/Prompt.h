@@ -13,7 +13,7 @@ public:
     // void handleGetClientRequest(web::http::http_request request);
     // void handleGetPromptRequest(web::http::http_request request);
     void handlePutRequest(web::http::http_request request);
-    // void handleDeleteRequest(web::http::http_request request);
+    void handleDeleteRequest(web::http::http_request request);
 };
 
 #endif // TOKEN_H 

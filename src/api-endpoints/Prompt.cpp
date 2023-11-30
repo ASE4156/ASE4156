@@ -145,3 +145,44 @@ void Prompt::handlePutRequest(http_request request) {
     response[U("response")] = json::value::string("Update Sucessfully!");
     request.reply(status_codes::OK, response);
 }
+
+
+void Prompt::handleDeleteRequest(http_request request) {
+    // Parse JSON request
+    auto json_value = request.extract_json().get();
+    // Ensure the JSON value contains a "text" field.
+    if (!json_value.has_field(U("prompt_id"))) {
+    	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_id' field in JSON request."));
+    	return;
+    }
+
+    auto prompt_id = json_value[U("prompt_id")].as_integer();
+
+    std::string query3 = R"(
+        DELETE FROM prompt
+        WHERE prompt_id = %d;
+    )";
+
+    char buffer3[512]; // Choose an appropriate buffer size
+    std::string finalQuery3;
+    int result = std::snprintf(buffer3, sizeof(buffer3), query3.c_str(),prompt_id);
+
+    // Check for errors or truncation
+    if (result >= 0 && result < sizeof(buffer3)) {
+        finalQuery3 = buffer3;
+    } else {
+        // Handle buffer overflow or other snprintf errors
+        // For example:
+        finalQuery3 = "Error creating the query"; // Or log an error message
+        return;
+    }
+
+    std::string ret = sql_return(finalQuery3);
+
+    // Create response JSON
+    json::value response;
+    response[U("response")] = json::value::string("Delete Sucessfully!");
+
+    // Send back the response
+    request.reply(status_codes::OK, response);
+}

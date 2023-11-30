@@ -57,6 +57,9 @@ int main() {
     prompt_listener.support(methods::PUT, [&prompt](http_request request) {
         prompt.handlePutRequest(request);
     });
+    prompt_listener.support(methods::DEL, [&prompt](http_request request) {
+        prompt.handleDeleteRequest(request);
+    });
 
     // http_listener prompt_id_listener(U("http://localhost:8080/prompt/prompt_id"));
     // prompt_id_listener.support(methods::GET, [&prompt](http_request request) {
