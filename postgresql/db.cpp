@@ -74,7 +74,7 @@ pqxx::result sql_return_result(const std::string& query) {
         pqxx::connection conn(connection_string);
 
         if (conn.is_open()) {
-            std::cout << "Opened database successfully: " << conn.dbname() << std::endl;
+            // std::cout << "Opened database successfully: " << conn.dbname() << std::endl;
 
             pqxx::work txn(conn);
 
