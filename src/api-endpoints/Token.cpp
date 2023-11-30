@@ -100,3 +100,24 @@ void Token::handleValidateRequest(http_request request) {
     // Send back the response
     request.reply(status_codes::OK, response);
 }
+
+void Token::handleGetClientRequest(http_request request) {
+    // Parse JSON request
+    auto json_value = request.extract_json().get();
+    // Ensure the JSON value contains a "text" field.
+    if (!json_value.has_field(U("token"))) {
+    	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));
+    	return;
+    } 
+    auto token = json_value[U("token")].as_string(); 
+    
+    std::string clientIdStr = sql_return("SELECT client_id FROM public.token WHERE token_id='" + token + "';");
+    int clientId = std::stoi(clientIdStr);
+
+    // Create response JSON
+    json::value response;
+    response[U("clientId")] = json::value::number(clientId);
+
+    // Send back the response
+    request.reply(status_codes::OK, response);
+}
