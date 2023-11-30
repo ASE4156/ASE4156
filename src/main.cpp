@@ -64,10 +64,10 @@ int main() {
         prompt.handleGetRequest(request);
     });
 
-    // http_listener prompt_id_listener(U("http://localhost:8080/prompt/prompt_id"));
-    // prompt_id_listener.support(methods::GET, [&prompt](http_request request) {
-    //     prompt.handleGetPromptRequest(request);
-    // });
+    http_listener prompt_id_listener(U("http://localhost:8080/prompt/client_id"));
+    prompt_id_listener.support(methods::GET, [&prompt](http_request request) {
+        prompt.handleGetClientRequest(request);
+    });
 
     try {
         conversation_listener.open().wait();
@@ -75,7 +75,7 @@ int main() {
         token_deletion_listener.open().wait();
         token_get_listener.open().wait();
         prompt_listener.open().wait();
-        // prompt_id_listener.open().wait();
+        prompt_id_listener.open().wait();
 
             while (true);
     }
