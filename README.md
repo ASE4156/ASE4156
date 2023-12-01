@@ -5,7 +5,8 @@
 
 `brew install openssl`
 
-`brew install pkg-config, libpqxx` (if not installing pkg-config, do `export PKG_CONFIG_PATH="/opt/homebrew/opt/libpqxx/lib/pkgconfig"`)
+`brew install pkg-config, libpqxx` 
+(if not installing pkg-config, do `export PKG_CONFIG_PATH="/opt/homebrew/opt/libpqxx/lib/pkgconfig"`)
 
 `brew install boost`
 
@@ -71,6 +72,9 @@ before running cmake again
   - Response Codes:
     - 200: Success
     - 400: Missing or invalid 'email' or 'password'field in JSON request
+# Client App
+
+https://github.com/ASE4156/client-app
 
 # Testing
 
