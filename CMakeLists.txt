@@ -53,8 +53,10 @@ set (TEST_SOURCES
     testing/ChatGPTServiceTest.cpp
     testing/MockChatGPTService.cpp
     testing/ConversationEndpointTest.cpp
+    testing/PromptEndpointTest.cpp
     testing/AuthenticatorTest.cpp
     src/api-endpoints/Conversation.cpp
+    src/api-endpoints/Prompt.cpp
     src/service/ChatGPTService.cpp
     src/service/Authenticator.cpp
     src/config/AppConfig.cpp
