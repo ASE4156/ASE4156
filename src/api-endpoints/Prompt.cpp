@@ -3,6 +3,7 @@
 #include <cpprest/json.h>
 #include <pqxx/pqxx>
 #include "db.hpp"
+#include "Authenticator.h"
 #include <cstring>
 #include <iostream>
 
@@ -14,6 +15,19 @@ Prompt::Prompt() {}
 
 void Prompt::handlePostRequest(http_request request) { 
     auto json_value = request.extract_json().get();
+
+    if (!json_value.has_field(U("token")) || !json_value[U("token")].is_string()) {
+    	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));	
+        return;
+    }
+
+    // we already checked above that token exists and is string
+    std::string token = json_value[U("token")].as_string();
+    Authenticator authenticator;
+    if (!authenticator.validateToken(token)) {
+        request.reply(status_codes::BadRequest, U("Invalid token given"));	
+	    return; 
+    }
 
     if (!json_value.has_field(U("prompt_name"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_name' field in JSON request."));
@@ -79,6 +93,20 @@ void Prompt::handlePostRequest(http_request request) {
 
 void Prompt::handlePutRequest(http_request request) { 
     auto json_value = request.extract_json().get();
+
+    if (!json_value.has_field(U("token")) || !json_value[U("token")].is_string()) {
+    	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));	
+	    return;
+    }
+
+    // we already checked above that token exists and is string
+    std::string token = json_value[U("token")].as_string();
+    Authenticator authenticator;
+    if (!authenticator.validateToken(token)) {
+        request.reply(status_codes::BadRequest, U("Invalid token given"));	
+	    return; 
+    }
+
     if (!json_value.has_field(U("prompt_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_id' field in JSON request."));
     	return;
@@ -163,6 +191,20 @@ void Prompt::handlePutRequest(http_request request) {
 
 void Prompt::handleDeleteRequest(http_request request) {
     auto json_value = request.extract_json().get();
+
+    if (!json_value.has_field(U("token")) || !json_value[U("token")].is_string()) {
+    	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));	
+	    return;
+    }
+
+    // we already checked above that token exists and is string
+    std::string token = json_value[U("token")].as_string();
+    Authenticator authenticator;
+    if (!authenticator.validateToken(token)) {
+        request.reply(status_codes::BadRequest, U("Invalid token given"));	
+	    return; 
+    }
+
     if (!json_value.has_field(U("prompt_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_id' field in JSON request."));
     	return;
@@ -218,6 +260,20 @@ void Prompt::handleDeleteRequest(http_request request) {
 
 void Prompt::handleGetRequest(http_request request) {
     auto json_value = request.extract_json().get();
+
+    if (!json_value.has_field(U("token")) || !json_value[U("token")].is_string()) {
+    	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));	
+        return;
+    }
+
+    // we already checked above that token exists and is string
+    std::string token = json_value[U("token")].as_string();
+    Authenticator authenticator;
+    if (!authenticator.validateToken(token)) {
+        request.reply(status_codes::BadRequest, U("Invalid token given"));	
+        return;
+    }
+
     if (!json_value.has_field(U("prompt_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_id' field in JSON request."));
     	return;
@@ -253,6 +309,18 @@ void Prompt::handleGetClientRequest(http_request request) {
     auto json_value = request.extract_json().get();
     json::value response;
 
+    if (!json_value.has_field(U("token")) || !json_value[U("token")].is_string()) {
+    	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));	
+        return;
+    }
+
+    // we already checked above that token exists and is string
+    std::string token = json_value[U("token")].as_string();
+    Authenticator authenticator;
+    if (!authenticator.validateToken(token)) {
+        request.reply(status_codes::BadRequest, U("Invalid token given"));	
+        return;
+    }
 
     if (!json_value.has_field(U("client_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'client_id' field in JSON request."));
