@@ -9,6 +9,7 @@
 #include "api-endpoints/Conversation.h"
 #include "api-endpoints/Token.h"
 #include "api-endpoints/Prompt.h"
+#include "api-endpoints/User.h"
 
 using namespace web;
 using namespace web::http;
@@ -27,6 +28,7 @@ int main() {
     Conversation conversation(chatGptService);
     Token token_endpoint;
     Prompt prompt;
+    User user;
 
     // Listener for the conversation endpoints
     http_listener conversation_listener(U("http://localhost:8080/llm/text/conversation"));
@@ -47,6 +49,21 @@ int main() {
     http_listener token_get_listener(U("http://localhost:8080/token/get"));
     token_get_listener.support(methods::GET, [&token_endpoint](http_request request) {
         token_endpoint.handleGetRequest(request);
+    });
+
+    http_listener user_creation_listener(U("http://localhost:8080/user/creation"));
+    user_creation_listener.support(methods::GET, [&user](http_request request) {
+        user.handleCreationRequest(request);
+    });
+
+    http_listener token_validate_listener(U("http://localhost:8080/token/validate"));
+    token_validate_listener.support(methods::GET, [&token_endpoint](http_request request) {
+        token_endpoint.handleValidateRequest(request);
+    });
+
+    http_listener token_get_client_listener(U("http://localhost:8080/token/getClient"));
+    token_get_client_listener.support(methods::GET, [&token_endpoint](http_request request) {
+        token_endpoint.handleGetClientRequest(request);
     });
 
     // Listener for the conversation endpoints
@@ -74,6 +91,9 @@ int main() {
         token_creation_listener.open().wait();
         token_deletion_listener.open().wait();
         token_get_listener.open().wait();
+        user_creation_listener.open().wait();
+        token_validate_listener.open().wait();
+        token_get_client_listener.open().wait();
         prompt_listener.open().wait();
         prompt_id_listener.open().wait();
 

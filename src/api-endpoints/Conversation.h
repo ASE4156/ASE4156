@@ -1,18 +1,17 @@
 #ifndef CONVERSATION_H
 #define CONVERSATION_H
 
-#include "service/ChatGPTService.h"
-
-using namespace web;
+#include "service/IChatGPTService.h"
+#include <cpprest/http_client.h>
 
 class Conversation {
 
 public:
-    Conversation(ChatGPTService& service);
-    void handleCompletionRequest(web::http::http_request request);
+    Conversation(IChatGPTService& service);
+    web::http::http_response handleCompletionRequest(web::http::http_request request);
 
 private:
-    ChatGPTService& chatGptService;
+    IChatGPTService& chatGptService;
 };
 
 #endif // CONVERSATION_H

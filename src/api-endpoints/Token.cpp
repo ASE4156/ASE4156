@@ -79,3 +79,48 @@ void Token::handleGetRequest(http_request request) {
     // Send back the response
     request.reply(status_codes::OK, response);
 }
+
+void Token::handleValidateRequest(http_request request) {
+    // Parse JSON request
+    auto json_value = request.extract_json().get();
+    // Ensure the JSON value contains a "text" field.
+    if (!json_value.has_field(U("token"))) {
+    	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));
+    	return;
+    } 
+    auto token = json_value[U("token")].as_string();
+    
+    Authenticator authenticator;
+    bool validated = authenticator.validateToken(token);
+    
+    // Create response JSON
+    json::value response;
+    response[U("validated")] = json::value::boolean(validated);
+
+    // Send back the response
+    request.reply(status_codes::OK, response);
+}
+
+void Token::handleGetClientRequest(http_request request) {
+    // Parse JSON request
+    auto json_value = request.extract_json().get();
+    // std::cout<<json_value<<std::endl;
+    // Ensure the JSON value contains a "text" field.
+    if (!json_value.has_field(U("token"))) {
+    	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));
+    	return;
+    } 
+    auto token = json_value[U("token")].as_string(); 
+    // std::cout<<token<<std::endl;
+    std::string clientIdStr = sql_return("SELECT client_id FROM public.token WHERE token_id='" + token + "';");
+    int clientId = std::stoi(clientIdStr);
+    std::string clientNameStr = sql_return("SELECT client_name FROM public.client WHERE client_id='" + clientIdStr + "';");
+
+    // Create response JSON
+    json::value response;
+    response[U("clientId")] = json::value::number(clientId);
+    response[U("clientName")] = json::value::string(clientNameStr);
+
+    // Send back the response
+    request.reply(status_codes::OK, response);
+}

@@ -18,6 +18,7 @@ set(OPENSSL_LIBRARIES /opt/homebrew/opt/openssl/lib)
 
 find_package(OpenSSL 1.1 REQUIRED)
 find_package(cpprestsdk REQUIRED)
+include_directories(${CPPRESTSDK_INCLUDE_DIRS})
 find_package(PkgConfig REQUIRED)
 find_package(Boost REQUIRED)
 
@@ -40,6 +41,20 @@ set (SOURCES
     src/api-endpoints/Conversation.cpp
     src/api-endpoints/Token.cpp
     src/api-endpoints/Prompt.cpp
+    src/api-endpoints/User.cpp
+    src/service/ChatGPTService.cpp
+    src/service/Authenticator.cpp
+    src/config/AppConfig.cpp
+    postgresql/db.cpp
+)
+
+set (TEST_SOURCES
+    testing/AppConfigTest.cpp
+    testing/ChatGPTServiceTest.cpp
+    testing/MockChatGPTService.cpp
+    testing/ConversationEndpointTest.cpp
+    testing/AuthenticatorTest.cpp
+    src/api-endpoints/Conversation.cpp
     src/service/ChatGPTService.cpp
     src/service/Authenticator.cpp
     src/config/AppConfig.cpp
@@ -52,7 +67,7 @@ target_link_libraries(server PRIVATE ${PQXX_LINK_LIBRARIES} cpprestsdk::cpprest 
 #add_executable(client src/client/client.cpp)
 #target_link_libraries(client PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES})
 
-add_executable(unit_test testing/unit_test.cpp src/service/Authenticator.cpp postgresql/db.cpp)
+add_executable(unit_test ${TEST_SOURCES} testing/unit_test.cpp  )
 target_link_libraries(unit_test PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES} ${PQXX_LINK_LIBRARIES})
 
 

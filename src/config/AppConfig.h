@@ -3,6 +3,6 @@
 
 #include <string>
 
-std::string get_openai_api_key();
+std::string get_openai_api_key(const std::string& envFileName=".env");
 
 #endif // APPCONFIG_H
