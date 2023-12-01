@@ -43,14 +43,14 @@ web::json::value ChatGPTService::call_chatgpt_api_completion(const std::string& 
     messages[1] = user_message;
 
     payload[U("messages")] = messages;
-    payload[U("model")] = web::json::value::string(U(MODEL)); 
+    payload[U("model")] = web::json::value::string(U(MODEL));
     request.set_body(payload);
     request.set_request_uri("/v1/chat/completions");
     
     //std::cout << "request pre-processing completed." << std::endl;
     //std::cout << payload.to_string() << std::endl;
 
-    std::cout << "did we get here?" << std::endl;
+    //std::cout << "did we get here?" << std::endl;
 
     web::json::value response_json;
     client.request(request).then([&](http_response response) {
@@ -58,8 +58,8 @@ web::json::value ChatGPTService::call_chatgpt_api_completion(const std::string& 
 		//std::cout << "request returned and is okay." << std::endl;
 		response_json = response.extract_json().get();
 	} else {
-	  //std::cout << "request returned but not okay." << std::endl;
-		response_json = response.extract_json().get();
+	    //std::cout << "request returned but not okay." << std::endl;
+	    response_json = response.extract_json().get();
 		//std::cout << response_json.to_string() << std::endl;
 	}
     }).wait();
