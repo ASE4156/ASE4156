@@ -3,6 +3,7 @@
 #include "MockChatGPTService.h"
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
+#include "db.hpp"
 
 using namespace web;
 using namespace web::http;
@@ -14,11 +15,14 @@ TEST_CASE("Endpoint POST Request Handling") {
     Conversation conversationEndpoint(mockService);
 
     SECTION("Successful POST request") {
+        std::string token = sql_return("SELECT token_id FROM public.token LIMIT 1;");
+
         http_request mockRequest(methods::POST);
         mockRequest.set_request_uri(U("/llm/text/conversation"));
         web::json::value requestBody = web::json::value::object();
         requestBody[U("text")] = web::json::value::string(U("Hello"));
         requestBody[U("prompt_id")] = web::json::value::number(1234);	
+        requestBody[U("token")] = web::json::value::string(U(token));
         mockRequest.set_body(requestBody);
 
 	web::http::http_response response = conversationEndpoint.handleCompletionRequest(mockRequest);
@@ -34,12 +38,15 @@ TEST_CASE("Endpoint POST Request Handling") {
     }
 
     SECTION("Handle invalid request body - missing text field") {
+        std::string token = sql_return("SELECT token_id FROM public.token LIMIT 1;");
+
         http_request mockRequest(methods::POST);
         mockRequest.set_request_uri(U("/llm/text/conversation"));
         web::json::value requestBody = web::json::value::object();
         
 	// missing text field (prompt_id is optional)
         requestBody[U("prompt_id")] = web::json::value::number(1234);	
+        requestBody[U("token")] = web::json::value::string(U(token));
         mockRequest.set_body(requestBody);
 
 	web::http::http_response response = conversationEndpoint.handleCompletionRequest(mockRequest);
@@ -47,12 +54,15 @@ TEST_CASE("Endpoint POST Request Handling") {
     }
     
     SECTION("Handle invalid request body - invalid text format") {
+        std::string token = sql_return("SELECT token_id FROM public.token LIMIT 1;");
+
         http_request mockRequest(methods::POST);
         mockRequest.set_request_uri(U("/llm/text/conversation"));
         web::json::value requestBody = web::json::value::object();
         
 	// missing text field (prompt_id is optional)
         requestBody[U("text")] = web::json::value::number(1234);	
+        requestBody[U("token")] = web::json::value::string(U(token));
         mockRequest.set_body(requestBody);
 
 	web::http::http_response response = conversationEndpoint.handleCompletionRequest(mockRequest);
