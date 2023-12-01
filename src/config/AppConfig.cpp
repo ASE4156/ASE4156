@@ -1,9 +1,9 @@
 #include "AppConfig.h"
 #include <fstream>
 
-std::string get_openai_api_key() {
+std::string get_openai_api_key(const std::string& envFileName) {
     std::string key;
-    std::ifstream env_file(".env");
+    std::ifstream env_file(envFileName);
     if (env_file) {
         std::string line;
         while (std::getline(env_file, line)) {
