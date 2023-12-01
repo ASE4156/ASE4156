@@ -39,8 +39,13 @@ jobs:
         chmod +x sc_command.sh
         ./sc_command.sh
 
-    # - name: Format Check (clang-format)
-    #   run: clang-format xxxx.cpp
+    - name: Clang Format Check
+      run: |
+        find . -regex '.*\.\(cpp\|h\)' -exec clang-format -i -style=file {} \;
+
+    - name: Clang Tidy Check
+      run: |
+        find . -regex '.*\.\(cpp\|h\)' | xargs clang-tidy -p build/
 
   # deploy:
   #   needs: build-and-test
