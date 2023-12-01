@@ -26,7 +26,7 @@ before running cmake again
 ## LLM Text Conversation
 - `POST /llm/text/conversation`
   - Description:
-    - Calls prompted LLM conversation by generating a response to user input. Requires a valid token and optionally requires a prompt ID to generate response.
+    - Calls prompted LLM conversation using saved prompts and OpenAI API
   - Request Body:
     - text: string 
     - token: string 
@@ -42,9 +42,9 @@ before running cmake again
 
 - `GET /token/creation`
   - Description:
-    - Creates a new token for a given client ID.
+    - Creates a new token for client ID
   - Request Body:
-    - clientId: integer (The client's unique identifier)
+    - clientId: integer 
   - Response:
     - JSON object containing the generated token.
   - Response Codes:
@@ -53,7 +53,7 @@ before running cmake again
 
 - `POST /token/delete`
   - Description:
-    - Deletes an existing token after validating it.
+    - Deletes given token
   - Request Body:
     - token: string (The token to be deleted)
   - Response Codes:
@@ -62,11 +62,11 @@ before running cmake again
 
 - `GET /token/get`
   - Description:
-    - Retrieves the token associated with a given client ID.
+    - Retrieves the token associated with a given client ID
   - Request Body:
-    - clientId: integer (The client's unique identifier)
+    - clientId: integer 
   - Response:
-    - JSON object containing the latest token for the client.
+    - JSON object containing the latest token for the client
   - Response Codes:
     - 200: Success
     - 400: Missing or invalid 'clientId' field in JSON request
@@ -77,18 +77,18 @@ before running cmake again
   - Request Body:
     - token: string (The token to be validated)
   - Response:
-    - JSON object indicating whether the token is valid.
+    - JSON object indicating whether the token is valid
   - Response Codes:
     - 200: Success
     - 400: Missing or invalid 'token' field in JSON request
 
 - `GET /token/getClient`
   - Description:
-    - Retrieves id of client associated with a given token.
+    - Retrieves id of client associated with a given token
   - Request Body:
-    - token: string (The token associated with the client)
+    - token: string
   - Response:
-    - JSON object containing the client's ID and name.
+    - JSON object containing the client's ID and name
   - Response Codes:
     - 200: Success
     - 400: Missing or invalid 'token' field in JSON request
@@ -97,11 +97,11 @@ before running cmake again
 
 - `POST /user/creation`
   - Description:
-    - Creates a new user with the specified details.
+    - Creates a new user with details in parameter 
   - Request Body:
-    - clientName: string (Name of the client)
-    - clientEmail: string (Email address of the client)
-    - clientPassword: string (Password for the client)
+    - clientName: string 
+    - clientEmail: string 
+    - clientPassword: string
   - Response:
     - JSON object containing the newly created client's ID.
   - Response Codes:
@@ -113,11 +113,11 @@ before running cmake again
   - Description:
     - Creates a new prompt with the specified details.
   - Request Body:
-    - token: string (Authentication token for the user)
-    - prompt_name: string (Name of the prompt)
-    - prompt_description: string (Description of the prompt)
-    - prompt_content: string (Content of the prompt)
-    - client_id: integer (Client's unique identifier)
+    - token: string 
+    - prompt_name: string 
+    - prompt_description: string 
+    - prompt_content: string 
+    - client_id: integer 
   - Response Codes:
     - 200: Success
     - 400: Missing or invalid fields in JSON request
@@ -126,12 +126,12 @@ before running cmake again
   - Description:
     - Updates an existing prompt based on the provided prompt ID.
   - Request Body:
-    - token: string (Authentication token for the user)
-    - prompt_id: integer (ID of the prompt to be updated)
-    - prompt_name: string (Updated name of the prompt)
-    - prompt_description: string (Updated description of the prompt)
-    - prompt_content: string (Updated content of the prompt)
-    - client_id: integer (Client's unique identifier)
+    - token: string 
+    - prompt_id: integer 
+    - prompt_name: string 
+    - prompt_description: string 
+    - prompt_content: string 
+    - client_id: integer 
   - Response Codes:
     - 200: Success
     - 400: Missing or invalid fields in JSON request
@@ -140,8 +140,8 @@ before running cmake again
   - Description:
     - Deletes an existing prompt based on the provided prompt ID.
   - Request Body:
-    - token: string (Authentication token for the user)
-    - prompt_id: integer (ID of the prompt to be deleted)
+    - token: string 
+    - prompt_id: integer
   - Response Codes:
     - 200: Success
     - 400: Missing or invalid fields in JSON request
@@ -150,8 +150,8 @@ before running cmake again
   - Description:
     - Retrieves information about an existing prompt based on the provided prompt ID.
   - Request Body:
-    - token: string (Authentication token for the user)
-    - prompt_id: integer (ID of the prompt to retrieve)
+    - token: string
+    - prompt_id: integer 
   - Response Codes:
     - 200: Success
     - 400: Missing or invalid fields in JSON request
@@ -160,8 +160,8 @@ before running cmake again
   - Description:
     - Retrieves information about prompts and client details based on the provided client ID.
   - Request Body:
-    - token: string (Authentication token for the user)
-    - client_id: integer (Client's unique identifier)
+    - token: string 
+    - client_id: integer
   - Response Codes:
     - 200: Success
     - 400: Missing or invalid fields in JSON request
@@ -200,18 +200,7 @@ Required package:
 
 run ```clang-format xxxx.cpp```
 
+# 3rd Party API - OpenAI ChatGPT API   
+https://platform.openai.com/api-keys
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+You must create your own OpenAI API token and put it in .env to utilize OpenAI's API
