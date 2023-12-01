@@ -9,11 +9,11 @@ using namespace web;
 class Prompt {
 public:
     Prompt();
-    void handlePostRequest(web::http::http_request request);
-    void handleGetClientRequest(web::http::http_request request);
-    void handleGetRequest(web::http::http_request request);
-    void handlePutRequest(web::http::http_request request);
-    void handleDeleteRequest(web::http::http_request request);
+    web::http::http_response handlePostRequest(web::http::http_request request);
+    web::http::http_response handleGetClientRequest(web::http::http_request request);
+    web::http::http_response handleGetRequest(web::http::http_request request);
+    web::http::http_response handlePutRequest(web::http::http_request request);
+    web::http::http_response handleDeleteRequest(web::http::http_request request);
 };
 
 #endif 

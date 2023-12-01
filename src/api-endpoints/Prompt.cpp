@@ -13,12 +13,14 @@ using namespace web::http;
 
 Prompt::Prompt() {}
 
-void Prompt::handlePostRequest(http_request request) { 
+web::http::http_response Prompt::handlePostRequest(http_request request) { 
     auto json_value = request.extract_json().get();
+    web::http::http_response endpointResponse;
 
     if (!json_value.has_field(U("token")) || !json_value[U("token")].is_string()) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));	
-        return;
+        endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
 
     // we already checked above that token exists and is string
@@ -26,31 +28,36 @@ void Prompt::handlePostRequest(http_request request) {
     Authenticator authenticator;
     if (!authenticator.validateToken(token)) {
         request.reply(status_codes::BadRequest, U("Invalid token given"));	
-	    return; 
+	    endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse; 
     }
 
     if (!json_value.has_field(U("prompt_name"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_name' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
     auto prompt_name = json_value[U("prompt_name")].as_string();
 
     if (!json_value.has_field(U("prompt_description"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_description' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
     auto prompt_description = json_value[U("prompt_description")].as_string();
 
 
     if (!json_value.has_field(U("prompt_content"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_content' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
     auto prompt_content = json_value[U("prompt_content")].as_string();
 
     if (!json_value.has_field(U("client_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'client_id' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
     int client_id = json_value[U("client_id")].as_integer();
 
@@ -77,7 +84,8 @@ void Prompt::handlePostRequest(http_request request) {
         finalQuery = buffer;
     } else {
         finalQuery = "Error creating the query"; 
-        return;
+        endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
     std::string ret = sql_return(finalQuery);
 
@@ -85,20 +93,26 @@ void Prompt::handlePostRequest(http_request request) {
     if (ret.empty()){
         response[U("response")] = json::value::string("Insert Successful prompt_id "+std::to_string(prompt_id)+"!");
         request.reply(status_codes::OK, response);
+        endpointResponse.set_status_code(web::http::status_codes::OK);
+	    return endpointResponse;
     } else {
         response[U("response")] = json::value::string(ret.c_str());
         request.reply(status_codes::BadRequest, response);
+        endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
+
     }
-    return;
 }
 
 
-void Prompt::handlePutRequest(http_request request) { 
+web::http::http_response Prompt::handlePutRequest(http_request request) { 
     auto json_value = request.extract_json().get();
+    web::http::http_response endpointResponse;
 
     if (!json_value.has_field(U("token")) || !json_value[U("token")].is_string()) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));	
-	    return;
+	    endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
 
     // we already checked above that token exists and is string
@@ -106,36 +120,42 @@ void Prompt::handlePutRequest(http_request request) {
     Authenticator authenticator;
     if (!authenticator.validateToken(token)) {
         request.reply(status_codes::BadRequest, U("Invalid token given"));	
-	    return; 
+	    endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse; 
     }
 
     if (!json_value.has_field(U("prompt_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_id' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
     auto prompt_id = json_value[U("prompt_id")].as_integer();
 
     if (!json_value.has_field(U("prompt_name"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_name' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
     auto prompt_name = json_value[U("prompt_name")].as_string();
 
     if (!json_value.has_field(U("prompt_description"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_description' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
     auto prompt_description = json_value[U("prompt_description")].as_string();
 
     if (!json_value.has_field(U("prompt_content"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_content' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
     auto prompt_content = json_value[U("prompt_content")].as_string();
 
     if (!json_value.has_field(U("client_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'client_id' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
     int client_id = json_value[U("client_id")].as_integer();
 
@@ -159,7 +179,8 @@ void Prompt::handlePutRequest(http_request request) {
         finalQuery2 = buffer2;
     } else {
         finalQuery2 = "Error creating the query"; 
-        return;
+        endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
 
     json::value prompt_info;
@@ -182,21 +203,26 @@ void Prompt::handlePutRequest(http_request request) {
         response[U("response")] = json::value::string("Update Successful! prompt_id "+std::to_string(prompt_id)+"!");
         response[U("Previous info")] = prompt_info;
         request.reply(status_codes::OK, response);
+        endpointResponse.set_status_code(web::http::status_codes::OK);
+	    return endpointResponse;
     } else {
         response[U("response")] = json::value::string("prompt_id "+std::to_string(prompt_id)+" not exist!");
         request.reply(status_codes::BadRequest, response);
+        endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
-    return;
 
 }
 
 
-void Prompt::handleDeleteRequest(http_request request) {
+web::http::http_response Prompt::handleDeleteRequest(http_request request) {
     auto json_value = request.extract_json().get();
+    web::http::http_response endpointResponse;
 
     if (!json_value.has_field(U("token")) || !json_value[U("token")].is_string()) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));	
-	    return;
+	    endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
 
     // we already checked above that token exists and is string
@@ -204,12 +230,14 @@ void Prompt::handleDeleteRequest(http_request request) {
     Authenticator authenticator;
     if (!authenticator.validateToken(token)) {
         request.reply(status_codes::BadRequest, U("Invalid token given"));	
-	    return; 
+	    endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse; 
     }
 
     if (!json_value.has_field(U("prompt_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_id' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
 
     auto prompt_id = json_value[U("prompt_id")].as_integer();
@@ -228,7 +256,8 @@ void Prompt::handleDeleteRequest(http_request request) {
     } else {
       
         finalQuery3 = "Error creating the query";
-        return;
+        endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
 
     json::value response;
@@ -252,20 +281,25 @@ void Prompt::handleDeleteRequest(http_request request) {
         response[U("response")] = json::value::string("Delete Successful! prompt_id "+std::to_string(prompt_id)+"!");
         response[U("deleted info")] = prompt_info;
         request.reply(status_codes::OK, response);
+        endpointResponse.set_status_code(web::http::status_codes::OK);
+	    return endpointResponse;
     } else {
         response[U("response")] = json::value::string("prompt_id "+std::to_string(prompt_id)+" not exist!");
         request.reply(status_codes::BadRequest, response);
+        endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
-    return;
 }
 
 
-void Prompt::handleGetRequest(http_request request) {
+web::http::http_response Prompt::handleGetRequest(http_request request) {
     auto json_value = request.extract_json().get();
+    web::http::http_response endpointResponse;
 
     if (!json_value.has_field(U("token")) || !json_value[U("token")].is_string()) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));	
-        return;
+        endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
 
     // we already checked above that token exists and is string
@@ -273,12 +307,14 @@ void Prompt::handleGetRequest(http_request request) {
     Authenticator authenticator;
     if (!authenticator.validateToken(token)) {
         request.reply(status_codes::BadRequest, U("Invalid token given"));	
-        return;
+        endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
 
     if (!json_value.has_field(U("prompt_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'prompt_id' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
     auto prompt_id = json_value[U("prompt_id")].as_integer();    
     pqxx::result prompt = sql_return_result("SELECT * FROM prompt WHERE prompt_id = "+std::to_string(prompt_id)+";");
@@ -301,21 +337,26 @@ void Prompt::handleGetRequest(http_request request) {
     if (!prompt_info.is_null()){
         response[U("response")] = prompt_info;
         request.reply(status_codes::OK, response);
+        endpointResponse.set_status_code(web::http::status_codes::OK);
+	    return endpointResponse;
     } else {
         response[U("response")] = json::value::string("prompt_id "+std::to_string(prompt_id)+" not exist!");
         request.reply(status_codes::BadRequest, response);
+        endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
-    return;
 
 }
 
-void Prompt::handleGetClientRequest(http_request request) {
+web::http::http_response Prompt::handleGetClientRequest(http_request request) {
     auto json_value = request.extract_json().get();
+    web::http::http_response endpointResponse;
     json::value response;
 
     if (!json_value.has_field(U("token")) || !json_value[U("token")].is_string()) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));	
-        return;
+        endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
 
     // we already checked above that token exists and is string
@@ -323,12 +364,14 @@ void Prompt::handleGetClientRequest(http_request request) {
     Authenticator authenticator;
     if (!authenticator.validateToken(token)) {
         request.reply(status_codes::BadRequest, U("Invalid token given"));	
-        return;
+        endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
 
     if (!json_value.has_field(U("client_id"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'client_id' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
     auto client_id = json_value[U("client_id")].as_integer();    
     pqxx::result client = sql_return_result("SELECT * FROM client WHERE client_id = "+std::to_string(client_id)+";");
@@ -350,7 +393,8 @@ void Prompt::handleGetClientRequest(http_request request) {
     if (client_info.is_null()){
         response[U("response")] = json::value::string("client_id "+std::to_string(client_id)+" not exist!");
         request.reply(status_codes::BadRequest, response);
-        return;
+        endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+	    return endpointResponse;
     }
 
     pqxx::result prompt = sql_return_result("SELECT * FROM prompt WHERE client_id = "+std::to_string(client_id)+";");
@@ -373,5 +417,6 @@ void Prompt::handleGetClientRequest(http_request request) {
     response[U("client")] = client_info;
 
     request.reply(status_codes::OK, response);
-    return;
+    endpointResponse.set_status_code(web::http::status_codes::OK);
+	return endpointResponse;
 }
