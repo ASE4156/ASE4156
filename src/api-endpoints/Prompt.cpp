@@ -71,9 +71,11 @@ void Prompt::handlePostRequest(http_request request) {
     if (ret.empty()){
         response[U("response")] = json::value::string("Insert Successful prompt_id "+std::to_string(prompt_id)+"!");
         request.reply(status_codes::OK, response);
-    } 
-    response[U("response")] = json::value::string(ret.c_str());
-    request.reply(status_codes::BadRequest, response);
+    } else {
+        response[U("response")] = json::value::string(ret.c_str());
+        request.reply(status_codes::BadRequest, response);
+    }
+    return;
 }
 
 
@@ -152,11 +154,11 @@ void Prompt::handlePutRequest(http_request request) {
         response[U("response")] = json::value::string("Update Successful! prompt_id "+std::to_string(prompt_id)+"!");
         response[U("Previous info")] = prompt_info;
         request.reply(status_codes::OK, response);
-    } 
-    
-    response[U("response")] = json::value::string("prompt_id "+std::to_string(prompt_id)+" not exist!");
-    request.reply(status_codes::BadRequest, response);
-
+    } else {
+        response[U("response")] = json::value::string("prompt_id "+std::to_string(prompt_id)+" not exist!");
+        request.reply(status_codes::BadRequest, response);
+    }
+    return;
 
 }
 
@@ -208,11 +210,11 @@ void Prompt::handleDeleteRequest(http_request request) {
         response[U("response")] = json::value::string("Delete Successful! prompt_id "+std::to_string(prompt_id)+"!");
         response[U("deleted info")] = prompt_info;
         request.reply(status_codes::OK, response);
-    } 
-    
-    response[U("response")] = json::value::string("prompt_id "+std::to_string(prompt_id)+" not exist!");
-    request.reply(status_codes::BadRequest, response);
-
+    } else {
+        response[U("response")] = json::value::string("prompt_id "+std::to_string(prompt_id)+" not exist!");
+        request.reply(status_codes::BadRequest, response);
+    }
+    return;
 }
 
 
@@ -243,9 +245,11 @@ void Prompt::handleGetRequest(http_request request) {
     if (!prompt_info.is_null()){
         response[U("response")] = prompt_info;
         request.reply(status_codes::OK, response);
+    } else {
+        response[U("response")] = json::value::string("prompt_id "+std::to_string(prompt_id)+" not exist!");
+        request.reply(status_codes::BadRequest, response);
     }
-    response[U("response")] = json::value::string("prompt_id "+std::to_string(prompt_id)+" not exist!");
-    request.reply(status_codes::BadRequest, response);
+    return;
 
 }
 
@@ -276,9 +280,9 @@ void Prompt::handleGetClientRequest(http_request request) {
     }
 
     if (client_info.is_null()){
-
         response[U("response")] = json::value::string("client_id "+std::to_string(client_id)+" not exist!");
         request.reply(status_codes::BadRequest, response);
+        return;
     }
 
     pqxx::result prompt = sql_return_result("SELECT * FROM prompt WHERE client_id = "+std::to_string(client_id)+";");
@@ -301,4 +305,5 @@ void Prompt::handleGetClientRequest(http_request request) {
     response[U("client")] = client_info;
 
     request.reply(status_codes::OK, response);
+    return;
 }
