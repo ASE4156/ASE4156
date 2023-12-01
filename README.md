@@ -23,55 +23,149 @@ before running cmake again
 
 # Endpoints
 
-- `GET /llm/text/conversation`
+## LLM Text Conversation
+- `POST /llm/text/conversation`
   - Description:
-    - Returns a greeting message.
+    - Calls prompted LLM conversation by generating a response to user input. Requires a valid token and optionally requires a prompt ID to generate response.
   - Request Body:
-    - None.
+    - text: string 
+    - token: string 
+    - prompt_id: integer
+  - Response:
+    - JSON object with AI response
   - Response Codes:
     - 200: Success
-  
-- POST /llm/text/conversation
-  - Description:
-    - Mimics LLM behavior by generating a response to user input.
-  - Request Body:
-    - text: string (User's input text)
-  - Response Codes:
-    - 200: Success
-    - 400: Missing or invalid 'text' field in JSON request
-   
-- GET /revise/user/input
-  - Description:
-    - Returns a greeting message.
-  - Request Body:
-    - None.
-  - Response Codes:
-    - 200: Success
-- POST /revise/user/input
-  - Description:
-    - Mimics LLM behavior by revising user input to match a tone of voice.
-  - Request Body:
-    - text: string (User's input text)
-  - Response Codes:
-    - 200: Success
-    - 400: Missing or invalid 'text' field in JSON request
+    - 400: Missing or invalid 'text' or 'token' field, or invalid token in JSON request
+    - 401: Unauthorized access due to invalid token
 
-- GET /login/user
+## Token Management
+
+- `GET /token/creation`
   - Description:
-    - Returns a greeting message.
+    - Creates a new token for a given client ID.
   - Request Body:
-    - None.
+    - clientId: integer (The client's unique identifier)
+  - Response:
+    - JSON object containing the generated token.
   - Response Codes:
     - 200: Success
-- POST /revise/user/input
+    - 400: Missing or invalid 'clientId' field in JSON request
+
+- `POST /token/delete`
   - Description:
-    - Checking if the given email and password matches in the database
+    - Deletes an existing token after validating it.
   - Request Body:
-    - email: string
-    - password: string
+    - token: string (The token to be deleted)
   - Response Codes:
     - 200: Success
-    - 400: Missing or invalid 'email' or 'password'field in JSON request
+    - 400: Missing or invalid 'token' field in JSON request or invalid token
+
+- `GET /token/get`
+  - Description:
+    - Retrieves the latest token associated with a given client ID.
+  - Request Body:
+    - clientId: integer (The client's unique identifier)
+  - Response:
+    - JSON object containing the latest token for the client.
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid 'clientId' field in JSON request
+
+- `GET /token/validate`
+  - Description:
+    - Validates the given token.
+  - Request Body:
+    - token: string (The token to be validated)
+  - Response:
+    - JSON object indicating whether the token is valid.
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid 'token' field in JSON request
+
+- `GET /token/getClient`
+  - Description:
+    - Retrieves client information associated with a given token.
+  - Request Body:
+    - token: string (The token associated with the client)
+  - Response:
+    - JSON object containing the client's ID and name.
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid 'token' field in JSON request
+
+## User Management
+
+- `POST /user/creation`
+  - Description:
+    - Creates a new user with the specified details.
+  - Request Body:
+    - clientName: string (Name of the client)
+    - clientEmail: string (Email address of the client)
+    - clientPassword: string (Password for the client)
+  - Response:
+    - JSON object containing the newly created client's ID.
+  - Response Codes:
+    - 200: Success
+
+## Prompt Management
+
+- `POST /prompt`
+  - Description:
+    - Creates a new prompt with the specified details.
+  - Request Body:
+    - token: string (Authentication token for the user)
+    - prompt_name: string (Name of the prompt)
+    - prompt_description: string (Description of the prompt)
+    - prompt_content: string (Content of the prompt)
+    - client_id: integer (Client's unique identifier)
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid fields in JSON request
+
+- `PUT /prompt`
+  - Description:
+    - Updates an existing prompt based on the provided prompt ID.
+  - Request Body:
+    - token: string (Authentication token for the user)
+    - prompt_id: integer (ID of the prompt to be updated)
+    - prompt_name: string (Updated name of the prompt)
+    - prompt_description: string (Updated description of the prompt)
+    - prompt_content: string (Updated content of the prompt)
+    - client_id: integer (Client's unique identifier)
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid fields in JSON request
+
+- `DELETE /prompt`
+  - Description:
+    - Deletes an existing prompt based on the provided prompt ID.
+  - Request Body:
+    - token: string (Authentication token for the user)
+    - prompt_id: integer (ID of the prompt to be deleted)
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid fields in JSON request
+
+- `GET /prompt`
+  - Description:
+    - Retrieves information about an existing prompt based on the provided prompt ID.
+  - Request Body:
+    - token: string (Authentication token for the user)
+    - prompt_id: integer (ID of the prompt to retrieve)
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid fields in JSON request
+
+- `GET /prompt/client_id`
+  - Description:
+    - Retrieves information about prompts and client details based on the provided client ID.
+  - Request Body:
+    - token: string (Authentication token for the user)
+    - client_id: integer (Client's unique identifier)
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid fields in JSON request
+
 # Client App
 
 https://github.com/ASE4156/client-app
