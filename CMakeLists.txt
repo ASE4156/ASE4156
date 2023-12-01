@@ -70,5 +70,10 @@ target_link_libraries(server PRIVATE ${PQXX_LINK_LIBRARIES} cpprestsdk::cpprest 
 add_executable(unit_test ${TEST_SOURCES} testing/unit_test.cpp  )
 target_link_libraries(unit_test PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES} ${PQXX_LINK_LIBRARIES})
 
+option(CODE_COVERAGE "Enable coverage reporting" OFF)
 
+if(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    add_compile_options(--coverage -O0 -g)
+    link_libraries(gcov)
+endif()
 
