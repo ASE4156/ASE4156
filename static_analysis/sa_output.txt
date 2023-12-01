@@ -1,0 +1,1251 @@
+[1mpostgresql/db.cpp:1:0: [31minformation:[39m Include file: <iostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iostream>
+^
+[1mpostgresql/db.cpp:2:0: [31minformation:[39m Include file: <pqxx/pqxx> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <pqxx/pqxx>
+^
+[1mpostgresql/db.hpp:3:0: [31minformation:[39m Include file: <iostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iostream>
+^
+[1mpostgresql/db.hpp:4:0: [31minformation:[39m Include file: <pqxx/pqxx> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <pqxx/pqxx>
+^
+[1mpostgresql/server_test copy.cpp:2:0: [31minformation:[39m Include file: <cpprest/http_listener.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/http_listener.h>
+^
+[1mpostgresql/server_test copy.cpp:3:0: [31minformation:[39m Include file: <cpprest/json.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/json.h>
+^
+[1mpostgresql/server_test copy.cpp:4:0: [31minformation:[39m Include file: <iostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iostream>
+^
+[1mpostgresql/server_test copy.cpp:5:0: [31minformation:[39m Include file: <pqxx/pqxx> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <pqxx/pqxx>
+^
+[1mpostgresql/server_test.cpp:2:0: [31minformation:[39m Include file: <cpprest/http_listener.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/http_listener.h>
+^
+[1mpostgresql/server_test.cpp:3:0: [31minformation:[39m Include file: <cpprest/json.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/json.h>
+^
+[1mpostgresql/server_test.cpp:4:0: [31minformation:[39m Include file: <iostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iostream>
+^
+[1mpostgresql/server_test.cpp:5:0: [31minformation:[39m Include file: <pqxx/pqxx> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <pqxx/pqxx>
+^
+[1msrc/api-endpoints/Conversation.h:4:0: [31minformation:[39m Include file: "service/ChatGPTService.h" not found. [missingInclude][0m
+#include "service/ChatGPTService.h"
+^
+[1msrc/api-endpoints/Conversation.cpp:2:0: [31minformation:[39m Include file: <cpprest/http_listener.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/http_listener.h>
+^
+[1msrc/api-endpoints/Conversation.cpp:3:0: [31minformation:[39m Include file: <cpprest/json.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/json.h>
+^
+[1msrc/api-endpoints/Conversation.h:11:5: [31mstyle:[39m Class 'Conversation' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+    Conversation(ChatGPTService& service);
+    ^
+[1msrc/api-endpoints/Prompt.h:4:0: [31minformation:[39m Include file: <cpprest/http_listener.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/http_listener.h>
+^
+[1msrc/api-endpoints/Prompt.h:5:0: [31minformation:[39m Include file: <cpprest/json.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/json.h>
+^
+[1msrc/api-endpoints/Prompt.cpp:2:0: [31minformation:[39m Include file: <cpprest/http_listener.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/http_listener.h>
+^
+[1msrc/api-endpoints/Prompt.cpp:3:0: [31minformation:[39m Include file: <cpprest/json.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/json.h>
+^
+[1msrc/api-endpoints/Prompt.cpp:4:0: [31minformation:[39m Include file: <pqxx/pqxx> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <pqxx/pqxx>
+^
+[1msrc/api-endpoints/Prompt.cpp:5:0: [31minformation:[39m Include file: "db.hpp" not found. [missingInclude][0m
+#include "db.hpp"
+^
+[1msrc/api-endpoints/Prompt.cpp:63:20: [31mstyle:[39m Variable 'finalQuery' is assigned a value that is never used. [unreadVariable][0m
+        finalQuery = "Error creating the query";
+                   ^
+[1msrc/api-endpoints/Prompt.cpp:66:21: [31mstyle:[39m Variable 'ret' is assigned a value that is never used. [unreadVariable][0m
+    std::string ret = sql_return(finalQuery);
+                    ^
+[1msrc/api-endpoints/Prompt.cpp:122:21: [31mstyle:[39m Variable 'finalQuery2' is assigned a value that is never used. [unreadVariable][0m
+        finalQuery2 = "Error creating the query";
+                    ^
+[1msrc/api-endpoints/Prompt.cpp:126:21: [31mstyle:[39m Variable 'ret' is assigned a value that is never used. [unreadVariable][0m
+    std::string ret = sql_return(finalQuery2);
+                    ^
+[1msrc/api-endpoints/Prompt.cpp:155:21: [31mstyle:[39m Variable 'finalQuery3' is assigned a value that is never used. [unreadVariable][0m
+        finalQuery3 = "Error creating the query";
+                    ^
+[1msrc/api-endpoints/Prompt.cpp:159:21: [31mstyle:[39m Variable 'ret' is assigned a value that is never used. [unreadVariable][0m
+    std::string ret = sql_return(finalQuery3);
+                    ^
+[1msrc/api-endpoints/Token.cpp:1:0: [31minformation:[39m Include file: <cpprest/http_listener.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/http_listener.h>
+^
+[1msrc/api-endpoints/Token.cpp:2:0: [31minformation:[39m Include file: <cpprest/json.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/json.h>
+^
+[1msrc/api-endpoints/Token.cpp:4:0: [31minformation:[39m Include file: "Authenticator.h" not found. [missingInclude][0m
+#include "Authenticator.h"
+^
+[1msrc/api-endpoints/Token.cpp:5:0: [31minformation:[39m Include file: "db.hpp" not found. [missingInclude][0m
+#include "db.hpp"
+^
+[1msrc/config/AppConfig.h:4:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1msrc/config/AppConfig.cpp:2:0: [31minformation:[39m Include file: <fstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <fstream>
+^
+[1msrc/main.cpp:2:0: [31minformation:[39m Include file: <cpprest/http_listener.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/http_listener.h>
+^
+[1msrc/main.cpp:3:0: [31minformation:[39m Include file: <cpprest/json.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/json.h>
+^
+[1msrc/main.cpp:4:0: [31minformation:[39m Include file: <iostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iostream>
+^
+[1msrc/main.cpp:5:0: [31minformation:[39m Include file: <pqxx/pqxx> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <pqxx/pqxx>
+^
+[1msrc/service/ChatGPTService.h:4:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1msrc/service/ChatGPTService.h:5:0: [31minformation:[39m Include file: <cpprest/http_client.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/http_client.h>
+^
+[1msrc/service/ChatGPTService.h:6:0: [31minformation:[39m Include file: <cpprest/json.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/json.h>
+^
+[1msrc/service/Authenticator.h:4:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1msrc/service/ChatGPTService.h:14:5: [31mstyle:[39m Class 'ChatGPTService' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+    ChatGPTService(const std::string& apiKey);
+    ^
+[1msrc/service/Authenticator.cpp:2:0: [31minformation:[39m Include file: "db.hpp" not found. [missingInclude][0m
+#include "db.hpp"
+^
+[1msrc/service/Authenticator.cpp:4:0: [31minformation:[39m Include file: <boost/uuid/uuid.hpp> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <boost/uuid/uuid.hpp>
+^
+[1msrc/service/Authenticator.cpp:5:0: [31minformation:[39m Include file: <boost/uuid/uuid_generators.hpp> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <boost/uuid/uuid_generators.hpp>
+^
+[1msrc/service/Authenticator.cpp:6:0: [31minformation:[39m Include file: <boost/uuid/uuid_io.hpp> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <boost/uuid/uuid_io.hpp>
+^
+[1msrc/service/Authenticator.cpp:7:0: [31minformation:[39m Include file: <iostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iostream>
+^
+[1msrc/service/ChatGPTService.cpp:2:0: [31minformation:[39m Include file: <cpprest/http_client.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/http_client.h>
+^
+[1msrc/service/ChatGPTService.cpp:3:0: [31minformation:[39m Include file: <cpprest/json.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/json.h>
+^
+[1msrc/service/ChatGPTService.cpp:4:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1msrc/service/ChatGPTService.cpp:5:0: [31minformation:[39m Include file: <iostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iostream>
+^
+[1msrc/service/ChatGPTService.cpp:6:0: [31minformation:[39m Include file: <fstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <fstream>
+^
+[1mtesting/unit_test.cpp:0:0: [31minformation:[39m Too many #ifdef configurations - cppcheck only checks 12 of 107 configurations. Use --force to check all configurations. [toomanyconfigs][0m
+
+^
+[1mtesting/catch.hpp:476:0: [31minformation:[39m Include file: <iosfwd> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iosfwd>
+^
+[1mtesting/catch.hpp:477:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:478:0: [31minformation:[39m Include file: <cstdint> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstdint>
+^
+[1mtesting/catch.hpp:566:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:596:0: [31minformation:[39m Include file: <cstddef> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstddef>
+^
+[1mtesting/catch.hpp:597:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:598:0: [31minformation:[39m Include file: <iosfwd> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iosfwd>
+^
+[1mtesting/catch.hpp:599:0: [31minformation:[39m Include file: <cassert> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cassert>
+^
+[1mtesting/catch.hpp:921:0: [31minformation:[39m Include file: <type_traits> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <type_traits>
+^
+[1mtesting/catch.hpp:1415:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:1416:0: [31minformation:[39m Include file: <cstddef> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstddef>
+^
+[1mtesting/catch.hpp:1417:0: [31minformation:[39m Include file: <type_traits> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <type_traits>
+^
+[1mtesting/catch.hpp:1418:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:1421:0: [31minformation:[39m Include file: <iosfwd> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iosfwd>
+^
+[1mtesting/catch.hpp:1422:0: [31minformation:[39m Include file: <cstddef> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstddef>
+^
+[1mtesting/catch.hpp:1423:0: [31minformation:[39m Include file: <ostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <ostream>
+^
+[1mtesting/catch.hpp:1461:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:2057:0: [31minformation:[39m Include file: <ctime> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <ctime>
+^
+[1mtesting/catch.hpp:2058:0: [31minformation:[39m Include file: <ratio> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <ratio>
+^
+[1mtesting/catch.hpp:2059:0: [31minformation:[39m Include file: <chrono> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <chrono>
+^
+[1mtesting/catch.hpp:2189:0: [31minformation:[39m Include file: <iosfwd> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iosfwd>
+^
+[1mtesting/catch.hpp:2434:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:2435:0: [31minformation:[39m Include file: <chrono> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <chrono>
+^
+[1mtesting/catch.hpp:2594:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:2595:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:2825:0: [31minformation:[39m Include file: <cstddef> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstddef>
+^
+[1mtesting/catch.hpp:2856:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:2887:0: [31minformation:[39m Include file: <cstdint> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstdint>
+^
+[1mtesting/catch.hpp:2907:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:2947:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:2948:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:3000:0: [31minformation:[39m Include file: <exception> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <exception>
+^
+[1mtesting/catch.hpp:3001:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:3002:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:3073:0: [31minformation:[39m Include file: <type_traits> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <type_traits>
+^
+[1mtesting/catch.hpp:3194:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:3195:0: [31minformation:[39m Include file: <iosfwd> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iosfwd>
+^
+[1mtesting/catch.hpp:3196:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:3232:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:3233:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:3483:0: [31minformation:[39m Include file: <functional> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <functional>
+^
+[1mtesting/catch.hpp:3484:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:3531:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:3600:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:3840:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:3871:0: [31minformation:[39m Include file: <exception> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <exception>
+^
+[1mtesting/catch.hpp:3910:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:3911:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:3912:0: [31minformation:[39m Include file: <cassert> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cassert>
+^
+[1mtesting/catch.hpp:3914:0: [31minformation:[39m Include file: <utility> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <utility>
+^
+[1mtesting/catch.hpp:3915:0: [31minformation:[39m Include file: <exception> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <exception>
+^
+[1mtesting/catch.hpp:4347:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:4468:0: [31minformation:[39m Include file: <chrono> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <chrono>
+^
+[1mtesting/catch.hpp:4469:0: [31minformation:[39m Include file: <iosfwd> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iosfwd>
+^
+[1mtesting/catch.hpp:4470:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:4471:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:4472:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:4549:0: [31minformation:[39m Include file: <cstdint> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstdint>
+^
+[1mtesting/catch.hpp:4597:0: [31minformation:[39m Include file: <random> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <random>
+^
+[1mtesting/catch.hpp:4759:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:4760:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:4761:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:5103:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:5104:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:5105:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:5181:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:5261:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:5262:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:5263:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:5379:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:5472:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:5473:0: [31minformation:[39m Include file: <iosfwd> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iosfwd>
+^
+[1mtesting/catch.hpp:5474:0: [31minformation:[39m Include file: <map> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <map>
+^
+[1mtesting/catch.hpp:5475:0: [31minformation:[39m Include file: <set> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <set>
+^
+[1mtesting/catch.hpp:5476:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:5477:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:5716:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:5717:0: [31minformation:[39m Include file: <cstring> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstring>
+^
+[1mtesting/catch.hpp:5718:0: [31minformation:[39m Include file: <cfloat> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cfloat>
+^
+[1mtesting/catch.hpp:5719:0: [31minformation:[39m Include file: <cstdio> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstdio>
+^
+[1mtesting/catch.hpp:5720:0: [31minformation:[39m Include file: <cassert> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cassert>
+^
+[1mtesting/catch.hpp:5721:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:5722:0: [31minformation:[39m Include file: <ostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <ostream>
+^
+[1mtesting/catch.hpp:6222:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:7469:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:7470:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:7471:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:7860:0: [31minformation:[39m Include file: <cmath> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cmath>
+^
+[1mtesting/catch.hpp:7861:0: [31minformation:[39m Include file: <limits> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <limits>
+^
+[1mtesting/catch.hpp:7997:0: [31minformation:[39m Include file: <cassert> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cassert>
+^
+[1mtesting/catch.hpp:8051:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:8463:0: [31minformation:[39m Include file: <cassert> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cassert>
+^
+[1mtesting/catch.hpp:8464:0: [31minformation:[39m Include file: <ostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <ostream>
+^
+[1mtesting/catch.hpp:8465:0: [31minformation:[39m Include file: <sstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <sstream>
+^
+[1mtesting/catch.hpp:8466:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:8792:0: [31minformation:[39m Include file: <cctype> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cctype>
+^
+[1mtesting/catch.hpp:8793:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:8794:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:8795:0: [31minformation:[39m Include file: <set> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <set>
+^
+[1mtesting/catch.hpp:8796:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:9697:0: [31minformation:[39m Include file: <fstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <fstream>
+^
+[1mtesting/catch.hpp:9698:0: [31minformation:[39m Include file: <ctime> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <ctime>
+^
+[1mtesting/catch.hpp:9915:0: [31minformation:[39m Include file: <cstring> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstring>
+^
+[1mtesting/catch.hpp:9916:0: [31minformation:[39m Include file: <ostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <ostream>
+^
+[1mtesting/catch.hpp:10077:0: [31minformation:[39m Include file: <sstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <sstream>
+^
+[1mtesting/catch.hpp:10174:0: [31minformation:[39m Include file: <unistd.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <unistd.h>
+^
+[1mtesting/catch.hpp:10360:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:10524:0: [31minformation:[39m Include file: <stdexcept> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <stdexcept>
+^
+[1mtesting/catch.hpp:10556:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:10557:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:10580:0: [31minformation:[39m Include file: <map> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <map>
+^
+[1mtesting/catch.hpp:10581:0: [31minformation:[39m Include file: <cassert> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cassert>
+^
+[1mtesting/catch.hpp:10647:0: [31minformation:[39m Include file: <cerrno> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cerrno>
+^
+[1mtesting/catch.hpp:10658:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:10659:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:10660:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:10755:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:10862:0: [31minformation:[39m Include file: <signal.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <signal.h>
+^
+[1mtesting/catch.hpp:10965:0: [31minformation:[39m Include file: <limits> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <limits>
+^
+[1mtesting/catch.hpp:10966:0: [31minformation:[39m Include file: <set> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <set>
+^
+[1mtesting/catch.hpp:11217:0: [31minformation:[39m Include file: <set> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <set>
+^
+[1mtesting/catch.hpp:11249:0: [31minformation:[39m Include file: <limits> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <limits>
+^
+[1mtesting/catch.hpp:11250:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:11251:0: [31minformation:[39m Include file: <iomanip> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iomanip>
+^
+[1mtesting/catch.hpp:11457:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:11473:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:11474:0: [31minformation:[39m Include file: <cmath> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cmath>
+^
+[1mtesting/catch.hpp:11475:0: [31minformation:[39m Include file: <cstdlib> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstdlib>
+^
+[1mtesting/catch.hpp:11476:0: [31minformation:[39m Include file: <cstdint> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstdint>
+^
+[1mtesting/catch.hpp:11477:0: [31minformation:[39m Include file: <cstring> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstring>
+^
+[1mtesting/catch.hpp:11478:0: [31minformation:[39m Include file: <sstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <sstream>
+^
+[1mtesting/catch.hpp:11479:0: [31minformation:[39m Include file: <type_traits> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <type_traits>
+^
+[1mtesting/catch.hpp:11480:0: [31minformation:[39m Include file: <iomanip> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iomanip>
+^
+[1mtesting/catch.hpp:11481:0: [31minformation:[39m Include file: <limits> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <limits>
+^
+[1mtesting/catch.hpp:11704:0: [31minformation:[39m Include file: <regex> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <regex>
+^
+[1mtesting/catch.hpp:11813:0: [31minformation:[39m Include file: <cassert> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cassert>
+^
+[1mtesting/catch.hpp:11814:0: [31minformation:[39m Include file: <stack> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <stack>
+^
+[1mtesting/catch.hpp:11946:0: [31minformation:[39m Include file: <cstdio> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstdio>
+^
+[1mtesting/catch.hpp:11947:0: [31minformation:[39m Include file: <iosfwd> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iosfwd>
+^
+[1mtesting/catch.hpp:11948:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:12049:0: [31minformation:[39m Include file: <cstdio> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstdio>
+^
+[1mtesting/catch.hpp:12050:0: [31minformation:[39m Include file: <cstring> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstring>
+^
+[1mtesting/catch.hpp:12051:0: [31minformation:[39m Include file: <fstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <fstream>
+^
+[1mtesting/catch.hpp:12052:0: [31minformation:[39m Include file: <sstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <sstream>
+^
+[1mtesting/catch.hpp:12053:0: [31minformation:[39m Include file: <stdexcept> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <stdexcept>
+^
+[1mtesting/catch.hpp:12187:0: [31minformation:[39m Include file: <cmath> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cmath>
+^
+[1mtesting/catch.hpp:12276:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:12277:0: [31minformation:[39m Include file: <set> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <set>
+^
+[1mtesting/catch.hpp:12278:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:12279:0: [31minformation:[39m Include file: <ios> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <ios>
+^
+[1mtesting/catch.hpp:12332:0: [31minformation:[39m Include file: <map> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <map>
+^
+[1mtesting/catch.hpp:12361:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:12375:0: [31minformation:[39m Include file: <map> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <map>
+^
+[1mtesting/catch.hpp:12395:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:12396:0: [31minformation:[39m Include file: <exception> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <exception>
+^
+[1mtesting/catch.hpp:12579:0: [31minformation:[39m Include file: <cassert> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cassert>
+^
+[1mtesting/catch.hpp:12580:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:12581:0: [31minformation:[39m Include file: <sstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <sstream>
+^
+[1mtesting/catch.hpp:13210:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:13260:0: [31minformation:[39m Include file: <iosfwd> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iosfwd>
+^
+[1mtesting/catch.hpp:13289:0: [31minformation:[39m Include file: <cstdlib> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstdlib>
+^
+[1mtesting/catch.hpp:13290:0: [31minformation:[39m Include file: <iomanip> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iomanip>
+^
+[1mtesting/catch.hpp:13291:0: [31minformation:[39m Include file: <set> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <set>
+^
+[1mtesting/catch.hpp:13292:0: [31minformation:[39m Include file: <iterator> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iterator>
+^
+[1mtesting/catch.hpp:13584:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:13634:0: [31minformation:[39m Include file: <cstdio> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstdio>
+^
+[1mtesting/catch.hpp:13635:0: [31minformation:[39m Include file: <iostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iostream>
+^
+[1mtesting/catch.hpp:13636:0: [31minformation:[39m Include file: <fstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <fstream>
+^
+[1mtesting/catch.hpp:13637:0: [31minformation:[39m Include file: <sstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <sstream>
+^
+[1mtesting/catch.hpp:13638:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:13639:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:13805:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:13806:0: [31minformation:[39m Include file: <ostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <ostream>
+^
+[1mtesting/catch.hpp:13807:0: [31minformation:[39m Include file: <cstring> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstring>
+^
+[1mtesting/catch.hpp:13808:0: [31minformation:[39m Include file: <cctype> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cctype>
+^
+[1mtesting/catch.hpp:13809:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:13907:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:13908:0: [31minformation:[39m Include file: <ostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <ostream>
+^
+[1mtesting/catch.hpp:13909:0: [31minformation:[39m Include file: <cstring> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstring>
+^
+[1mtesting/catch.hpp:13910:0: [31minformation:[39m Include file: <cstdint> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstdint>
+^
+[1mtesting/catch.hpp:13971:0: [31minformation:[39m Include file: <sstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <sstream>
+^
+[1mtesting/catch.hpp:14018:0: [31minformation:[39m Include file: <cctype> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cctype>
+^
+[1mtesting/catch.hpp:14019:0: [31minformation:[39m Include file: <exception> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <exception>
+^
+[1mtesting/catch.hpp:14020:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:14021:0: [31minformation:[39m Include file: <sstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <sstream>
+^
+[1mtesting/catch.hpp:14191:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:14192:0: [31minformation:[39m Include file: <sstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <sstream>
+^
+[1mtesting/catch.hpp:14350:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:14351:0: [31minformation:[39m Include file: <cassert> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cassert>
+^
+[1mtesting/catch.hpp:14352:0: [31minformation:[39m Include file: <stdexcept> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <stdexcept>
+^
+[1mtesting/catch.hpp:14353:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:14354:0: [31minformation:[39m Include file: <sstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <sstream>
+^
+[1mtesting/catch.hpp:14619:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:14620:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:14621:0: [31minformation:[39m Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <vector>
+^
+[1mtesting/catch.hpp:14622:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:14938:0: [31minformation:[39m Include file: <chrono> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <chrono>
+^
+[1mtesting/catch.hpp:15015:0: [31minformation:[39m Include file: <cmath> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cmath>
+^
+[1mtesting/catch.hpp:15016:0: [31minformation:[39m Include file: <iomanip> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iomanip>
+^
+[1mtesting/catch.hpp:15329:0: [31minformation:[39m Include file: <exception> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <exception>
+^
+[1mtesting/catch.hpp:15346:0: [31minformation:[39m Include file: <exception> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <exception>
+^
+[1mtesting/catch.hpp:15362:0: [31minformation:[39m Include file: <ostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <ostream>
+^
+[1mtesting/catch.hpp:15439:0: [31minformation:[39m Include file: <iomanip> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iomanip>
+^
+[1mtesting/catch.hpp:15440:0: [31minformation:[39m Include file: <type_traits> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <type_traits>
+^
+[1mtesting/catch.hpp:15763:0: [31minformation:[39m Include file: <cstring> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstring>
+^
+[1mtesting/catch.hpp:15764:0: [31minformation:[39m Include file: <cfloat> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cfloat>
+^
+[1mtesting/catch.hpp:15765:0: [31minformation:[39m Include file: <cstdio> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstdio>
+^
+[1mtesting/catch.hpp:15766:0: [31minformation:[39m Include file: <cassert> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cassert>
+^
+[1mtesting/catch.hpp:15767:0: [31minformation:[39m Include file: <memory> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <memory>
+^
+[1mtesting/catch.hpp:16117:0: [31minformation:[39m Include file: <cfloat> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cfloat>
+^
+[1mtesting/catch.hpp:16118:0: [31minformation:[39m Include file: <cstdio> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstdio>
+^
+[1mtesting/catch.hpp:16801:0: [31minformation:[39m Include file: <cassert> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cassert>
+^
+[1mtesting/catch.hpp:16802:0: [31minformation:[39m Include file: <sstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <sstream>
+^
+[1mtesting/catch.hpp:16803:0: [31minformation:[39m Include file: <ctime> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <ctime>
+^
+[1mtesting/catch.hpp:16804:0: [31minformation:[39m Include file: <algorithm> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <algorithm>
+^
+[1mtesting/catch.hpp:16805:0: [31minformation:[39m Include file: <iomanip> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iomanip>
+^
+[1mtesting/catch.hpp:17087:0: [31minformation:[39m Include file: <cassert> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cassert>
+^
+[1mtesting/unit_test.cpp:4:0: [31minformation:[39m Include file: "db.hpp" not found. [missingInclude][0m
+#include "db.hpp"
+^
+[1mtesting/unit_test.cpp:5:0: [31minformation:[39m Include file: "service/Authenticator.h" not found. [missingInclude][0m
+#include "service/Authenticator.h"
+^
+[1mtesting/unit_test.cpp:7:0: [31minformation:[39m Include file: <cpprest/http_client.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/http_client.h>
+^
+[1mtesting/unit_test.cpp:8:0: [31minformation:[39m Include file: <cpprest/json.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cpprest/json.h>
+^
+[1mtesting/unit_test.cpp:9:0: [31minformation:[39m Include file: <iostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <iostream>
+^
+[1mtesting/catch.hpp:4411:9: [31mwarning:[39m Member variable 'Option < AssertionResult >::storage' is not initialized in the constructor. [uninitMemberVar][0m
+        Option() : nullableValue( nullptr ) {}
+        ^
+[1mtesting/catch.hpp:4412:9: [31mwarning:[39m Member variable 'Option < AssertionResult >::storage' is not initialized in the constructor. [uninitMemberVar][0m
+        Option( T const& _value )
+        ^
+[1mtesting/catch.hpp:4415:9: [31mwarning:[39m Member variable 'Option < AssertionResult >::storage' is not initialized in the copy constructor. [uninitMemberVar][0m
+        Option( Option const& _other )
+        ^
+[1mtesting/catch.hpp:4411:9: [31mwarning:[39m Member variable 'Option < unsigned long >::storage' is not initialized in the constructor. [uninitMemberVar][0m
+        Option() : nullableValue( nullptr ) {}
+        ^
+[1mtesting/catch.hpp:4412:9: [31mwarning:[39m Member variable 'Option < unsigned long >::storage' is not initialized in the constructor. [uninitMemberVar][0m
+        Option( T const& _value )
+        ^
+[1mtesting/catch.hpp:4415:9: [31mwarning:[39m Member variable 'Option < unsigned long >::storage' is not initialized in the copy constructor. [uninitMemberVar][0m
+        Option( Option const& _other )
+        ^
+[1mtesting/catch.hpp:9303:21: [31mstyle:[39m Unused private function: 'ExeName::makeRef' [unusedPrivateFunction][0m
+        static auto makeRef(LambdaT const &lambda) -> std::shared_ptr<BoundValueRefBase> {
+                    ^
+[1mtesting/catch.hpp:2633:25: [31mwarning:[39m The struct 'MessageBuilder' defines member function with name 'operator<<' also defined in its parent struct 'MessageStream'. [duplInheritedMember][0m
+        MessageBuilder& operator << ( T const& value ) {
+                        ^
+[1mtesting/catch.hpp:2619:24: [2mnote:[0m Parent function 'MessageStream::operator<<'
+        MessageStream& operator << ( T const& value ) {
+                       ^
+[1mtesting/catch.hpp:2633:25: [2mnote:[0m Derived function 'MessageBuilder::operator<<'
+        MessageBuilder& operator << ( T const& value ) {
+                        ^
+[1mtesting/catch.hpp:15823:48: [31mwarning:[39m The struct 'TestEventListenerBase' defines member function with name 'getSupportedVerbosities' also defined in its parent struct 'StreamingReporterBase < TestEventListenerBase >'. [duplInheritedMember][0m
+    std::set<Verbosity> TestEventListenerBase::getSupportedVerbosities() {
+                                               ^
+[1mtesting/catch.hpp:5751:36: [2mnote:[0m Parent function 'StreamingReporterBase < TestEventListenerBase >::getSupportedVerbosities'
+        static std::set<Verbosity> getSupportedVerbosities() {
+                                   ^
+[1mtesting/catch.hpp:15823:48: [2mnote:[0m Derived function 'TestEventListenerBase::getSupportedVerbosities'
+    std::set<Verbosity> TestEventListenerBase::getSupportedVerbosities() {
+                                               ^
+[1mtesting/catch.hpp:620:9: [31mstyle:[39m Class 'StringRef' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        StringRef( char const* rawChars ) noexcept;
+        ^
+[1mtesting/catch.hpp:627:9: [31mstyle:[39m Class 'StringRef' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        StringRef( std::string const& stdString ) noexcept
+        ^
+[1mtesting/catch.hpp:965:5: [31mstyle:[39m Class 'TestInvokerAsMethod' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+    TestInvokerAsMethod( void (C::*testAsMethod)() ) noexcept : m_testAsMethod( testAsMethod ) {}
+    ^
+[1mtesting/catch.hpp:981:5: [31mstyle:[39m Struct 'NameAndTags' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+    NameAndTags( StringRef const& name_ = StringRef(), StringRef const& tags_ = StringRef() ) noexcept;
+    ^
+[1mtesting/catch.hpp:2534:9: [31mstyle:[39m Class 'LazyExpression' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        LazyExpression( bool isNegated );
+        ^
+[1mtesting/catch.hpp:2913:9: [31mstyle:[39m Class 'Section' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        Section( SectionInfo const& info );
+        ^
+[1mtesting/catch.hpp:3052:9: [31mstyle:[39m Class 'ExceptionTranslatorRegistrar' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        ExceptionTranslatorRegistrar( std::string(*translateFunction)( T& ) ) {
+        ^
+[1mtesting/catch.hpp:3026:13: [31mstyle:[39m Class 'ExceptionTranslator' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            ExceptionTranslator( std::string(*translateFunction)( T& ) )
+            ^
+[1mtesting/catch.hpp:3403:5: [31mstyle:[39m Class 'ExceptionMessageMatcher' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+    ExceptionMessageMatcher(std::string const& message):
+    ^
+[1mtesting/catch.hpp:3557:13: [31mstyle:[39m Struct 'EqualsMatcher' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            EqualsMatcher( CasedString const& comparator );
+            ^
+[1mtesting/catch.hpp:3561:13: [31mstyle:[39m Struct 'ContainsMatcher' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            ContainsMatcher( CasedString const& comparator );
+            ^
+[1mtesting/catch.hpp:3565:13: [31mstyle:[39m Struct 'StartsWithMatcher' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            StartsWithMatcher( CasedString const& comparator );
+            ^
+[1mtesting/catch.hpp:3569:13: [31mstyle:[39m Struct 'EndsWithMatcher' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            EndsWithMatcher( CasedString const& comparator );
+            ^
+[1mtesting/catch.hpp:3609:13: [31mstyle:[39m Struct 'ContainsElementMatcher' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            ContainsElementMatcher(T const &comparator) : m_comparator( comparator) {}
+            ^
+[1mtesting/catch.hpp:3630:13: [31mstyle:[39m Struct 'ContainsMatcher' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            ContainsMatcher(std::vector<T, AllocComp> const &comparator) : m_comparator( comparator ) {}
+            ^
+[1mtesting/catch.hpp:3660:13: [31mstyle:[39m Struct 'EqualsMatcher' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            EqualsMatcher(std::vector<T, AllocComp> const &comparator) : m_comparator( comparator ) {}
+            ^
+[1mtesting/catch.hpp:3683:13: [31mstyle:[39m Struct 'ApproxMatcher' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            ApproxMatcher(std::vector<T, AllocComp> const& comparator) : m_comparator( comparator ) {}
+            ^
+[1mtesting/catch.hpp:3718:13: [31mstyle:[39m Struct 'UnorderedEqualsMatcher' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            UnorderedEqualsMatcher(std::vector<T, AllocComp> const& target) : m_target(target) {}
+            ^
+[1mtesting/catch.hpp:3923:5: [31mstyle:[39m Class 'GeneratorException' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+    GeneratorException(const char* msg):
+    ^
+[1mtesting/catch.hpp:3956:9: [31mstyle:[39m Class 'SingleValueGenerator' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        SingleValueGenerator(T&& value) : m_value(std::move(value)) {}
+        ^
+[1mtesting/catch.hpp:3989:9: [31mstyle:[39m Class 'GeneratorWrapper' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        GeneratorWrapper(std::unique_ptr<IGenerator<T>> generator):
+        ^
+[1mtesting/catch.hpp:5217:9: [31mstyle:[39m Class 'TestSpecParser' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        TestSpecParser( ITagAliasRegistry const& tagAliases );
+        ^
+[1mtesting/catch.hpp:5321:9: [31mstyle:[39m Class 'Config' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        Config( ConfigData const& data );
+        ^
+[1mtesting/catch.hpp:5514:9: [31mstyle:[39m Struct 'TestRunInfo' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        TestRunInfo( std::string const& _name );
+        ^
+[1mtesting/catch.hpp:5584:9: [31mstyle:[39m Struct 'TestGroupStats' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        TestGroupStats( GroupInfo const& _groupInfo );
+        ^
+[1mtesting/catch.hpp:5975:9: [31mstyle:[39m Struct 'TestEventListenerBase' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        TestEventListenerBase( ReporterConfig const& _config );
+        ^
+[1mtesting/catch.hpp:6028:9: [31mstyle:[39m Struct 'Colour' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        Colour( Code _colourCode );
+        ^
+[1mtesting/catch.hpp:6158:9: [31mstyle:[39m Struct 'ConsoleReporter' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        ConsoleReporter(ReporterConfig const& config);
+        ^
+[1mtesting/catch.hpp:6238:9: [31mstyle:[39m Class 'XmlEncode' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        XmlEncode( std::string const& str, ForWhat forWhat = ForTextNodes );
+        ^
+[1mtesting/catch.hpp:6274:9: [31mstyle:[39m Class 'XmlWriter' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        XmlWriter( std::ostream& os = Catch::cout() );
+        ^
+[1mtesting/catch.hpp:6329:9: [31mstyle:[39m Class 'JunitReporter' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        JunitReporter(ReporterConfig const& _config);
+        ^
+[1mtesting/catch.hpp:6378:9: [31mstyle:[39m Class 'XmlReporter' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        XmlReporter(ReporterConfig const& _config);
+        ^
+[1mtesting/catch.hpp:8039:9: [31mstyle:[39m Class 'FatalConditionHandlerGuard' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        FatalConditionHandlerGuard(FatalConditionHandler* handler):
+        ^
+[1mtesting/catch.hpp:9476:9: [31mstyle:[39m Struct 'Help' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        Help( bool &showHelpFlag )
+        ^
+[1mtesting/catch.hpp:12318:9: [31mstyle:[39m Class 'TestInvokerAsFunction' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        TestInvokerAsFunction( void(*testAsFunction)() ) noexcept;
+        ^
+[1mtesting/catch.hpp:13696:13: [31mstyle:[39m Class 'FileStream' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            FileStream( StringRef filename ) {
+            ^
+[1mtesting/catch.hpp:5839:13: [31mstyle:[39m Struct 'BySectionInfo' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            BySectionInfo( SectionInfo const& other ) : m_other( other ) {}
+            ^
+[1mtesting/catch.hpp:5738:9: [31mstyle:[39m Struct 'StreamingReporterBase < TestEventListenerBase >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        StreamingReporterBase( ReporterConfig const& _config )
+        ^
+[1mtesting/catch.hpp:5738:9: [31mstyle:[39m Struct 'StreamingReporterBase < CompactReporter >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        StreamingReporterBase( ReporterConfig const& _config )
+        ^
+[1mtesting/catch.hpp:5738:9: [31mstyle:[39m Struct 'StreamingReporterBase < ConsoleReporter >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        StreamingReporterBase( ReporterConfig const& _config )
+        ^
+[1mtesting/catch.hpp:5738:9: [31mstyle:[39m Struct 'StreamingReporterBase < XmlReporter >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        StreamingReporterBase( ReporterConfig const& _config )
+        ^
+[1mtesting/catch.hpp:4412:9: [31mstyle:[39m Class 'Option < AssertionResult >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        Option( T const& _value )
+        ^
+[1mtesting/catch.hpp:4412:9: [31mstyle:[39m Class 'Option < unsigned long >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        Option( T const& _value )
+        ^
+[1mtesting/catch.hpp:8959:9: [31mstyle:[39m Class 'ResultValueBase < ParseResultType >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        ResultValueBase( Type type ) : ResultBase( type ) {}
+        ^
+[1mtesting/catch.hpp:8959:9: [31mstyle:[39m Class 'ResultValueBase < ParseState >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+        ResultValueBase( Type type ) : ResultBase( type ) {}
+        ^
+[1mtesting/catch.hpp:3358:13: [31mstyle:[39m Struct 'MatchNotOf < std :: exception >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            MatchNotOf( MatcherBase<ArgT> const& underlyingMatcher ) : m_underlyingMatcher( underlyingMatcher ) {}
+            ^
+[1mtesting/catch.hpp:3358:13: [31mstyle:[39m Struct 'MatchNotOf < std >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            MatchNotOf( MatcherBase<ArgT> const& underlyingMatcher ) : m_underlyingMatcher( underlyingMatcher ) {}
+            ^
+[1mtesting/catch.hpp:3358:13: [31mstyle:[39m Struct 'MatchNotOf < double >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            MatchNotOf( MatcherBase<ArgT> const& underlyingMatcher ) : m_underlyingMatcher( underlyingMatcher ) {}
+            ^
+[1mtesting/catch.hpp:3358:13: [31mstyle:[39m Struct 'MatchNotOf < std :: string >' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+            MatchNotOf( MatcherBase<ArgT> const& underlyingMatcher ) : m_underlyingMatcher( underlyingMatcher ) {}
+            ^
+[1mtesting/catch.hpp:9123:22: [31mstyle:[39m The function 'isFlag' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+        virtual auto isFlag() const -> bool { return true; }
+                     ^
+[1mtesting/catch.hpp:9116:22: [2mnote:[0m Virtual function in base class
+        virtual auto isFlag() const -> bool { return false; }
+                     ^
+[1mtesting/catch.hpp:9123:22: [2mnote:[0m Function in derived class
+        virtual auto isFlag() const -> bool { return true; }
+                     ^
+[1mtesting/catch.hpp:5759:14: [31mstyle:[39m The function 'reportInvalidArguments' overrides a function in a base class but is identical to the overridden function [uselessOverride][0m
+        void reportInvalidArguments(std::string const&) override {}
+             ^
+[1mtesting/catch.hpp:5662:22: [2mnote:[0m Virtual function in base class
+        virtual void reportInvalidArguments(std::string const&) {}
+                     ^
+[1mtesting/catch.hpp:5759:14: [2mnote:[0m Function in derived class
+        void reportInvalidArguments(std::string const&) override {}
+             ^
+[1mtesting/catch.hpp:16523:9: [31mstyle:[39m The statement 'if (m_headerPrinted) m_headerPrinted=false' is logically equivalent to 'm_headerPrinted=false'. [duplicateConditionalAssign][0m
+    if (m_headerPrinted) {
+        ^
+[1mtesting/catch.hpp:16524:25: [2mnote:[0m Assignment 'm_headerPrinted=false'
+        m_headerPrinted = false;
+                        ^
+[1mtesting/catch.hpp:16523:9: [2mnote:[0m Condition 'm_headerPrinted' is redundant
+    if (m_headerPrinted) {
+        ^
+[1mtesting/catch.hpp:11861:14: [31mstyle:[39m Condition '!uncaught_exceptions()' is always true [knownConditionTrueFalse][0m
+        if ( !uncaught_exceptions() && !m_moved ){
+             ^
+[1mtesting/catch.hpp:11861:34: [2mnote:[0m Calling function 'uncaught_exceptions' returns 0
+        if ( !uncaught_exceptions() && !m_moved ){
+                                 ^
+[1mtesting/catch.hpp:11861:14: [2mnote:[0m Condition '!uncaught_exceptions()' is always true
+        if ( !uncaught_exceptions() && !m_moved ){
+             ^
+[1mtesting/catch.hpp:11924:14: [31mstyle:[39m Condition '!uncaught_exceptions()' is always true [knownConditionTrueFalse][0m
+        if ( !uncaught_exceptions() ){
+             ^
+[1mtesting/catch.hpp:11924:34: [2mnote:[0m Calling function 'uncaught_exceptions' returns 0
+        if ( !uncaught_exceptions() ){
+                                 ^
+[1mtesting/catch.hpp:11924:14: [2mnote:[0m Condition '!uncaught_exceptions()' is always true
+        if ( !uncaught_exceptions() ){
+             ^
+[1mtesting/catch.hpp:15035:24: [31mstyle:[39m Condition 'value' is always true [knownConditionTrueFalse][0m
+                return value ? Little : Big;
+                       ^
+[1mtesting/catch.hpp:15031:27: [2mnote:[0m Assignment 'one=1', assigned value is 1
+                int one = 1;
+                          ^
+[1mtesting/catch.hpp:15034:30: [2mnote:[0m Assignment 'value=*reinterpret_cast<char*>(&one)', assigned value is 1
+                auto value = *reinterpret_cast<char*>(&one);
+                             ^
+[1mtesting/catch.hpp:15035:24: [2mnote:[0m Condition 'value' is always true
+                return value ? Little : Big;
+                       ^
+[1mtesting/catch.hpp:15043:33: [31mstyle:[39m Condition 'Endianness::which()==Endianness::Little' is always true [knownConditionTrueFalse][0m
+        if( Endianness::which() == Endianness::Little ) {
+                                ^
+[1mtesting/catch.hpp:15043:30: [2mnote:[0m Calling function 'which' returns 1
+        if( Endianness::which() == Endianness::Little ) {
+                             ^
+[1mtesting/catch.hpp:15043:33: [2mnote:[0m Condition 'Endianness::which()==Endianness::Little' is always true
+        if( Endianness::which() == Endianness::Little ) {
+                                ^
+[1mtesting/catch.hpp:15584:27: [31mstyle:[39m Condition '0x80<=value' is always true [knownConditionTrueFalse][0m
+                    (0x80 <= value && value < 0x800   && encBytes > 2) ||
+                          ^
+[1mtesting/catch.hpp:15583:28: [2mnote:[0m Assuming that condition 'value<0x80' is not redundant
+                    (value < 0x80) ||
+                           ^
+[1mtesting/catch.hpp:15584:27: [2mnote:[0m Condition '0x80<=value' is always true
+                    (0x80 <= value && value < 0x800   && encBytes > 2) ||
+                          ^
+[1mtesting/catch.hpp:12665:30: [31mwarning:[39m Either the condition 'parent' is redundant or there is possible null pointer dereference: parent. [nullPointerRedundantCheck][0m
+                    while ( !parent->isSectionTracker() ) {
+                             ^
+[1mtesting/catch.hpp:12668:29: [2mnote:[0m Assuming that condition 'parent' is not redundant
+                    assert( parent &&
+                            ^
+[1mtesting/catch.hpp:12665:30: [2mnote:[0m Null pointer dereference
+                    while ( !parent->isSectionTracker() ) {
+                             ^
+[1mtesting/catch.hpp:8529:9: [31mstyle:[39m Local variable 'width' shadows outer function [shadowFunction][0m
+   auto width = m_column.m_width - indent();
+        ^
+[1mtesting/catch.hpp:8621:7: [2mnote:[0m Shadowed declaration
+ auto width(size_t newWidth) -> Column& {
+      ^
+[1mtesting/catch.hpp:8529:9: [2mnote:[0m Shadow variable
+   auto width = m_column.m_width - indent();
+        ^
+[1mtesting/catch.hpp:14686:17: [31mstyle:[39m Local variable 'matches' shadows outer function [shadowFunction][0m
+        Matches matches( m_filters.size() );
+                ^
+[1mtesting/catch.hpp:5163:14: [2mnote:[0m Shadowed declaration
+        bool matches( TestCaseInfo const& testCase ) const;
+             ^
+[1mtesting/catch.hpp:14686:17: [2mnote:[0m Shadow variable
+        Matches matches( m_filters.size() );
+                ^
+[1mtesting/catch.hpp:15770:53: [31mstyle:[39m Parameter 'result' can be declared as reference to const [constParameterReference][0m
+    void prepareExpandedExpression(AssertionResult& result) {
+                                                    ^
+[1mtesting/catch.hpp:2154:22: [31mstyle:[39m Variable 'timeInfo' can be declared as pointer to const [constVariablePointer][0m
+            std::tm* timeInfo = std::gmtime(&converted);
+                     ^
+[1mtesting/catch.hpp:2318:34: [31mstyle:[39m Parameter 'lhs' can be declared as pointer to const [constParameterReference][0m
+    auto compareEqual( T* const& lhs, int rhs ) -> bool { return lhs == reinterpret_cast<void const*>( rhs ); }
+                                 ^
+[1mtesting/catch.hpp:2320:34: [31mstyle:[39m Parameter 'lhs' can be declared as pointer to const [constParameterReference][0m
+    auto compareEqual( T* const& lhs, long rhs ) -> bool { return lhs == reinterpret_cast<void const*>( rhs ); }
+                                 ^
+[1mtesting/catch.hpp:2322:43: [31mstyle:[39m Parameter 'rhs' can be declared as pointer to const [constParameterReference][0m
+    auto compareEqual( int lhs, T* const& rhs ) -> bool { return reinterpret_cast<void const*>( lhs ) == rhs; }
+                                          ^
+[1mtesting/catch.hpp:2324:44: [31mstyle:[39m Parameter 'rhs' can be declared as pointer to const [constParameterReference][0m
+    auto compareEqual( long lhs, T* const& rhs ) -> bool { return reinterpret_cast<void const*>( lhs ) == rhs; }
+                                           ^
+[1mtesting/catch.hpp:2329:37: [31mstyle:[39m Parameter 'lhs' can be declared as pointer to const [constParameterReference][0m
+    auto compareNotEqual( T* const& lhs, int rhs ) -> bool { return lhs != reinterpret_cast<void const*>( rhs ); }
+                                    ^
+[1mtesting/catch.hpp:2331:37: [31mstyle:[39m Parameter 'lhs' can be declared as pointer to const [constParameterReference][0m
+    auto compareNotEqual( T* const& lhs, long rhs ) -> bool { return lhs != reinterpret_cast<void const*>( rhs ); }
+                                    ^
+[1mtesting/catch.hpp:2333:46: [31mstyle:[39m Parameter 'rhs' can be declared as pointer to const [constParameterReference][0m
+    auto compareNotEqual( int lhs, T* const& rhs ) -> bool { return reinterpret_cast<void const*>( lhs ) != rhs; }
+                                             ^
+[1mtesting/catch.hpp:2335:47: [31mstyle:[39m Parameter 'rhs' can be declared as pointer to const [constParameterReference][0m
+    auto compareNotEqual( long lhs, T* const& rhs ) -> bool { return reinterpret_cast<void const*>( lhs ) != rhs; }
+                                              ^
+[1mtesting/catch.hpp:13867:19: [31mperformance:[39m Ineffective call of function 'substr' because a prefix of the string is assigned to itself. Use replace() instead. [uselessCallsSubstr][0m
+            str = str.substr( 0, i ) + withThis + str.substr( i+replaceThis.size() );
+                  ^
+[1mtesting/catch.hpp:13990:37: [31mperformance:[39m Ineffective call of function 'substr' because a prefix of the string is assigned to itself. Use replace() instead. [uselessCallsSubstr][0m
+                expandedTestSpec =  expandedTestSpec.substr( 0, pos ) +
+                                    ^
+[1mtesting/catch.hpp:14876:21: [31mperformance:[39m Ineffective call of function 'substr' because a prefix of the string is assigned to itself. Use replace() instead. [uselessCallsSubstr][0m
+            token = token.substr(0, m_escapeChars[i] - i) + token.substr(m_escapeChars[i] - i + 1);
+                    ^
+[1mtesting/catch.hpp:15072:13: [31mperformance:[39m Ineffective call of function 'substr' because a prefix of the string is assigned to itself. Use resize() or pop_back() instead. [uselessCallsSubstr][0m
+        d = d.substr( 0, i+1 );
+            ^
+[1mtesting/catch.hpp:15412:25: [31mperformance:[39m Ineffective call of function 'substr' because a prefix of the string is assigned to itself. Use resize() or pop_back() instead. [uselessCallsSubstr][0m
+            m_pattern = m_pattern.substr( 0, m_pattern.size()-1 );
+                        ^
+[1mtesting/catch.hpp:15675:20: [31mperformance:[39m Ineffective call of function 'substr' because a prefix of the string is assigned to itself. Use resize() or pop_back() instead. [uselessCallsSubstr][0m
+        m_indent = m_indent.substr(0, m_indent.size() - 2);
+                   ^
+[1mtesting/catch.hpp:1487:27: [31mstyle:[39m Consider using std::transform algorithm instead of a raw loop. [useStlAlgorithm][0m
+                intValues.push_back( static_cast<int>( enumValue ) );
+                          ^
+[1mtesting/catch.hpp:3612:17: [31mstyle:[39m Consider using std::any_of algorithm instead of a raw loop. [useStlAlgorithm][0m
+                for (auto const& el : v) {
+                ^
+[1mtesting/catch.hpp:3639:47: [31mstyle:[39m Consider using std::any_of algorithm instead of a raw loop. [useStlAlgorithm][0m
+                        if (el == comparator) {
+                                              ^
+[1mtesting/catch.hpp:8687:17: [31mstyle:[39m Consider using std::transform algorithm instead of a raw loop. [useStlAlgorithm][0m
+    m_iterators.push_back(col.end());
+                ^
+[1mtesting/catch.hpp:8703:17: [31mstyle:[39m Consider using std::transform algorithm instead of a raw loop. [useStlAlgorithm][0m
+    m_iterators.push_back(col.begin());
+                ^
+[1mtesting/catch.hpp:9412:13: [31mstyle:[39m Consider using std::any_of algorithm instead of a raw loop. [useStlAlgorithm][0m
+            for( auto const &name : m_optNames ) {
+            ^
+[1mtesting/catch.hpp:9564:26: [31mstyle:[39m Consider using std::accumulate algorithm instead of a raw loop. [useStlAlgorithm][0m
+                optWidth = (std::max)(optWidth, cols.left.size() + 2);
+                         ^
+[1mtesting/catch.hpp:10607:24: [31mstyle:[39m Consider using std::transform algorithm instead of a raw loop. [useStlAlgorithm][0m
+                parsed.push_back(trim(extractInstanceName(enumValue)));
+                       ^
+[1mtesting/catch.hpp:10616:0: [31mstyle:[39m Consider using std::find_if algorithm instead of a raw loop. [useStlAlgorithm][0m
+                if( valueToName.first == value )
+^
+[1mtesting/catch.hpp:10908:32: [31mstyle:[39m Consider using std::find_if algorithm instead of a raw loop. [useStlAlgorithm][0m
+            if (sig == def.id) {
+                               ^
+[1mtesting/catch.hpp:11315:18: [31mstyle:[39m Consider using std::accumulate algorithm instead of a raw loop. [useStlAlgorithm][0m
+            size += spelling.size() + 2;
+                 ^
+[1mtesting/catch.hpp:11367:24: [31mstyle:[39m Consider using std::accumulate algorithm instead of a raw loop. [useStlAlgorithm][0m
+            maxNameLen = (std::max)( maxNameLen, factoryKvp.first.size() );
+                       ^
+[1mtesting/catch.hpp:12679:21: [31mstyle:[39m Consider using std::any_of algorithm instead of a raw loop. [useStlAlgorithm][0m
+                    for ( auto const& child : m_children ) {
+                    ^
+[1mtesting/catch.hpp:14148:23: [31mstyle:[39m Consider using std::accumulate algorithm instead of a raw loop. [useStlAlgorithm][0m
+            full_size += tag.size();
+                      ^
+[1mtesting/catch.hpp:14244:35: [31mstyle:[39m Consider using std::transform algorithm instead of a raw loop. [useStlAlgorithm][0m
+                    indexed_tests.emplace_back(h(testCase), &testCase);
+                                  ^
+[1mtesting/catch.hpp:14259:28: [31mstyle:[39m Consider using std::transform algorithm instead of a raw loop. [useStlAlgorithm][0m
+                    sorted.emplace_back(*hashed.second);
+                           ^
+[1mtesting/catch.hpp:14293:25: [31mstyle:[39m Consider using std::copy_if algorithm instead of a raw loop. [useStlAlgorithm][0m
+                filtered.push_back(testCase);
+                        ^
+[1mtesting/catch.hpp:17551:30: [31merror:[39m syntax error: =[...]; [syntaxError][0m
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+                             ^
+[1mtesting/catch.hpp:4853:0: [31minformation:[39m Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <string>
+^
+[1mtesting/catch.hpp:4879:20: [31merror:[39m syntax error: =[...]; [syntaxError][0m
+            id obj = [[m_cls alloc] init];
+                   ^
+[1mtesting/catch.hpp:10368:0: [31minformation:[39m Include file: <android/log.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <android/log.h>
+^
+[1mtesting/catch.hpp:10722:29: [31mstyle:[39m Variable 'msg' can be declared as reference to const [constVariableReference][0m
+        catch( std::string& msg ) {
+                            ^
+[1mtesting/catch.hpp:9960:18: [31mstyle:[39m Consider using std::transform algorithm instead of a raw loop. [useStlAlgorithm][0m
+            elem = trim(elem);
+                 ^
+[1mtesting/catch.hpp:9963:18: [31mstyle:[39m Consider using std::transform algorithm instead of a raw loop. [useStlAlgorithm][0m
+            elem = trim(elem);
+                 ^
+[1mtesting/catch.hpp:15160:0: [31minformation:[39m Include file: <cstddef> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem][0m
+#include <cstddef>
+^
+[1mpostgresql/server_test copy.cpp:70:0: [31mstyle:[39m The function 'revise_text_conversation' is never used. [unusedFunction][0m
+std::string revise_text_conversation(const std::string& user_input) {
+^
+[1msrc/service/ChatGPTService.cpp:62:0: [31mstyle:[39m The function 'call_chatgpt_revise_conversation' is never used. [unusedFunction][0m
+web::json::value ChatGPTService::call_chatgpt_revise_conversation(const std::string& user_input) {
+^
+[1mtesting/unit_test.cpp:24:0: [31mstyle:[39m The function 'url_post_response_status_code' is never used. [unusedFunction][0m
+short unsigned int url_post_response_status_code(const std::string &json_key,
+^
+[1mtesting/unit_test.cpp:44:0: [31mstyle:[39m The function 'url_post_response_json' is never used. [unusedFunction][0m
+json::value url_post_response_json(const std::string &json_key,
+^

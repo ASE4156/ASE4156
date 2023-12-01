@@ -200,8 +200,21 @@ Required package:
 
 run ```clang-format xxxx.cpp```
 
+
+# Static-Analysis (Bug Finder)
+
+## cppcheck
+
+Required package:
+```brew install cppcheck```
+
+run for one file ```cppcheck xxxx.cpp```
+run for all file ```cppcheck --enable=all --std=c++17 . --output-file=static_analysis/sa_output.txt```
+
+
 # 3rd Party API - OpenAI ChatGPT API   
 https://platform.openai.com/api-keys
+
 
 You must create your own OpenAI API token and put it in .env to utilize OpenAI's API.
 
