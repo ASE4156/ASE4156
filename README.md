@@ -38,7 +38,7 @@ before running cmake again
     - 400: Missing or invalid 'text' or 'token' field, or invalid token in JSON request
     - 401: Unauthorized access due to invalid token
 
-## Token Management
+## Token 
 
 - `GET /token/creation`
   - Description:
@@ -62,7 +62,7 @@ before running cmake again
 
 - `GET /token/get`
   - Description:
-    - Retrieves the latest token associated with a given client ID.
+    - Retrieves the token associated with a given client ID.
   - Request Body:
     - clientId: integer (The client's unique identifier)
   - Response:
@@ -84,7 +84,7 @@ before running cmake again
 
 - `GET /token/getClient`
   - Description:
-    - Retrieves client information associated with a given token.
+    - Retrieves id of client associated with a given token.
   - Request Body:
     - token: string (The token associated with the client)
   - Response:
@@ -93,7 +93,7 @@ before running cmake again
     - 200: Success
     - 400: Missing or invalid 'token' field in JSON request
 
-## User Management
+## User 
 
 - `POST /user/creation`
   - Description:
@@ -107,7 +107,7 @@ before running cmake again
   - Response Codes:
     - 200: Success
 
-## Prompt Management
+## Prompt
 
 - `POST /prompt`
   - Description:
