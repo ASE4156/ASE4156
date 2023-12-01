@@ -47,6 +47,32 @@ jobs:
       run: |
         find . -regex '.*\.\(cpp\|h\)' | xargs clang-tidy -p build/
 
+    - name: Install cppcheck
+      run: brew install cppcheck
+
+    - name: Run cppcheck
+      run: cppcheck --enable=all --std=c++17 . --output-file=static_analysis/sa_output.txt
+    
+    # - name: Install coverage tools
+    #   run: |
+    #     brew install lcov
+
+    # - name: Build and Test with Coverage
+    #   run: |
+    #     cmake -DCODE_COVERAGE=ON .
+    #     make
+    #     ./unit_test
+    #     lcov --capture --directory . --output-file coverage.info
+    #     lcov --remove coverage.info '/usr/*' --output-file coverage.info
+    #     lcov --list coverage.info
+    #     lcov --extract coverage.info '${{github.workspace}}/*' --output-file coverage.filtered.info
+    #     lcov --list coverage.filtered.info
+
+    # - name: Upload coverage to a coverage reporting service
+    #   run: |
+    #     # Use a service like codecov or coveralls to upload and visualize coverage
+
+
   # deploy:
   #   needs: build-and-test
   #   runs-on: macos-latest
