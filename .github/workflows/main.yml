@@ -47,6 +47,12 @@ jobs:
       run: |
         find . -regex '.*\.\(cpp\|h\)' | xargs clang-tidy -p build/
 
+    - name: Install cppcheck
+      run: brew install cppcheck
+
+    - name: Run cppcheck
+      run: cppcheck --enable=all --std=c++17 . --output-file=static_analysis/sa_output.txt
+
     - name: Install coverage tools
       run: |
         brew install lcov
