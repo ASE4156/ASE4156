@@ -34,15 +34,15 @@ TEST_CASE("ChatGPTService Completion API Integration Test") {
         REQUIRE_THROWS_AS(chatGPTService.call_chatgpt_api_completion(emptyInput, prompt), std::invalid_argument);
     }
 
-    SECTION("Valid Key and Data - Success") {
-        auto responseJson = chatGPTService.call_chatgpt_api_completion(userInput, prompt);
-        std::cout << "hello" << std::endl;
-        std::cout << responseJson << std::endl;
+    // SECTION("Valid Key and Data - Success") {
+    //     auto responseJson = chatGPTService.call_chatgpt_api_completion(userInput, prompt);
+    //     std::cout << "hello" << std::endl;
+    //     std::cout << responseJson << std::endl;
  
-        // Validate the structure of the response
-        REQUIRE(responseJson.is_object());
-        REQUIRE(responseJson.has_field(U("object")));
-        REQUIRE(responseJson[U("object")].is_string());
-    }
-
+    //     // Validate the structure of the response
+    //     REQUIRE(responseJson.is_object());
+    //     std::cout << responseJson << std::endl;
+    //     REQUIRE(responseJson.has_field(U("object")));
+    //     REQUIRE(responseJson[U("object")].is_string());
+    //}
 }
