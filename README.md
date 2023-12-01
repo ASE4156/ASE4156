@@ -203,4 +203,7 @@ run ```clang-format xxxx.cpp```
 # 3rd Party API - OpenAI ChatGPT API   
 https://platform.openai.com/api-keys
 
-You must create your own OpenAI API token and put it in .env to utilize OpenAI's API
+You must create your own OpenAI API token and put it in .env to utilize OpenAI's API.
+
+The first line of the .env file must be as follows:  
+`OPENAI_API_KEY=Your-key-here-without-quotations`
