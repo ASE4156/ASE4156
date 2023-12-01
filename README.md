@@ -23,55 +23,149 @@ before running cmake again
 
 # Endpoints
 
-- `GET /llm/text/conversation`
+## LLM Text Conversation
+- `POST /llm/text/conversation`
   - Description:
-    - Returns a greeting message.
+    - Calls prompted LLM conversation using saved prompts and OpenAI API
   - Request Body:
-    - None.
+    - text: string 
+    - token: string 
+    - prompt_id: integer
+  - Response:
+    - JSON object with AI response
   - Response Codes:
     - 200: Success
-  
-- POST /llm/text/conversation
-  - Description:
-    - Mimics LLM behavior by generating a response to user input.
-  - Request Body:
-    - text: string (User's input text)
-  - Response Codes:
-    - 200: Success
-    - 400: Missing or invalid 'text' field in JSON request
-   
-- GET /revise/user/input
-  - Description:
-    - Returns a greeting message.
-  - Request Body:
-    - None.
-  - Response Codes:
-    - 200: Success
-- POST /revise/user/input
-  - Description:
-    - Mimics LLM behavior by revising user input to match a tone of voice.
-  - Request Body:
-    - text: string (User's input text)
-  - Response Codes:
-    - 200: Success
-    - 400: Missing or invalid 'text' field in JSON request
+    - 400: Missing or invalid 'text' or 'token' field, or invalid token in JSON request
+    - 401: Unauthorized access due to invalid token
 
-- GET /login/user
+## Token 
+
+- `GET /token/creation`
   - Description:
-    - Returns a greeting message.
+    - Creates a new token for client ID
   - Request Body:
-    - None.
+    - clientId: integer 
+  - Response:
+    - JSON object containing the generated token.
   - Response Codes:
     - 200: Success
-- POST /revise/user/input
+    - 400: Missing or invalid 'clientId' field in JSON request
+
+- `POST /token/delete`
   - Description:
-    - Checking if the given email and password matches in the database
+    - Deletes given token
   - Request Body:
-    - email: string
-    - password: string
+    - token: string (The token to be deleted)
   - Response Codes:
     - 200: Success
-    - 400: Missing or invalid 'email' or 'password'field in JSON request
+    - 400: Missing or invalid 'token' field in JSON request or invalid token
+
+- `GET /token/get`
+  - Description:
+    - Retrieves the token associated with a given client ID
+  - Request Body:
+    - clientId: integer 
+  - Response:
+    - JSON object containing the latest token for the client
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid 'clientId' field in JSON request
+
+- `GET /token/validate`
+  - Description:
+    - Validates the given token.
+  - Request Body:
+    - token: string (The token to be validated)
+  - Response:
+    - JSON object indicating whether the token is valid
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid 'token' field in JSON request
+
+- `GET /token/getClient`
+  - Description:
+    - Retrieves id of client associated with a given token
+  - Request Body:
+    - token: string
+  - Response:
+    - JSON object containing the client's ID and name
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid 'token' field in JSON request
+
+## User 
+
+- `POST /user/creation`
+  - Description:
+    - Creates a new user with details in parameter 
+  - Request Body:
+    - clientName: string 
+    - clientEmail: string 
+    - clientPassword: string
+  - Response:
+    - JSON object containing the newly created client's ID.
+  - Response Codes:
+    - 200: Success
+
+## Prompt
+
+- `POST /prompt`
+  - Description:
+    - Creates a new prompt with the specified details.
+  - Request Body:
+    - token: string 
+    - prompt_name: string 
+    - prompt_description: string 
+    - prompt_content: string 
+    - client_id: integer 
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid fields in JSON request
+
+- `PUT /prompt`
+  - Description:
+    - Updates an existing prompt based on the provided prompt ID.
+  - Request Body:
+    - token: string 
+    - prompt_id: integer 
+    - prompt_name: string 
+    - prompt_description: string 
+    - prompt_content: string 
+    - client_id: integer 
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid fields in JSON request
+
+- `DELETE /prompt`
+  - Description:
+    - Deletes an existing prompt based on the provided prompt ID.
+  - Request Body:
+    - token: string 
+    - prompt_id: integer
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid fields in JSON request
+
+- `GET /prompt`
+  - Description:
+    - Retrieves information about an existing prompt based on the provided prompt ID.
+  - Request Body:
+    - token: string
+    - prompt_id: integer 
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid fields in JSON request
+
+- `GET /prompt/client_id`
+  - Description:
+    - Retrieves information about prompts and client details based on the provided client ID.
+  - Request Body:
+    - token: string 
+    - client_id: integer
+  - Response Codes:
+    - 200: Success
+    - 400: Missing or invalid fields in JSON request
+
 # Client App
 
 https://github.com/ASE4156/client-app
@@ -106,18 +200,10 @@ Required package:
 
 run ```clang-format xxxx.cpp```
 
+# 3rd Party API - OpenAI ChatGPT API   
+https://platform.openai.com/api-keys
 
+You must create your own OpenAI API token and put it in .env to utilize OpenAI's API.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+The first line of the .env file must be as follows:  
+`OPENAI_API_KEY=Your-key-here-without-quotations`
