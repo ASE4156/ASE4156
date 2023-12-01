@@ -211,6 +211,8 @@ web::http::http_response Prompt::handlePutRequest(http_request request) {
         endpointResponse.set_status_code(web::http::status_codes::BadRequest);
 	    return endpointResponse;
     }
+    endpointResponse.set_status_code(web::http::status_codes::OK);
+	return endpointResponse;
 
 }
 
