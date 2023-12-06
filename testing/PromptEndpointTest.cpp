@@ -119,7 +119,7 @@ TEST_CASE("Endpoint Prompt Put") {
 //     }
 
     SECTION("Missing token Put request") {
-        http_request mockRequest(methods::POST);
+        http_request mockRequest(methods::PUT);
         mockRequest.set_request_uri(U("/prompt"));
         web::json::value requestBody = web::json::value::object();
         requestBody[U("prompt_name")] = web::json::value::string(U("test_name_wz"));
@@ -135,7 +135,7 @@ TEST_CASE("Endpoint Prompt Put") {
     }
 
     SECTION("Missing prompt_name Put request") {
-        http_request mockRequest(methods::POST);
+        http_request mockRequest(methods::PUT);
         mockRequest.set_request_uri(U("/prompt"));
         web::json::value requestBody = web::json::value::object();
         requestBody[U("token")] = web::json::value::string(U("77d9de23-f88f-4add-bc08-88260189cb53"));
@@ -151,7 +151,7 @@ TEST_CASE("Endpoint Prompt Put") {
     }
 
     SECTION("Missing prompt_description Put request") {
-        http_request mockRequest(methods::POST);
+        http_request mockRequest(methods::PUT);
         mockRequest.set_request_uri(U("/prompt"));
         web::json::value requestBody = web::json::value::object();
         requestBody[U("token")] = web::json::value::string(U("77d9de23-f88f-4add-bc08-88260189cb53"));
@@ -167,7 +167,7 @@ TEST_CASE("Endpoint Prompt Put") {
     }
 
     SECTION("Missing prompt_content Put request") {
-        http_request mockRequest(methods::POST);
+        http_request mockRequest(methods::PUT);
         mockRequest.set_request_uri(U("/prompt"));
         web::json::value requestBody = web::json::value::object();
         requestBody[U("token")] = web::json::value::string(U("77d9de23-f88f-4add-bc08-88260189cb53"));
@@ -183,7 +183,7 @@ TEST_CASE("Endpoint Prompt Put") {
     }
 
     SECTION("Missing client_id Put request") {
-        http_request mockRequest(methods::POST);
+        http_request mockRequest(methods::PUT);
         mockRequest.set_request_uri(U("/prompt"));
         web::json::value requestBody = web::json::value::object();
         requestBody[U("token")] = web::json::value::string(U("77d9de23-f88f-4add-bc08-88260189cb53"));
@@ -199,7 +199,7 @@ TEST_CASE("Endpoint Prompt Put") {
     }
 
     SECTION("Missing prompt_id Put request") {
-        http_request mockRequest(methods::POST);
+        http_request mockRequest(methods::PUT);
         mockRequest.set_request_uri(U("/prompt"));
         web::json::value requestBody = web::json::value::object();
         requestBody[U("token")] = web::json::value::string(U("77d9de23-f88f-4add-bc08-88260189cb53"));
@@ -234,7 +234,7 @@ TEST_CASE("Endpoint Prompt Delete") {
 //     }
 
     SECTION("Missing prompt_id Delete request") {
-        http_request mockRequest(methods::POST);
+        http_request mockRequest(methods::DEL);
         mockRequest.set_request_uri(U("/prompt"));
         web::json::value requestBody = web::json::value::object();
         requestBody[U("token")] = web::json::value::string(U("77d9de23-f88f-4add-bc08-88260189cb53"));
@@ -269,7 +269,7 @@ TEST_CASE("Endpoint Prompt Get") {
 //     }
 
     SECTION("Missing prompt_id Get request") {
-        http_request mockRequest(methods::POST);
+        http_request mockRequest(methods::GET);
         mockRequest.set_request_uri(U("/prompt"));
         web::json::value requestBody = web::json::value::object();
         requestBody[U("token")] = web::json::value::string(U("77d9de23-f88f-4add-bc08-88260189cb53"));
@@ -281,7 +281,7 @@ TEST_CASE("Endpoint Prompt Get") {
     }
 
     SECTION("Missing token Get request") {
-        http_request mockRequest(methods::POST);
+        http_request mockRequest(methods::GET);
         mockRequest.set_request_uri(U("/prompt"));
         web::json::value requestBody = web::json::value::object();
         requestBody[U("prompt_id")] = web::json::value::number(7);	
@@ -312,8 +312,8 @@ TEST_CASE("Endpoint Prompt Get Client") {
 //     }
 
     SECTION("Missing client Get Client request") {
-        http_request mockRequest(methods::POST);
-        mockRequest.set_request_uri(U("/prompt"));
+        http_request mockRequest(methods::GET);
+        mockRequest.set_request_uri(U("/prompt/client_id"));
         web::json::value requestBody = web::json::value::object();
         requestBody[U("token")] = web::json::value::string(U("77d9de23-f88f-4add-bc08-88260189cb53"));
 
@@ -324,8 +324,8 @@ TEST_CASE("Endpoint Prompt Get Client") {
     }
     
     SECTION("Missing token Get Client request") {
-        http_request mockRequest(methods::POST);
-        mockRequest.set_request_uri(U("/prompt"));
+        http_request mockRequest(methods::GET);
+        mockRequest.set_request_uri(U("/prompt/client_id"));
         web::json::value requestBody = web::json::value::object();
         requestBody[U("token")] = web::json::value::string(U("77d9de23-f88f-4add-bc08-88260189cb53"));
 
