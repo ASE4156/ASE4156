@@ -31,14 +31,13 @@ jobs:
       run: rm -rf CMakeFiles cmake_install.cmake CMakeCache.txt Makefile
 
     - name: Run Unit Tests
-      run: ./unit_test -s > reports/unit_test_report.txt
+      run: ./unit_test
       
     - name: Run End to End Tests
-      run: ./end_test -s > reports/endtoend_test_report.txt
+      run: ./end_test -s
 
     - name: Style Check (cpplint)
       run: python3 styler_checker/run_cpplint.py . styler_checker/cpplint.py
-
 
     - name: Clang Format Check
       run: |
@@ -52,7 +51,7 @@ jobs:
       run: brew install cppcheck
 
     - name: Run cppcheck
-      run: cppcheck --enable=all --std=c++17 . --output-file=static_analysis/sa_output.txt
+      run: cppcheck --enable=all --std=c++17 . --output-file=reports/static_analysis+report.txt
     
     # - name: Install coverage tools
     #   run: |
