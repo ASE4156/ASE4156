@@ -1,0 +1,190 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+end_test is a Catch v2.13.10 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+End to END Test
+  1.Register for client
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:28
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:40: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+End to END Test
+  2.creating tokens
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:45
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:55: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+End to END Test
+  3.GET tokens
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:59
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:69: PASSED:
+  REQUIRE( global_client_id==global_client_id )
+with expansion:
+  39 == 39
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:70: PASSED:
+  REQUIRE( global_token == token_get )
+with expansion:
+  "4aeb008b-bdeb-4357-8021-9507d45d2cad"
+  ==
+  "4aeb008b-bdeb-4357-8021-9507d45d2cad"
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:71: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+End to END Test
+  4.GET all tokens for client
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:75
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:85: PASSED:
+  REQUIRE( global_client_id==client_get )
+with expansion:
+  39 == 39
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:86: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+End to END Test
+  5.Validate tokens
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:90
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:100: PASSED:
+  REQUIRE( token_get )
+with expansion:
+  true
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:102: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+End to END Test
+  6. Creating Prompt1
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:109
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:124: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+End to END Test
+  7.GET prompt for client_id
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:127
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:136: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+End to END Test
+  8.GET prompt_id
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:139
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:148: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+test_prompt_content_wz
+{"choices":[{"finish_reason":"stop","index":0,"message":{"content":"The 2020 World Series was played in Texas at Globe Life Field in Arlington.","role":"assistant"}}]}
+-------------------------------------------------------------------------------
+End to END Test
+  10.Conversation
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:166
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:179: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:181: PASSED:
+  REQUIRE( body["response"].as_string() == "The 2020 World Series was played in Texas at Globe Life Field in Arlington." )
+with expansion:
+  "The 2020 World Series was played in Texas at Globe Life Field in Arlington."
+  ==
+  "The 2020 World Series was played in Texas at Globe Life Field in Arlington."
+
+-------------------------------------------------------------------------------
+End to END Test
+  11.delete prompt
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:186
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:196: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+End to END Test
+  12.delete tokens
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:201
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:210: PASSED:
+  REQUIRE( global_token==global_token )
+with expansion:
+  "4aeb008b-bdeb-4357-8021-9507d45d2cad"
+  ==
+  "4aeb008b-bdeb-4357-8021-9507d45d2cad"
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:211: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+End to END Test
+  13. delete client
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:215
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:218: PASSED:
+  REQUIRE( global_client_id == global_client_id )
+with expansion:
+  39 == 39
+
+===============================================================================
+All tests passed (18 assertions in 1 test case)
+
