@@ -60,31 +60,81 @@ TEST_CASE("End to END Test") {
         http_request mockRequest(methods::GET);
         mockRequest.set_request_uri(U("/user/creation"));
         web::json::value requestBody = web::json::value::object();
-        requestBody[U("clientName")] = web::json::value::string(U("mock"));
+        requestBody[U("clientName")] = web::json::value::string(U("mock1"));
         requestBody[U("clientEmail")] = web::json::value::string(U("mock@example.com"));
         requestBody[U("clientPassword")] = web::json::value::string(U("1234"));
         mockRequest.set_body(requestBody);
 
 	    web::http::http_response response = user.handleCreationRequest(mockRequest);
-        int global_client_id = response.extract_json().get()[U("clientId")].as_integer();
+        global_client_id = response.extract_json().get()[U("clientId")].as_integer();
         // REQUIRE(global_client_id==11);
         REQUIRE(response.status_code() == web::http::status_codes::OK);
 
-        mockclient();
-        mocktoken();
-        global_client_id = 9999;
-        global_token = U("77d9de23-f88f-4add-bc08-88260189cb52");
+    }    
+
+    Token token;
+    SECTION("2.creating tokens") {
+
+        http_request mockRequest(methods::GET);
+        mockRequest.set_request_uri(U("/token/creation"));
+        web::json::value requestBody = web::json::value::object();
+        requestBody[U("clientId")] = web::json::value::number(global_client_id);
+        mockRequest.set_body(requestBody);
+
+	    web::http::http_response response = token.handleCreationRequest(mockRequest);
+        global_token = response.extract_json().get()[U("response")].as_string();
+        REQUIRE(response.status_code() == web::http::status_codes::OK);
+
+    } 
+
+    SECTION("3.GET tokens") {
+
+        http_request mockRequest(methods::GET);
+        mockRequest.set_request_uri(U("/token/get"));
+        web::json::value requestBody = web::json::value::object();
+        requestBody[U("clientId")] = web::json::value::number(global_client_id);
+        mockRequest.set_body(requestBody);
+
+	    web::http::http_response response = token.handleGetRequest(mockRequest);
+        std::string token_get = response.extract_json().get()[U("response")].as_string();
+        REQUIRE(global_client_id==global_client_id);
+        REQUIRE(global_token == token_get);
+        REQUIRE(response.status_code() == web::http::status_codes::OK);
 
     }    
 
-    SECTION("2.creating tokens") {
+    SECTION("4.GET all tokens for client") {
+
+        http_request mockRequest(methods::GET);
+        mockRequest.set_request_uri(U("/token/getClient"));
+        web::json::value requestBody = web::json::value::object();
+        requestBody[U("token")] = web::json::value::string(global_token);
+        mockRequest.set_body(requestBody);
+
+	    web::http::http_response response = token.handleGetClientRequest(mockRequest);
+        int client_get = response.extract_json().get()[U("clientId")].as_integer();
+        REQUIRE(global_client_id==client_get);
+        REQUIRE(response.status_code() == web::http::status_codes::OK);
+
+    }    
+
+    SECTION("5.Validate tokens") {
+
+        http_request mockRequest(methods::GET);
+        mockRequest.set_request_uri(U("/token/validate"));
+        web::json::value requestBody = web::json::value::object();
+        requestBody[U("token")] = web::json::value::string(global_token);
+        mockRequest.set_body(requestBody);
+
+	    web::http::http_response response = token.handleValidateRequest(mockRequest);
+        bool token_get = response.extract_json().get()[U("validated")].as_bool();
+        REQUIRE(token_get);
+
+        REQUIRE(response.status_code() == web::http::status_codes::OK);
+
 
     } 
-    // SECTION("3.GET tokens") {}    
-    // SECTION("4.GET all tokens for client") {}    
-    // SECTION("5.Validate tokens") {} 
     
-
     Prompt promptEndpoint;
 
     SECTION("6. Creating Prompt1") {
@@ -145,9 +195,8 @@ TEST_CASE("End to END Test") {
 
     // SECTION("10.Conversation") {} 
 
-    // SECTION("11.delete tokens") {}    
 
-    SECTION("12.delete prompt") {
+    SECTION("11.delete prompt") {
 
         http_request mockRequest(methods::DEL);
         mockRequest.set_request_uri(U("/prompt"));
@@ -161,6 +210,21 @@ TEST_CASE("End to END Test") {
 
         deletetoken();
         deleteclient();
+    }    
+
+
+    SECTION("12.delete tokens") {
+
+        http_request mockRequest(methods::POST);
+        mockRequest.set_request_uri(U("/token/delete"));
+        web::json::value requestBody = web::json::value::object();
+        requestBody[U("token")] = web::json::value::string(global_token);
+        mockRequest.set_body(requestBody);
+
+	    web::http::http_response response = token.handleDeletionRequest(mockRequest);
+        REQUIRE(global_token==global_token);
+        REQUIRE(response.status_code() == web::http::status_codes::OK);
+
     }    
 
 }
