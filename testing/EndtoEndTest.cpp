@@ -17,40 +17,6 @@ using namespace web;
 using namespace web::http;
 using namespace web::http::client;
 
-void mockclient(){
-    std::string delete2 = R"(
-        INSERT INTO client (client_id, client_name, client_email, client_password)
-        VALUES 
-            (9999, 'mock_client', 'mock_client@email.com', 'mock1234')
-    )";
-    std::string ret3 = sql_return(delete2);
-}
-
-void mocktoken(){
-    std::string delete1 = R"(
-        INSERT INTO token (client_id, token_id)
-        VALUES 
-            (9999, '77d9de23-f88f-4add-bc08-88260189cb52')
-    )";
-    std::string ret2 = sql_return(delete1);
-}
-
-void deleteclient(){
-    std::string delete2 = R"(
-        DELETE FROM client
-        WHERE client_id = 9999;
-    )";
-    std::string ret3 = sql_return(delete2);
-}
-
-void deletetoken(){
-    std::string delete1 = R"(
-        DELETE FROM token
-        WHERE token_id = '77d9de23-f88f-4add-bc08-88260189cb52';
-    )";
-    std::string ret2 = sql_return(delete1);
-}
-
 int global_prompt_id = -1; // Default value or an indicator
 int global_client_id = -1; // Default value or an indicator
 std::string global_token = ""; // Default value or an indicator
@@ -60,7 +26,6 @@ std::string global_prompt_content = ""; // Default value or an indicator
 TEST_CASE("End to END Test") {
     User user;
     SECTION("1.Register for client") {
-
         http_request mockRequest(methods::GET);
         mockRequest.set_request_uri(U("/user/creation"));
         web::json::value requestBody = web::json::value::object();
@@ -230,8 +195,6 @@ TEST_CASE("End to END Test") {
         web::http::http_response response = promptEndpoint.handleDeleteRequest(mockRequest);
         REQUIRE(response.status_code() == web::http::status_codes::OK);
 
-        deletetoken();
-        deleteclient();
     }    
 
 
@@ -249,5 +212,10 @@ TEST_CASE("End to END Test") {
 
     }    
 
+    SECTION("13. delete client"){
+        std::string delete2 = "DELETE FROM client WHERE client_id = "+std::to_string(global_client_id)+";";
+        std::string ret3 = sql_return(delete2);
+        REQUIRE(global_client_id == global_client_id);
+    }
 }
 
