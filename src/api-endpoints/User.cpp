@@ -7,8 +7,10 @@ using namespace web::http;
 
 User::User() {}
 
-void User::handleCreationRequest(http_request request) { 
+web::http::http_response User::handleCreationRequest(http_request request) { 
     // Parse JSON request
+    web::http::http_response endpointResponse;
+
     auto json_value = request.extract_json().get();
     // Ensure the JSON value contains a "text" field.
     auto clientName = json_value[U("clientName")].as_string();
@@ -29,4 +31,8 @@ void User::handleCreationRequest(http_request request) {
 
     // Send back the response
     request.reply(status_codes::OK, response);
+    endpointResponse.set_status_code(web::http::status_codes::OK);
+    endpointResponse.set_body(response);
+    return endpointResponse;
+
 }

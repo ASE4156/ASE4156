@@ -1,5 +1,6 @@
 #include "catch.hpp"
 #include "api-endpoints/Prompt.h"
+#include "api-endpoints/User.h"
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
 #include <pqxx/pqxx>
@@ -22,15 +23,6 @@ void mockclient(){
     std::string ret3 = sql_return(delete2);
 }
 
-void mockprompt(){
-    std::string delete1 = R"(
-        INSERT INTO prompt (prompt_id, prompt_name, prompt_description, prompt_content, client_id)
-        VALUES 
-            (999999, 'mock_prompt', 'mock_des', 'mock_content', 0)
-   )";
-    std::string ret2 = sql_return(delete1);
-}
-
 void mocktoken(){
     std::string delete1 = R"(
         INSERT INTO token (client_id, token_id)
@@ -48,22 +40,6 @@ void deleteclient(){
     std::string ret3 = sql_return(delete2);
 }
 
-void deleteprompt1(){
-    std::string delete1 = R"(
-        DELETE FROM prompt
-        WHERE prompt_id = 999999;
-    )";
-    std::string ret2 = sql_return(delete1);
-}
-
-void deleteprompt2(){
-    std::string delete1 = R"(
-        DELETE FROM prompt
-        WHERE prompt_id = 1000000;
-    )";
-    std::string ret2 = sql_return(delete1);
-}
-
 void deletetoken(){
     std::string delete1 = R"(
         DELETE FROM token
@@ -77,7 +53,22 @@ int global_client_id = -1; // Default value or an indicator
 std::string global_token = ""; // Default value or an indicator
 
 TEST_CASE("End to END Test") {
+    User user;
     SECTION("1.Register for client") {
+
+        http_request mockRequest(methods::GET);
+        mockRequest.set_request_uri(U("/user/creation"));
+        web::json::value requestBody = web::json::value::object();
+        requestBody[U("clientName")] = web::json::value::string(U("mock"));
+        requestBody[U("clientEmail")] = web::json::value::string(U("mock@example.com"));
+        requestBody[U("clientPassword")] = web::json::value::string(U("1234"));
+        mockRequest.set_body(requestBody);
+
+	    web::http::http_response response = user.handleCreationRequest(mockRequest);
+        int global_client_id = response.extract_json().get()[U("clientId")].as_integer();
+        // REQUIRE(global_client_id==11);
+        REQUIRE(response.status_code() == web::http::status_codes::OK);
+
         mockclient();
         mocktoken();
         global_client_id = 9999;
