@@ -75,7 +75,10 @@ TEST_CASE("End to END Test") {
         global_token = U("77d9de23-f88f-4add-bc08-88260189cb52");
 
     }    
-    // SECTION("2.creating tokens") {} 
+
+    SECTION("2.creating tokens") {
+        
+    } 
     // SECTION("3.GET tokens") {}    
     // SECTION("4.GET all tokens for client") {}    
     // SECTION("5.Validate tokens") {} 

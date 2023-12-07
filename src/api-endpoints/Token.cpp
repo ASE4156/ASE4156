@@ -8,8 +8,10 @@ using namespace web::http;
 
 Token::Token() {}
 
-void Token::handleCreationRequest(http_request request) { 
+web::http::http_response Token::handleCreationRequest(http_request request) { 
     // Parse JSON request
+    web::http::http_response endpointResponse;
+
     auto json_value = request.extract_json().get();
     // Ensure the JSON value contains a "text" field.
     if (!json_value.has_field(U("clientId"))) {
@@ -31,10 +33,15 @@ void Token::handleCreationRequest(http_request request) {
 
     // Send back the response
     request.reply(status_codes::OK, response);
+    endpointResponse.set_status_code(web::http::status_codes::OK);
+    endpointResponse.set_body(response);
+    return endpointResponse;
 }
 
-void Token::handleDeletionRequest(http_request request) {
+web::http::http_response Token::handleDeletionRequest(http_request request) {
     // Parse JSON request
+    web::http::http_response endpointResponse;
+
     auto json_value = request.extract_json().get();
     // Ensure the JSON value contains a "text" field.
     if (!json_value.has_field(U("token")) || !json_value[U("token")].is_string()) {
@@ -57,10 +64,15 @@ void Token::handleDeletionRequest(http_request request) {
 
     // Send back the response
     request.reply(status_codes::OK, response);
+    endpointResponse.set_status_code(web::http::status_codes::OK);
+    endpointResponse.set_body(response);
+    return endpointResponse;
 }
 
-void Token::handleGetRequest(http_request request) {
+web::http::http_response Token::handleGetRequest(http_request request) {
     // Parse JSON request
+    web::http::http_response endpointResponse;
+
     auto json_value = request.extract_json().get();
     // Ensure the JSON value contains a "text" field.
     if (!json_value.has_field(U("clientId"))) {
@@ -78,10 +90,15 @@ void Token::handleGetRequest(http_request request) {
 
     // Send back the response
     request.reply(status_codes::OK, response);
+    endpointResponse.set_status_code(web::http::status_codes::OK);
+    endpointResponse.set_body(response);
+    return endpointResponse;
 }
 
-void Token::handleValidateRequest(http_request request) {
+web::http::http_response Token::handleValidateRequest(http_request request) {
     // Parse JSON request
+    web::http::http_response endpointResponse;
+
     auto json_value = request.extract_json().get();
     // Ensure the JSON value contains a "text" field.
     if (!json_value.has_field(U("token"))) {
@@ -99,10 +116,15 @@ void Token::handleValidateRequest(http_request request) {
 
     // Send back the response
     request.reply(status_codes::OK, response);
+    endpointResponse.set_status_code(web::http::status_codes::OK);
+    endpointResponse.set_body(response);
+    return endpointResponse;
 }
 
-void Token::handleGetClientRequest(http_request request) {
+web::http::http_response Token::handleGetClientRequest(http_request request) {
     // Parse JSON request
+    web::http::http_response endpointResponse;
+
     auto json_value = request.extract_json().get();
     // std::cout<<json_value<<std::endl;
     // Ensure the JSON value contains a "text" field.
@@ -123,4 +145,7 @@ void Token::handleGetClientRequest(http_request request) {
 
     // Send back the response
     request.reply(status_codes::OK, response);
+    endpointResponse.set_status_code(web::http::status_codes::OK);
+    endpointResponse.set_body(response);
+    return endpointResponse;
 }
