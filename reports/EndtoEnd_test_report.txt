@@ -37,14 +37,14 @@ End to END Test
 /Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:69: PASSED:
   REQUIRE( global_client_id==global_client_id )
 with expansion:
-  39 == 39
+  41 == 41
 
 /Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:70: PASSED:
   REQUIRE( global_token == token_get )
 with expansion:
-  "4aeb008b-bdeb-4357-8021-9507d45d2cad"
+  "dd57ab31-37f4-46f7-9250-ff07ff79e0e3"
   ==
-  "4aeb008b-bdeb-4357-8021-9507d45d2cad"
+  "dd57ab31-37f4-46f7-9250-ff07ff79e0e3"
 
 /Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:71: PASSED:
   REQUIRE( response.status_code() == web::http::status_codes::OK )
@@ -61,7 +61,7 @@ End to END Test
 /Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:85: PASSED:
   REQUIRE( global_client_id==client_get )
 with expansion:
-  39 == 39
+  41 == 41
 
 /Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:86: PASSED:
   REQUIRE( response.status_code() == web::http::status_codes::OK )
@@ -164,9 +164,9 @@ End to END Test
 /Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:210: PASSED:
   REQUIRE( global_token==global_token )
 with expansion:
-  "4aeb008b-bdeb-4357-8021-9507d45d2cad"
+  "dd57ab31-37f4-46f7-9250-ff07ff79e0e3"
   ==
-  "4aeb008b-bdeb-4357-8021-9507d45d2cad"
+  "dd57ab31-37f4-46f7-9250-ff07ff79e0e3"
 
 /Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:211: PASSED:
   REQUIRE( response.status_code() == web::http::status_codes::OK )
@@ -183,7 +183,7 @@ End to END Test
 /Users/juneei/Documents/github/branch8/ASE4156/testing/EndtoEndTest.cpp:218: PASSED:
   REQUIRE( global_client_id == global_client_id )
 with expansion:
-  39 == 39
+  41 == 41
 
 ===============================================================================
 All tests passed (18 assertions in 1 test case)
