@@ -1,0 +1,56 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_test")
+
+# Define a cc_library for shared sources
+cc_library(
+    name = "shared_sources",
+    srcs = glob([
+        "src/**/*.cpp",
+        "postgresql/*.cpp",
+    ]),
+    hdrs = glob([
+        "src/**/*.h",
+        "postgresql/*.h",
+    ]),
+    deps = [
+        # Add dependencies here (e.g., Boost, OpenSSL, cpprestsdk, PQXX)
+        # Note: You need to define these dependencies in your WORKSPACE file.
+    ],
+    includes = [
+        "src",
+        "postgresql",
+        # Add other include directories here
+    ],
+    copts = ["-std=c++17"],
+)
+
+# Define the main executable
+cc_binary(
+    name = "server",
+    srcs = ["src/main.cpp"],
+    deps = [
+        ":shared_sources",
+        # Add any additional dependencies specific to main executable
+    ],
+)
+
+# Define tests
+cc_test(
+    name = "unit_test",
+    srcs = glob([
+        "testing/**/*.cpp",
+        # Exclude main.cpp to avoid multiple main() definitions
+        # If you have other non-test source files, exclude them similarly
+    ]),
+    deps = [
+        ":shared_sources",
+        # Add any additional dependencies specific to tests
+    ],
+    copts = [
+        # Flags for branch coverage, if needed
+        "-fprofile-arcs",
+        "-ftest-coverage",
+    ],
+    linkopts = [
+        "-lgcov",
+    ],
+)
