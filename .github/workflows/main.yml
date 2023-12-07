@@ -31,13 +31,14 @@ jobs:
       run: rm -rf CMakeFiles cmake_install.cmake CMakeCache.txt Makefile
 
     - name: Run Unit Tests
-      run: ./unit_test
+      run: ./unit_test -s > reports/unit_test_report.txt
+      
+    - name: Run End to End Tests
+      run: ./end_test -s > reports/endtoend_test_report.txt
 
     - name: Style Check (cpplint)
-      run: |
-        cd styler_checker/archive
-        chmod +x sc_command.sh
-        ./sc_command.sh
+      run: python3 styler_checker/run_cpplint.py . styler_checker/cpplint.py
+
 
     - name: Clang Format Check
       run: |
