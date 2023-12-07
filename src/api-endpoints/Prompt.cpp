@@ -92,8 +92,10 @@ web::http::http_response Prompt::handlePostRequest(http_request request) {
     // std::cout << ret.c_str() << std::endl;
     if (ret.empty()){
         response[U("response")] = json::value::string("Insert Successful prompt_id "+std::to_string(prompt_id)+"!");
+        response[U("prompt_id")] = json::value::string(std::to_string(prompt_id));
         request.reply(status_codes::OK, response);
         endpointResponse.set_status_code(web::http::status_codes::OK);
+        endpointResponse.set_body(response);
 	    return endpointResponse;
     } else {
         response[U("response")] = json::value::string(ret.c_str());
