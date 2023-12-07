@@ -1,6 +1,7 @@
 #include "catch.hpp"
 #include "api-endpoints/Prompt.h"
 #include "api-endpoints/User.h"
+#include "api-endpoints/Token.h"
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
 #include <pqxx/pqxx>
@@ -77,7 +78,7 @@ TEST_CASE("End to END Test") {
     }    
 
     SECTION("2.creating tokens") {
-        
+
     } 
     // SECTION("3.GET tokens") {}    
     // SECTION("4.GET all tokens for client") {}    
