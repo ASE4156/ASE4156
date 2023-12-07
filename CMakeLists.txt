@@ -66,6 +66,7 @@ set (TEST_SOURCES
 set (END_TEST_SOURCES
     testing/MockChatGPTService.cpp
     testing/EndtoEndTest.cpp
+    testing/MockChatGPTService.cpp
     src/api-endpoints/Conversation.cpp
     src/api-endpoints/Prompt.cpp
     src/api-endpoints/User.cpp

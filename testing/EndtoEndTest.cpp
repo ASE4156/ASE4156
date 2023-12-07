@@ -2,6 +2,8 @@
 #include "api-endpoints/Prompt.h"
 #include "api-endpoints/User.h"
 #include "api-endpoints/Token.h"
+#include "api-endpoints/Conversation.h"
+#include "MockChatGPTService.h"
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
 #include <pqxx/pqxx>
@@ -52,6 +54,8 @@ void deletetoken(){
 int global_prompt_id = -1; // Default value or an indicator
 int global_client_id = -1; // Default value or an indicator
 std::string global_token = ""; // Default value or an indicator
+std::string global_prompt_content = ""; // Default value or an indicator
+
 
 TEST_CASE("End to END Test") {
     User user;
@@ -183,17 +187,35 @@ TEST_CASE("End to END Test") {
         http_request mockRequest(methods::PUT);
         mockRequest.set_request_uri(U("/prompt"));
         web::json::value requestBody = web::json::value::object();
+        global_prompt_content = U("Hello");
         requestBody[U("token")] = web::json::value::string(global_token);
         requestBody[U("prompt_name")] = web::json::value::string(U("test_name_wz_update"));
         requestBody[U("prompt_description")] = web::json::value::string(U("test_description_wz_update"));
-        requestBody[U("prompt_content")] = web::json::value::string(U("test_prompt_content_wz_update"));
+        requestBody[U("prompt_content")] = web::json::value::string(global_prompt_content);
         requestBody[U("client_id")] = web::json::value::number(global_client_id);	
         requestBody[U("prompt_id")] = web::json::value::number(global_prompt_id);	
         mockRequest.set_body(requestBody);
 
     } 
 
-    // SECTION("10.Conversation") {} 
+    SECTION("10.Conversation") {
+        MockChatGPTService mockService;
+        Conversation conversationEndpoint(mockService);
+
+        http_request mockRequest(methods::POST);
+        mockRequest.set_request_uri(U("/llm/text/conversation"));
+        web::json::value requestBody = web::json::value::object();
+        requestBody[U("text")] = web::json::value::string(global_prompt_content);
+        requestBody[U("prompt_id")] = web::json::value::number(global_prompt_id);	
+        requestBody[U("token")] = web::json::value::string(global_token);
+        mockRequest.set_body(requestBody);
+
+	    web::http::http_response response = conversationEndpoint.handleCompletionRequest(mockRequest);
+        REQUIRE(response.status_code() == web::http::status_codes::OK);
+	    auto body = response.extract_json().get();
+	    REQUIRE(body[U("response")].as_string() == U("The 2020 World Series was played in Texas at Globe Life Field in Arlington."));	
+
+    } 
 
 
     SECTION("11.delete prompt") {
