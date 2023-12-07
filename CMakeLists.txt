@@ -9,7 +9,7 @@ if(EXISTS "${CMAKE_SOURCE_DIR}/LocalConfig.cmake")
     include(${CMAKE_SOURCE_DIR}/LocalConfig.cmake)
 else()
     # set a default value if LocalConfig.cmake doesn't exist
-    set(MY_MACOS_ARCH "arm64")
+    set(MY_MACOS_ARCH "x86_64")
 endif()
 set(CMAKE_OSX_ARCHITECTURES ${MY_MACOS_ARCH})
 
@@ -74,8 +74,10 @@ target_link_libraries(unit_test PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES}
 
 option(CODE_COVERAGE "Enable coverage reporting" OFF)
 
-if(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    add_compile_options(--coverage -O0 -g)
-    link_libraries(gcov)
-endif()
+option(CODE_COVERAGE "Enable coverage reporting" OFF)
 
+if(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    set(COVERAGE_FLAGS "-fprofile-instr-generate -fcoverage-mapping")
+    set_target_properties(unit_test PROPERTIES COMPILE_FLAGS ${COVERAGE_FLAGS})
+    set_target_properties(unit_test PROPERTIES LINK_FLAGS ${COVERAGE_FLAGS})
+endif()
