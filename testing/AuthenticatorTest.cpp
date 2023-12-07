@@ -79,8 +79,8 @@ TEST_CASE("Token Endpoint Check") {
         requestBody[U("token")] = web::json::value::string(U(token));
         mockRequest.set_body(requestBody);
 
-        web::http::http_response response = tokenEndpoint.handleGetRequest(mockRequest);
-        REQUIRE(response.status_code() == web::http::status_codes::BadRequest); 
+        web::http::http_response response = tokenEndpoint.handleValidateRequest(mockRequest);
+        REQUIRE(response.status_code() == web::http::status_codes::OK); 
     }
 
     SECTION("Get Client Endpoint Check") {
@@ -92,7 +92,7 @@ TEST_CASE("Token Endpoint Check") {
         requestBody[U("token")] = web::json::value::string(U(token));
         mockRequest.set_body(requestBody);
 
-        web::http::http_response response = tokenEndpoint.handleGetRequest(mockRequest);
-        REQUIRE(response.status_code() == web::http::status_codes::BadRequest); 
+        web::http::http_response response = tokenEndpoint.handleGetClientRequest(mockRequest);
+        REQUIRE(response.status_code() == web::http::status_codes::OK); 
     }
 }
