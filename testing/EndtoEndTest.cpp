@@ -74,9 +74,16 @@ void deletetoken(){
 
 int global_prompt_id = -1; // Default value or an indicator
 int global_client_id = -1; // Default value or an indicator
+std::string global_token = ""; // Default value or an indicator
 
 TEST_CASE("End to END Test") {
-    // SECTION("1.Register for client") {}    
+    SECTION("1.Register for client") {
+        mockclient();
+        mocktoken();
+        global_client_id = 9999;
+        global_token = U("77d9de23-f88f-4add-bc08-88260189cb52");
+
+    }    
     // SECTION("2.creating tokens") {} 
     // SECTION("3.GET tokens") {}    
     // SECTION("4.GET all tokens for client") {}    
@@ -84,15 +91,12 @@ TEST_CASE("End to END Test") {
     
 
     Prompt promptEndpoint;
-    mockclient();
-    mocktoken();
-    global_client_id = 9999;
 
     SECTION("6. Creating Prompt1") {
         http_request mockRequest(methods::POST);
         mockRequest.set_request_uri(U("/prompt"));
         web::json::value requestBody = web::json::value::object();
-        requestBody[U("token")] = web::json::value::string(U("77d9de23-f88f-4add-bc08-88260189cb52"));
+        requestBody[U("token")] = web::json::value::string(global_token);
         requestBody[U("prompt_name")] = web::json::value::string(U("test_name_wz"));
         requestBody[U("prompt_description")] = web::json::value::string(U("test_description_wz"));
         requestBody[U("prompt_content")] = web::json::value::string(U("test_prompt_content_wz"));
@@ -101,22 +105,68 @@ TEST_CASE("End to END Test") {
 
 	    web::http::http_response response = promptEndpoint.handlePostRequest(mockRequest);
         std::string resp = response.extract_json().get()[U("prompt_id")].as_string();
-        int prompt_id = std::stoi(resp);
-        // REQUIRE(prompt_id==34);
+        global_prompt_id = std::stoi(resp);
+        // REQUIRE(global_prompt_id==34);
         REQUIRE(response.status_code() == web::http::status_codes::OK);
     }
 
-    deletetoken();
-    deleteclient();
+    SECTION("7.GET prompt for client_id") {
+        http_request mockRequest(methods::GET);
+        mockRequest.set_request_uri(U("/prompt/client_id"));
+        web::json::value requestBody = web::json::value::object();
+        requestBody[U("token")] = web::json::value::string(global_token);
+        requestBody[U("client_id")] = web::json::value::number(global_client_id);	
+        mockRequest.set_body(requestBody);
 
-    // SECTION("6.GET prompt for client_id") {} 
-    // SECTION("7.GET prompt_id") {} 
-    // SECTION("8.EDIT prompt") {} 
+	    web::http::http_response response = promptEndpoint.handleGetClientRequest(mockRequest);
+        REQUIRE(response.status_code() == web::http::status_codes::OK);
+    }
 
-    // SECTION("9.Conversation") {} 
+    SECTION("8.GET prompt_id") {
+        http_request mockRequest(methods::GET);
+        mockRequest.set_request_uri(U("/prompt"));
+        web::json::value requestBody = web::json::value::object();
+        requestBody[U("token")] = web::json::value::string(global_token);
+        requestBody[U("prompt_id")] = web::json::value::number(global_prompt_id);	
+        mockRequest.set_body(requestBody);
 
-    // SECTION("10.delete tokens") {}    
-    // SECTION("11.delete prompt") {}    
+	web::http::http_response response = promptEndpoint.handleGetRequest(mockRequest);
+        REQUIRE(response.status_code() == web::http::status_codes::OK);
+    } 
+
+    SECTION("9.EDIT prompt") {
+        http_request mockRequest(methods::PUT);
+        mockRequest.set_request_uri(U("/prompt"));
+        web::json::value requestBody = web::json::value::object();
+        requestBody[U("token")] = web::json::value::string(global_token);
+        requestBody[U("prompt_name")] = web::json::value::string(U("test_name_wz_update"));
+        requestBody[U("prompt_description")] = web::json::value::string(U("test_description_wz_update"));
+        requestBody[U("prompt_content")] = web::json::value::string(U("test_prompt_content_wz_update"));
+        requestBody[U("client_id")] = web::json::value::number(global_client_id);	
+        requestBody[U("prompt_id")] = web::json::value::number(global_prompt_id);	
+        mockRequest.set_body(requestBody);
+
+    } 
+
+    // SECTION("10.Conversation") {} 
+
+    // SECTION("11.delete tokens") {}    
+
+    SECTION("12.delete prompt") {
+
+        http_request mockRequest(methods::DEL);
+        mockRequest.set_request_uri(U("/prompt"));
+        web::json::value requestBody = web::json::value::object();
+        requestBody[U("token")] = web::json::value::string(global_token);
+        requestBody[U("prompt_id")] = web::json::value::number(global_prompt_id);	
+        mockRequest.set_body(requestBody);
+
+        web::http::http_response response = promptEndpoint.handleDeleteRequest(mockRequest);
+        REQUIRE(response.status_code() == web::http::status_codes::OK);
+
+        deletetoken();
+        deleteclient();
+    }    
 
 }
 
