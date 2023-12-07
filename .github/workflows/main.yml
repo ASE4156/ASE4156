@@ -35,7 +35,7 @@ jobs:
 
     - name: Style Check (cpplint)
       run: |
-        cd styler_checker
+        cd styler_checker/archive
         chmod +x sc_command.sh
         ./sc_command.sh
 
