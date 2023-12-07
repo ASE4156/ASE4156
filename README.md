@@ -221,6 +221,8 @@ run for all file ```cppcheck --enable=all --std=c++17 . --output-file=static_ana
 
 `make`
 
+`./unit_test`
+
 `xcrun llvm-profdata merge -sparse default.profraw -o coverage.profdata`
 
 `xcrun llvm-cov report -instr-profile=coverage.profdata ./unit_test`
