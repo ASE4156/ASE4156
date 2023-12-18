@@ -53,6 +53,20 @@ jobs:
     - name: Run cppcheck
       run: cppcheck --enable=all --std=c++17 . --output-file=reports/static_analysis+report.txt
     
+    - name: Run Unit Tests with Branch Coverage
+      run: |
+        rm -rf CMakeFiles cmake_install.cmake CMakeCache.txt Makefile
+        cmake -DCODE_COVERAGE=ON .
+        make
+        ./unit_test
+        xcrun llvm-profdata merge -sparse default.profraw -o coverage.profdata
+        xcrun llvm-cov report -instr-profile=coverage.profdata ./unit_test
+
+    - name: Upload Coverage Report
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-report
+        path: coverage.profdata
     # - name: Install coverage tools
     #   run: |
     #     brew install lcov

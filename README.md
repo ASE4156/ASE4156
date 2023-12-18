@@ -217,6 +217,21 @@ Required package:
 run for one file ```cppcheck xxxx.cpp```
 run for all file ```cppcheck --enable=all --std=c++17 . --output-file=static_analysis/sa_output.txt```
 
+# Branch Coverage Test
+
+## Run
+
+`rm -rf CMakeFiles cmake_install.cmake CMakeCache.txt Makefile`
+
+`cmake -DCODE_COVERAGE=ON .`
+
+`make`
+
+`./unit_test`
+
+`xcrun llvm-profdata merge -sparse default.profraw -o coverage.profdata`
+
+`xcrun llvm-cov report -instr-profile=coverage.profdata ./unit_test`
 
 # 3rd Party API - OpenAI ChatGPT API   
 https://platform.openai.com/api-keys

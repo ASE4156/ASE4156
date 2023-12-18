@@ -92,8 +92,8 @@ target_link_libraries(end_test PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES} 
 
 option(CODE_COVERAGE "Enable coverage reporting" OFF)
 
-if(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    add_compile_options(--coverage -O0 -g)
-    link_libraries(gcov)
+if(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    set(COVERAGE_FLAGS "-fprofile-instr-generate -fcoverage-mapping")
+    set_target_properties(unit_test PROPERTIES COMPILE_FLAGS ${COVERAGE_FLAGS})
+    set_target_properties(unit_test PROPERTIES LINK_FLAGS ${COVERAGE_FLAGS})
 endif()
-
