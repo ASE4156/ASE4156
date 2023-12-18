@@ -32,12 +32,12 @@ jobs:
 
     - name: Run Unit Tests
       run: ./unit_test
+      
+    - name: Run End to End Tests
+      run: ./end_test -s
 
     - name: Style Check (cpplint)
-      run: |
-        cd styler_checker
-        chmod +x sc_command.sh
-        ./sc_command.sh
+      run: python3 styler_checker/run_cpplint.py . styler_checker/cpplint.py
 
     - name: Clang Format Check
       run: |
@@ -51,7 +51,7 @@ jobs:
       run: brew install cppcheck
 
     - name: Run cppcheck
-      run: cppcheck --enable=all --std=c++17 . --output-file=static_analysis/sa_output.txt
+      run: cppcheck --enable=all --std=c++17 . --output-file=reports/static_analysis+report.txt
     
     # - name: Install coverage tools
     #   run: |

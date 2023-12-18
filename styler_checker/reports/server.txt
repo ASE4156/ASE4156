@@ -1,2 +1,0 @@
-Done processing ../main/server.cpp
-Total errors found: 31

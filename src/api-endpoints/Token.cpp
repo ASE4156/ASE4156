@@ -8,13 +8,17 @@ using namespace web::http;
 
 Token::Token() {}
 
-void Token::handleCreationRequest(http_request request) { 
+web::http::http_response Token::handleCreationRequest(http_request request) { 
     // Parse JSON request
+    web::http::http_response endpointResponse;
+
     auto json_value = request.extract_json().get();
     // Ensure the JSON value contains a "text" field.
     if (!json_value.has_field(U("clientId"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'clientId' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+        endpointResponse.set_body(U("Missing or invalid 'clientId' field in JSON request."));
+        return endpointResponse;;
     }
     auto clientId = json_value[U("clientId")].as_integer();
     std::string clientIdStr = std::to_string(clientId);
@@ -31,15 +35,22 @@ void Token::handleCreationRequest(http_request request) {
 
     // Send back the response
     request.reply(status_codes::OK, response);
+    endpointResponse.set_status_code(web::http::status_codes::OK);
+    endpointResponse.set_body(response);
+    return endpointResponse;
 }
 
-void Token::handleDeletionRequest(http_request request) {
+web::http::http_response Token::handleDeletionRequest(http_request request) {
     // Parse JSON request
+    web::http::http_response endpointResponse;
+
     auto json_value = request.extract_json().get();
     // Ensure the JSON value contains a "text" field.
     if (!json_value.has_field(U("token")) || !json_value[U("token")].is_string()) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+        endpointResponse.set_body(U("Missing or invalid 'token' field in JSON request."));
+        return endpointResponse;;
     }
 
     auto token = json_value[U("token")].as_string();
@@ -47,7 +58,9 @@ void Token::handleDeletionRequest(http_request request) {
     Authenticator authenticator;
     if (!authenticator.validateToken(token)) {
     	request.reply(status_codes::BadRequest, U("Invalid 'token' given."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+        endpointResponse.set_body(U("Invalid 'token' given."));
+        return endpointResponse;;
     }
 
     sql_return("DELETE FROM public.token WHERE token_id='" + token + "'");
@@ -57,15 +70,22 @@ void Token::handleDeletionRequest(http_request request) {
 
     // Send back the response
     request.reply(status_codes::OK, response);
+    endpointResponse.set_status_code(web::http::status_codes::OK);
+    endpointResponse.set_body(response);
+    return endpointResponse;
 }
 
-void Token::handleGetRequest(http_request request) {
+web::http::http_response Token::handleGetRequest(http_request request) {
     // Parse JSON request
+    web::http::http_response endpointResponse;
+
     auto json_value = request.extract_json().get();
     // Ensure the JSON value contains a "text" field.
     if (!json_value.has_field(U("clientId"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'clientId' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+        endpointResponse.set_body(U("Missing or invalid 'clientId' field in JSON request."));
+        return endpointResponse;;
     }
     
     auto clientId = json_value[U("clientId")].as_integer();
@@ -78,15 +98,22 @@ void Token::handleGetRequest(http_request request) {
 
     // Send back the response
     request.reply(status_codes::OK, response);
+    endpointResponse.set_status_code(web::http::status_codes::OK);
+    endpointResponse.set_body(response);
+    return endpointResponse;
 }
 
-void Token::handleValidateRequest(http_request request) {
+web::http::http_response Token::handleValidateRequest(http_request request) {
     // Parse JSON request
+    web::http::http_response endpointResponse;
+
     auto json_value = request.extract_json().get();
     // Ensure the JSON value contains a "text" field.
     if (!json_value.has_field(U("token"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+        endpointResponse.set_body(U("Missing or invalid 'token' field in JSON request."));
+        return endpointResponse;;
     } 
     auto token = json_value[U("token")].as_string();
     
@@ -99,16 +126,23 @@ void Token::handleValidateRequest(http_request request) {
 
     // Send back the response
     request.reply(status_codes::OK, response);
+    endpointResponse.set_status_code(web::http::status_codes::OK);
+    endpointResponse.set_body(response);
+    return endpointResponse;
 }
 
-void Token::handleGetClientRequest(http_request request) {
+web::http::http_response Token::handleGetClientRequest(http_request request) {
     // Parse JSON request
+    web::http::http_response endpointResponse;
+
     auto json_value = request.extract_json().get();
     // std::cout<<json_value<<std::endl;
     // Ensure the JSON value contains a "text" field.
     if (!json_value.has_field(U("token"))) {
     	request.reply(status_codes::BadRequest, U("Missing or invalid 'token' field in JSON request."));
-    	return;
+    	endpointResponse.set_status_code(web::http::status_codes::BadRequest);
+        endpointResponse.set_body(U("Missing or invalid 'token' field in JSON request."));
+        return endpointResponse;;
     } 
     auto token = json_value[U("token")].as_string(); 
     // std::cout<<token<<std::endl;
@@ -123,4 +157,7 @@ void Token::handleGetClientRequest(http_request request) {
 
     // Send back the response
     request.reply(status_codes::OK, response);
+    endpointResponse.set_status_code(web::http::status_codes::OK);
+    endpointResponse.set_body(response);
+    return endpointResponse;
 }

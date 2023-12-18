@@ -1,0 +1,2 @@
+Done processing ../main/client.cpp
+Total errors found: 7
