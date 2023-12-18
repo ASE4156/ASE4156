@@ -57,6 +57,21 @@ set (TEST_SOURCES
     testing/AuthenticatorTest.cpp
     src/api-endpoints/Conversation.cpp
     src/api-endpoints/Prompt.cpp
+    src/api-endpoints/Token.cpp
+    src/service/ChatGPTService.cpp
+    src/service/Authenticator.cpp
+    src/config/AppConfig.cpp
+    postgresql/db.cpp
+)
+
+set (END_TEST_SOURCES
+    testing/MockChatGPTService.cpp
+    testing/EndtoEndTest.cpp
+    testing/MockChatGPTService.cpp
+    src/api-endpoints/Conversation.cpp
+    src/api-endpoints/Prompt.cpp
+    src/api-endpoints/User.cpp
+    src/api-endpoints/Token.cpp
     src/service/ChatGPTService.cpp
     src/service/Authenticator.cpp
     src/config/AppConfig.cpp
@@ -71,6 +86,9 @@ target_link_libraries(server PRIVATE ${PQXX_LINK_LIBRARIES} cpprestsdk::cpprest 
 
 add_executable(unit_test ${TEST_SOURCES} testing/unit_test.cpp  )
 target_link_libraries(unit_test PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES} ${PQXX_LINK_LIBRARIES})
+
+add_executable(end_test ${END_TEST_SOURCES} testing/unit_test.cpp )
+target_link_libraries(end_test PRIVATE cpprestsdk::cpprest ${OPENSSL_LIBRARIES} ${PQXX_LINK_LIBRARIES})
 
 option(CODE_COVERAGE "Enable coverage reporting" OFF)
 

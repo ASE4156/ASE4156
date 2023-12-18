@@ -1,0 +1,440 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+unit_test is a Catch v2.13.10 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+Retrieve API Key Successfully
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/AppConfigTest.cpp:5
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/AppConfigTest.cpp:13: PASSED:
+  REQUIRE( apiKey == "TestApiKey1234" )
+with expansion:
+  "TestApiKey1234" == "TestApiKey1234"
+
+-------------------------------------------------------------------------------
+API Key Not Found
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/AppConfigTest.cpp:19
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/AppConfigTest.cpp:27: PASSED:
+  REQUIRE( apiKey.empty() )
+with expansion:
+  true
+
+-------------------------------------------------------------------------------
+Missing .env File
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/AppConfigTest.cpp:33
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/AppConfigTest.cpp:38: PASSED:
+  REQUIRE( apiKey.empty() )
+with expansion:
+  true
+
+-------------------------------------------------------------------------------
+ChatGPTService Basic Functionality Test
+  Setup OpenAI Client
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/ChatGPTServiceTest.cpp:9
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/ChatGPTServiceTest.cpp:11: PASSED:
+  REQUIRE( client.base_uri().to_string() == "https://api.openai.com/" )
+with expansion:
+  "https://api.openai.com/"
+  ==
+  "https://api.openai.com/"
+
+Debug message: Value of prompt is You are an omniscient language expert who can respond to all types of requests.
+-------------------------------------------------------------------------------
+ChatGPTService Completion API Integration Test
+  Invalid API Key - Failure
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/ChatGPTServiceTest.cpp:23
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/ChatGPTServiceTest.cpp:28: PASSED:
+  REQUIRE( responseJson.has_field("error") )
+with expansion:
+  true
+
+-------------------------------------------------------------------------------
+ChatGPTService Completion API Integration Test
+  Invalid Request Data - failure
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/ChatGPTServiceTest.cpp:31
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/ChatGPTServiceTest.cpp:34: PASSED:
+  REQUIRE_THROWS_AS( chatGPTService.call_chatgpt_api_completion(emptyInput, prompt), std::invalid_argument )
+
+
+{"choices":[{"finish_reason":"stop","index":0,"message":{"content":"The 2020 World Series was played in Texas at Globe Life Field in Arlington.","role":"assistant"}}]}
+-------------------------------------------------------------------------------
+Endpoint POST Request Handling
+  Successful POST request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/ConversationEndpointTest.cpp:17
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/ConversationEndpointTest.cpp:29: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/ConversationEndpointTest.cpp:31: PASSED:
+  REQUIRE( body["response"].as_string() == "The 2020 World Series was played in Texas at Globe Life Field in Arlington." )
+with expansion:
+  "The 2020 World Series was played in Texas at Globe Life Field in Arlington."
+  ==
+  "The 2020 World Series was played in Texas at Globe Life Field in Arlington."
+
+-------------------------------------------------------------------------------
+Endpoint POST Request Handling
+  Handle invalid request body - missing text field
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/ConversationEndpointTest.cpp:40
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/ConversationEndpointTest.cpp:53: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint POST Request Handling
+  Handle invalid request body - invalid text format
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/ConversationEndpointTest.cpp:56
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/ConversationEndpointTest.cpp:69: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Post
+  Successful POST request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:81
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:93: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Post
+  Missing token POST request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:96
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:107: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Post
+  Missing prompt_name POST request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:110
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:121: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Post
+  Missing prompt_description POST request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:124
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:135: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Post
+  Missing prompt_content POST request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:138
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:149: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Post
+  Missing client_id POST request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:152
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:163: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Put
+  Successful PUT request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:179
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:192: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Put
+  Invalid prompt_id request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:196
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:209: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Put
+  Missing token Put request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:212
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:225: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Put
+  Missing prompt_name Put request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:228
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:241: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Put
+  Missing prompt_description Put request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:244
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:257: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Put
+  Missing prompt_content Put request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:260
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:273: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Put
+  Missing client_id Put request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:276
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:289: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Put
+  Missing prompt_id Put request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:292
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:305: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Delete
+  Successful Delete request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:324
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:333: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Delete
+  Invalid prompt_id Delete request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:336
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:345: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Delete
+  Missing prompt_id Delete request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:348
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:361: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Get
+  Successful GET request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:377
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:386: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Get
+  Missing prompt_id Get request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:389
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:398: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Get
+  Missing token Get request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:401
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:410: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Get Client
+  Successful GET request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:426
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:435: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::OK )
+with expansion:
+  200 == 200
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Get Client
+  Successful GET request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:439
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:448: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Get Client
+  Missing client Get Client request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:451
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:460: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Endpoint Prompt Get Client
+  Missing token Get Client request
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:463
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/PromptEndpointTest.cpp:472: PASSED:
+  REQUIRE( response.status_code() == web::http::status_codes::BadRequest )
+with expansion:
+  400 == 400
+
+-------------------------------------------------------------------------------
+Authenticator Function Check
+  VALIDATE TOKEN
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/AuthenticatorTest.cpp:10
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/AuthenticatorTest.cpp:12: PASSED:
+  REQUIRE( authenticator.validateToken(dbToken) )
+with expansion:
+  true
+
+-------------------------------------------------------------------------------
+Authenticator Function Check
+  Token Generation
+-------------------------------------------------------------------------------
+/Users/juneei/Documents/github/branch8/ASE4156/testing/AuthenticatorTest.cpp:15
+...............................................................................
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/AuthenticatorTest.cpp:16: PASSED:
+  REQUIRE( token.length() > 0 )
+with expansion:
+  36 > 0
+
+/Users/juneei/Documents/github/branch8/ASE4156/testing/AuthenticatorTest.cpp:17: PASSED:
+  REQUIRE( !(token == authenticator.generateToken()) )
+with expansion:
+  true
+
+===============================================================================
+All tests passed (37 assertions in 12 test cases)
+

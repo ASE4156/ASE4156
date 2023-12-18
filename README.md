@@ -177,7 +177,14 @@ https://github.com/ASE4156/client-app
 After compiling, at repo's root directory:
 1. run ```./unit_test```
 2. or run ```./unit_test -s``` to show test details.
-3. or run ```./unit_test -s > testing/unit_test_report.txt``` to save to report
+3. or run ```./unit_test -s > reports/unit_test_report.txt``` to save to report
+
+## endtoend-test
+
+After compiling, at repo's root directory:
+1. run ```./end_test```
+2. or run ```./end_test -s``` to show test details.
+3. or run ```./end_test -s > reports/endtoend_test_report.txt``` to save to report
 
 # Style-Checker
 
@@ -189,14 +196,13 @@ Required package:
 In the ```/styler_checker``` directory
 1. run ```python3 cpplint.py [file]```
 
-```/styler_checker/sc_command.sh``` check all cpp file in text and saved to report directory
-1. run ```chmod +x sc_command.sh``` 
-1. run ```./sc_command.sh```
+In the ```project root directory``` directory
+1. ```python3 styler_checker/run_cpplint.py . styler_checker/cpplint.py``` check all cpp file in directory and saved to report directory
 
 ## clang-format
 
 Required package:
-```sudo apt install clang-format```
+```brew install install clang-format```
 
 run ```clang-format xxxx.cpp```
 
@@ -235,3 +241,8 @@ You must create your own OpenAI API token and put it in .env to utilize OpenAI's
 
 The first line of the .env file must be as follows:  
 `OPENAI_API_KEY=Your-key-here-without-quotations`
+
+# Report-Generator
+In the ```project root directory``` folder
+1. run ```chmod +x report_generate.sh```
+2. run ```./report_generate.sh```

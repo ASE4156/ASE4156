@@ -1,0 +1,2 @@
+Done processing ../main/main.cpp
+Total errors found: 1

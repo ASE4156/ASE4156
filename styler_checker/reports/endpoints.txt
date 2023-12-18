@@ -1,2 +1,0 @@
-Done processing ../api-endpoints/endpoints.cpp
-Total errors found: 4

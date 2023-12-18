@@ -1,2 +1,0 @@
-Done processing ../testing/unit_test_2.cpp
-Total errors found: 20
