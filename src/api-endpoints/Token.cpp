@@ -145,7 +145,7 @@ web::http::http_response Token::handleGetClientRequest(http_request request) {
         return endpointResponse;;
     } 
     auto token = json_value[U("token")].as_string(); 
-    // std::cout<<token<<std::endl;
+    
     std::string clientIdStr = sql_return("SELECT client_id FROM public.token WHERE token_id='" + token + "';");
     int clientId = std::stoi(clientIdStr);
     std::string clientNameStr = sql_return("SELECT client_name FROM public.client WHERE client_id='" + clientIdStr + "';");
